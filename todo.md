@@ -30,3 +30,8 @@
 - [x] Make Blog posts fully readable with individual post pages
 - [x] Add routing for article/post detail views
 - [x] Ensure all links are functional
+
+
+## SEO Fixes
+- [x] Reduce homepage keywords from 12 to 6 focused keywords
+- [x] Shorten meta description from 177 to physiological 147 characters
