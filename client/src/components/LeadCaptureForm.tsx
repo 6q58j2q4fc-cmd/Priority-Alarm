@@ -1,7 +1,7 @@
 /**
  * Lead Capture Form Component - High Desert Modernism Design
  * Primary CTA for capturing potential client information
- * Stores leads in localStorage for demo purposes
+ * Stores leads in database and sends notification to Kevin Rea
  */
 
 import { useState } from "react";
@@ -16,7 +16,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 const neighborhoods = [
   "Brasada Ranch",
@@ -64,14 +65,15 @@ interface LeadFormData {
 
 interface LeadCaptureFormProps {
   variant?: "full" | "compact";
+  source?: string;
   onSuccess?: () => void;
 }
 
 export default function LeadCaptureForm({
   variant = "full",
+  source = "website",
   onSuccess,
 }: LeadCaptureFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<LeadFormData>({
     firstName: "",
@@ -84,35 +86,37 @@ export default function LeadCaptureForm({
     message: "",
   });
 
+  const submitLead = trpc.leads.submit.useMutation({
+    onSuccess: (data) => {
+      setIsSubmitted(true);
+      toast.success(data.message, {
+        description: "Kevin will be in touch with you shortly.",
+      });
+      if (onSuccess) {
+        onSuccess();
+      }
+    },
+    onError: (error) => {
+      toast.error("Failed to submit inquiry", {
+        description: error.message || "Please try again or call Kevin directly at 541-390-9848",
+      });
+    },
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Store lead in localStorage for demo
-    const leads = JSON.parse(localStorage.getItem("reaco_leads") || "[]");
-    leads.push({
-      ...formData,
-      id: Date.now(),
-      createdAt: new Date().toISOString(),
-      status: "new",
+    
+    submitLead.mutate({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      neighborhood: formData.neighborhood || undefined,
+      budget: formData.budget || undefined,
+      timeline: formData.timeline || undefined,
+      message: formData.message || undefined,
+      source,
     });
-    localStorage.setItem("reaco_leads", JSON.stringify(leads));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast.success(
-      "Thank you! Kevin Rea will be in touch with you shortly.",
-      {
-        description: "Check your email for a confirmation.",
-      }
-    );
-
-    if (onSuccess) {
-      onSuccess();
-    }
   };
 
   const handleChange = (field: keyof LeadFormData, value: string) => {
@@ -173,11 +177,14 @@ export default function LeadCaptureForm({
         />
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={submitLead.isPending}
           className="w-full bg-amber text-timber hover:bg-amber/90 font-body font-semibold uppercase tracking-wide"
         >
-          {isSubmitting ? (
-            "Sending..."
+          {submitLead.isPending ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Sending...
+            </>
           ) : (
             <>
               <Send className="w-4 h-4 mr-2" />
@@ -325,12 +332,15 @@ export default function LeadCaptureForm({
 
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={submitLead.isPending}
         size="lg"
         className="w-full bg-amber text-timber hover:bg-amber/90 font-body font-semibold uppercase tracking-wide text-base py-6"
       >
-        {isSubmitting ? (
-          "Sending Your Inquiry..."
+        {submitLead.isPending ? (
+          <>
+            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+            Sending Your Inquiry...
+          </>
         ) : (
           <>
             <Send className="w-5 h-5 mr-2" />

@@ -1,0 +1,26 @@
+{
+  "query": "SELECT * FROM leads ORDER BY createdAt DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT * FROM leads ORDER BY createdAt DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "phone": "541-555-1234",
+      "neighborhood": "NULL",
+      "budget": "NULL",
+      "timeline": "NULL",
+      "message": "NULL",
+      "source": "website",
+      "status": "new",
+      "notificationSent": "0",
+      "createdAt": "2026-01-11 12:36:17",
+      "updatedAt": "2026-01-11 12:36:17"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfirstName\tlastName\temail\tphone\tneighborhood\tbudget\ttimeline\tmessage\tsource\tstatus\tnotificationSent\tcreatedAt\tupdatedAt\n1\tTest\tUser\ttest@example.com\t541-555-1234\tNULL\tNULL\tNULL\tNULL\twebsite\tnew\t0\t2026-01-11 12:36:17\t2026-01-11 12:36:17\n",
+  "stderr": "",
+  "execution_time_ms": 110
+}

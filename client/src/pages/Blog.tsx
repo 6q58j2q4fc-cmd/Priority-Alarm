@@ -310,7 +310,7 @@ export default function Blog() {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 rounded-full bg-stone overflow-hidden">
                       <img
-                        src="/images/hero-about.jpg"
+                        src="/images/kevin-rea.webp"
                         alt="Kevin Rea"
                         className="w-full h-full object-cover"
                       />

@@ -150,7 +150,7 @@ export default function About() {
 
             <div className="relative">
               <img
-                src="/images/hero-main.jpg"
+               src="/images/kevin-rea.webp"
                 alt="Rea Co Homes Custom Home"
                 className="rounded-lg shadow-2xl"
               />

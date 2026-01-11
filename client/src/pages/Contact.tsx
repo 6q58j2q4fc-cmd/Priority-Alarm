@@ -18,7 +18,7 @@ export default function Contact() {
       <section className="relative h-[50vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-about.jpg')" }}
+          style={{ backgroundImage: "url('/images/kevin-rea.webp')" }}
         >
           <div className="absolute inset-0 bg-timber/80" />
         </div>

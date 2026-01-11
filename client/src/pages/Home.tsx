@@ -206,7 +206,7 @@ export default function Home() {
 
             <div className="relative">
               <img
-                src="/images/hero-about.jpg"
+                src="/images/kevin-rea.webp"
                 alt="Kevin Rea - Master Custom Home Builder"
                 className="rounded-lg shadow-2xl"
               />
