@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#3d3428"/>
+  <path d="M20 70 L50 30 L80 70" stroke="#c9a45c" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M35 70 L35 55 L50 45 L65 55 L65 70" stroke="#c9a45c" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50" y="90" font-family="Georgia, serif" font-size="16" fill="#c9a45c" text-anchor="middle" font-weight="bold">RCH</text>
+</svg>
