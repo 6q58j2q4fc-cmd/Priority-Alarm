@@ -4,6 +4,7 @@
  */
 
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -112,6 +113,12 @@ const neighborhoods = [
 export default function Neighborhoods() {
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Central Oregon Neighborhoods"
+        description="Build your custom home in Central Oregon's finest communities: Brasada Ranch, Tetherow, Pronghorn, Broken Top, Awbrey Butte, and more."
+        keywords="Brasada Ranch homes, Tetherow builder, Pronghorn custom homes, Broken Top, Awbrey Butte, Central Oregon neighborhoods"
+        ogImage="/images/hero-neighborhoods.jpg"
+      />
       <Header />
 
       {/* Hero Section */}

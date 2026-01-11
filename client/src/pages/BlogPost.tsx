@@ -5,6 +5,7 @@
 
 import { useParams, Link } from "wouter";
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -59,6 +60,13 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title={post.title}
+        description={post.excerpt.slice(0, 155)}
+        keywords={post.tags.join(", ")}
+        ogImage={post.image}
+        ogType="article"
+      />
       <Header />
 
       {/* Hero Section */}

@@ -4,6 +4,7 @@
  */
 
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,6 +73,12 @@ const projects = [
 export default function Portfolio() {
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Custom Home Portfolio"
+        description="Explore our portfolio of award-winning luxury custom homes in Central Oregon. From Brasada Ranch to Tetherow, see Kevin Rea's finest work."
+        keywords="custom home portfolio, Bend Oregon homes, luxury home gallery, Brasada Ranch homes, Tetherow custom homes"
+        ogImage="/images/hero-portfolio.jpg"
+      />
       <Header />
 
       {/* Hero Section */}

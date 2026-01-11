@@ -5,6 +5,7 @@
  */
 
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
 import { Button } from "@/components/ui/button";
@@ -62,6 +63,11 @@ const neighborhoods = [
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Central Oregon Custom Home Builder"
+        description="Award-winning custom home builder in Central Oregon since 1977. Kevin Rea builds luxury homes in Bend's premier communities. Call 541-390-9848."
+        keywords="custom home builder Bend Oregon, Central Oregon luxury homes, Brasada Ranch builder, Tetherow custom homes, Kevin Rea, Rea Co Homes"
+      />
       <Header />
 
       {/* Hero Section */}

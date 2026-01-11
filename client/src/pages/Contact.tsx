@@ -4,6 +4,7 @@
  */
 
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +13,12 @@ import { Phone, Mail, MapPin, Clock, ExternalLink, Award } from "lucide-react";
 export default function Contact() {
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Contact Kevin Rea - Free Consultation"
+        description="Contact Kevin Rea for a free custom home consultation. Call 541-390-9848 or email kevin@reacohomes.com. Building in Central Oregon since 1977."
+        keywords="contact Kevin Rea, Bend custom home builder contact, free home consultation, Rea Co Homes phone"
+        ogImage="/images/kevin-rea.webp"
+      />
       <Header />
 
       {/* Hero Section */}

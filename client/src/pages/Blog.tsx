@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -32,6 +33,12 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Rea Co Homes Blog - Custom Home Building Insights"
+        description="Expert insights on custom home building in Central Oregon. Tips, trends, and community guides from master builder Kevin Rea."
+        keywords="custom home building blog, Bend Oregon homes, Central Oregon builder tips, luxury home design"
+        ogImage="/images/hero-main.jpg"
+      />
       <Header />
 
       {/* Hero Section */}
