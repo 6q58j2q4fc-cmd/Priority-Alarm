@@ -4,7 +4,7 @@
  * Uses RSS feeds and curated content for SEO
  */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -18,80 +18,9 @@ import {
   ExternalLink,
   Search,
   RefreshCw,
+  ChevronRight,
 } from "lucide-react";
-
-// Simulated news articles - in production these would come from RSS feeds or APIs
-const newsArticles = [
-  {
-    id: 1,
-    title: "Central Oregon Housing Market Shows Strong Growth in Luxury Segment",
-    excerpt: "The custom home market in Bend and surrounding areas continues to see increased demand for high-end properties, with Brasada Ranch and Tetherow leading the way.",
-    date: "2026-01-10",
-    category: "Market Trends",
-    source: "Bend Bulletin",
-    image: "/images/hero-neighborhoods.jpg",
-    tags: ["Bend Oregon", "Luxury Homes", "Market Trends"],
-  },
-  {
-    id: 2,
-    title: "Sustainable Building Practices Gain Traction in High Desert Construction",
-    excerpt: "Central Oregon builders are increasingly incorporating energy-efficient designs and sustainable materials in custom home construction.",
-    date: "2026-01-08",
-    category: "Industry News",
-    source: "Oregon Home Magazine",
-    image: "/images/hero-main.jpg",
-    tags: ["Sustainable Building", "Green Homes", "Central Oregon"],
-  },
-  {
-    id: 3,
-    title: "Brasada Ranch Announces New Phase of Development",
-    excerpt: "The popular Powell Butte community continues to expand with new homesites offering stunning Cascade Mountain views.",
-    date: "2026-01-05",
-    category: "Development News",
-    source: "Central Oregon Daily",
-    image: "/images/oov3bdfkfk6B.jpg",
-    tags: ["Brasada Ranch", "New Development", "Powell Butte"],
-  },
-  {
-    id: 4,
-    title: "Indoor-Outdoor Living Trends Dominate Central Oregon Home Design",
-    excerpt: "Large glass walls, covered patios, and seamless transitions between indoor and outdoor spaces are the most requested features in new custom homes.",
-    date: "2026-01-03",
-    category: "Design Trends",
-    source: "Architectural Digest",
-    image: "/images/hero-portfolio.jpg",
-    tags: ["Home Design", "Indoor-Outdoor", "Architecture"],
-  },
-  {
-    id: 5,
-    title: "Tetherow Resort Community Sees Record Home Sales",
-    excerpt: "The Bend golf resort community reports strong demand for custom homesites with mountain views and resort amenities.",
-    date: "2025-12-28",
-    category: "Market Trends",
-    source: "Bend Source",
-    image: "/images/qHKfAGVqL6Y8.jpg",
-    tags: ["Tetherow", "Golf Community", "Home Sales"],
-  },
-  {
-    id: 6,
-    title: "Central Oregon Named Top Destination for Remote Workers",
-    excerpt: "The region's natural beauty and quality of life continue to attract professionals seeking custom homes with dedicated office spaces.",
-    date: "2025-12-22",
-    category: "Lifestyle",
-    source: "Forbes",
-    image: "/images/cascade-mountains.jpg",
-    tags: ["Remote Work", "Lifestyle", "Central Oregon"],
-  },
-];
-
-const categories = [
-  "All News",
-  "Market Trends",
-  "Industry News",
-  "Development News",
-  "Design Trends",
-  "Lifestyle",
-];
+import { newsArticles, categories } from "@/data/newsArticles";
 
 export default function News() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
@@ -192,53 +121,58 @@ export default function News() {
           {/* News Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map((article, index) => (
-              <Card
-                key={article.id}
-                className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="font-body text-xs bg-amber text-timber px-3 py-1 rounded-full font-medium">
-                      {article.category}
-                    </span>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      {new Date(article.date).toLocaleDateString()}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <ExternalLink className="w-3 h-3" />
-                      {article.source}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-lg font-semibold text-timber mb-3 line-clamp-2 group-hover:text-amber transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="font-body text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {article.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-body text-xs bg-stone px-2 py-1 rounded text-timber flex items-center gap-1"
-                      >
-                        <Tag className="w-3 h-3" />
-                        {tag}
+              <Link key={article.id} href={`/news/${article.slug}`}>
+                <Card
+                  className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 animate-fade-in-up cursor-pointer h-full"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="font-body text-xs bg-amber text-timber px-3 py-1 rounded-full font-medium">
+                        {article.category}
                       </span>
-                    ))}
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {new Date(article.date).toLocaleDateString()}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <ExternalLink className="w-3 h-3" />
+                        {article.source}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-timber mb-3 line-clamp-2 group-hover:text-amber transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="font-body text-muted-foreground text-sm mb-4 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {article.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-body text-xs bg-stone px-2 py-1 rounded text-timber flex items-center gap-1"
+                        >
+                          <Tag className="w-3 h-3" />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="font-body text-sm text-amber font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                      Read Full Article
+                      <ChevronRight className="w-4 h-4" />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 

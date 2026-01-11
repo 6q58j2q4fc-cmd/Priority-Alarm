@@ -23,3 +23,10 @@
 - [x] Send email notifications to Kevin on new leads
 - [x] Document automated content generation strategy
 - [x] Test all lead capture functionality (11 tests passing)
+
+
+## New Requirements
+- [x] Make News articles fully clickable with individual article pages
+- [x] Make Blog posts fully readable with individual post pages
+- [x] Add routing for article/post detail views
+- [x] Ensure all links are functional
