@@ -28,8 +28,8 @@ const projects = [
     name: "1st Street Rapids",
     location: "Bend, Oregon",
     description: "A contemporary riverside residence showcasing modern architecture with expansive glass walls and natural materials.",
-    image: "/images/1st-street-rapids-exterior.webp",
-    interiorImage: "/images/1st-street-rapids-interior.webp",
+    image: "/images/1st-street-rapids-full-exterior.webp",
+    interiorImage: "/images/1st-street-rapids-full-interior.webp",
     features: ["Riverside Location", "Modern Design", "City Living"],
   },
   {
