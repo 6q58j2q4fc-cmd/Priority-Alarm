@@ -12,7 +12,7 @@ import Lightbox from "@/components/Lightbox";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ArrowRight, MapPin, ExternalLink, Expand, Image } from "lucide-react";
+import { ArrowRight, MapPin, ExternalLink, Expand, Image, Grid3X3 } from "lucide-react";
 
 // Portfolio projects with accurate data from reacohomes.com
 const projects = [
@@ -35,10 +35,16 @@ const projects = [
   {
     name: "Underwood Residence",
     location: "Brasada Ranch",
-    description: "Stunning timber frame construction with panoramic high desert views and exceptional craftsmanship throughout.",
-    image: "/images/underwood-aerial.webp",
-    interiorImage: "/images/underwood-timber.webp",
-    features: ["Timber Frame", "Stone Accents", "Outdoor Living"],
+    description: "Modern ranch design by Liz Dexter, AIA featuring a non-reflective metal roof, wall of glass, and 1,500 sq ft of outdoor decks with pool.",
+    image: "/images/underwood-residence-hero-exterior.webp",
+    interiorImage: "/images/underwood-residence-great-room.webp",
+    additionalImages: [
+      "/images/underwood-residence-pool-view.webp",
+      "/images/underwood-residence-dining.webp",
+      "/images/underwood-residence-game-room.webp",
+      "/images/underwood-residence-kitchen.webp",
+    ],
+    features: ["Modern Ranch", "Pool & Spa", "4,311 Sq Ft"],
   },
   {
     name: "McCartney Residence",
@@ -84,10 +90,16 @@ const projects = [
   {
     name: "Brown Residence",
     location: "Awbrey Butte, Bend",
-    description: "Craftsman-style home featuring a distinctive red kitchen island, barn-wood accents, and elegant dining spaces.",
-    image: "/images/brown-kitchen.webp",
-    interiorImage: "/images/brown-dining.webp",
-    features: ["Award Winner", "ICF Construction", "Designer Interior"],
+    description: "Award-winning ICF home designed by Scott and June Brown. Won Best of Show at Realtors Tour of Homes and OCAPA Excellence in Concrete award.",
+    image: "/images/brown-residence-hero-exterior.webp",
+    interiorImage: "/images/brown-residence-fireplace-detail.webp",
+    additionalImages: [
+      "/images/brown-residence-living-room.webp",
+      "/images/brown-residence-bedroom.webp",
+      "/images/brown-residence-sitting-area.webp",
+      "/images/brown-residence-kitchen-view.webp",
+    ],
+    features: ["Best of Show", "ICF Construction", "4,500 Sq Ft"],
   },
   {
     name: "Ladkin's Craft Residence",
@@ -104,17 +116,26 @@ export default function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  // Flatten all images for lightbox
+  // Flatten all images for lightbox - remove duplicates
   const allImages = useMemo(() => {
     const images: { src: string; alt: string; title: string; description: string }[] = [];
+    const seenSrcs = new Set<string>();
+    
     projects.forEach((project) => {
-      images.push({
-        src: project.image,
-        alt: `${project.name} - Exterior`,
-        title: project.name,
-        description: `${project.location} - ${project.description}`,
-      });
-      if (project.interiorImage) {
+      // Add main image
+      if (!seenSrcs.has(project.image)) {
+        seenSrcs.add(project.image);
+        images.push({
+          src: project.image,
+          alt: `${project.name} - Exterior`,
+          title: project.name,
+          description: `${project.location} - ${project.description}`,
+        });
+      }
+      
+      // Add interior image
+      if (project.interiorImage && !seenSrcs.has(project.interiorImage)) {
+        seenSrcs.add(project.interiorImage);
         images.push({
           src: project.interiorImage,
           alt: `${project.name} - Interior`,
@@ -122,14 +143,19 @@ export default function Portfolio() {
           description: `${project.location} - Interior view`,
         });
       }
+      
+      // Add additional images
       if ((project as any).additionalImages) {
         (project as any).additionalImages.forEach((img: string, idx: number) => {
-          images.push({
-            src: img,
-            alt: `${project.name} - View ${idx + 3}`,
-            title: `${project.name}`,
-            description: `${project.location} - Additional view`,
-          });
+          if (!seenSrcs.has(img)) {
+            seenSrcs.add(img);
+            images.push({
+              src: img,
+              alt: `${project.name} - View ${idx + 3}`,
+              title: `${project.name}`,
+              description: `${project.location} - Additional view`,
+            });
+          }
         });
       }
     });
@@ -153,6 +179,16 @@ export default function Portfolio() {
     }
     setLightboxIndex(index);
     setLightboxOpen(true);
+  };
+
+  // Get image count for a project
+  const getProjectImageCount = (project: typeof projects[0]) => {
+    let count = 1; // main image
+    if (project.interiorImage) count++;
+    if ((project as any).additionalImages) {
+      count += (project as any).additionalImages.length;
+    }
+    return count;
   };
 
   return (
@@ -216,6 +252,14 @@ export default function Portfolio() {
                       <Expand className="w-6 h-6 text-white" />
                     </div>
                   </div>
+                  
+                  {/* Image count badge */}
+                  {getProjectImageCount(project) > 2 && (
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                      <Grid3X3 className="w-3 h-3" />
+                      {getProjectImageCount(project)} photos
+                    </div>
+                  )}
                 </div>
 
                 <CardContent className="p-6">
