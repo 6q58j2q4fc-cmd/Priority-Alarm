@@ -52,12 +52,12 @@ const stats = [
 ];
 
 const neighborhoods = [
-  { name: "Brasada Ranch", location: "Powell Butte", image: "/images/hero-neighborhoods.jpg" },
-  { name: "Tetherow", location: "Bend", image: "/images/qHKfAGVqL6Y8.jpg" },
-  { name: "Pronghorn", location: "Bend", image: "/images/asoZsc8CLN0r.jpg" },
-  { name: "Broken Top", location: "Bend", image: "/images/WkNH38aWPs08.jpg" },
-  { name: "Awbrey Butte", location: "Bend", image: "/images/LlxE9731ghDy.jpg" },
-  { name: "Caldera Springs", location: "Sunriver", image: "/images/UCoE7gADVKD9.jpg" },
+  { name: "Brasada Ranch", location: "Powell Butte", image: "/images/reaco-mccartney-exterior.webp" },
+  { name: "Tetherow", location: "Bend", image: "/images/reaco-chiaramonte-exterior.webp" },
+  { name: "Pronghorn", location: "Bend", image: "/images/reaco-underwood-aerial.webp" },
+  { name: "Broken Top", location: "Bend", image: "/images/reaco-harrington-living.webp" },
+  { name: "Awbrey Butte", location: "Bend", image: "/images/reaco-rozewski-porch.webp" },
+  { name: "Caldera Springs", location: "Sunriver", image: "/images/reaco-brown-sunroom.webp" },
 ];
 
 export default function Home() {

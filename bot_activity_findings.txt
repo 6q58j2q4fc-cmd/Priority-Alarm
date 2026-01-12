@@ -1,0 +1,23 @@
+Bot Activity Findings - January 12, 2026
+
+The marketing admin dashboard is working. Key observations:
+
+1. Article Generation SUCCESS:
+   - Successfully generated article: "Crafting Your Dream: Brasada Ranch Custom Home Design Ideas with Kevin Rea"
+   - Article is published and visible in the Articles tab
+   - Bot shows 1 article generated, 3 completed tasks
+
+2. Bot Activity Log shows:
+   - Content Generation completed at 12:02:01 PM
+   - Previous failed attempt at 12:00:37 PM (database column length issue - now fixed)
+   - In-progress task at 12:01:48 PM
+
+3. Dashboard Stats:
+   - Total Leads: 1 (1 new)
+   - Articles: 1 (1 published)
+   - Total Views: 0
+   - CTA Clicks: 0
+   - Bot Tasks: 8 (3 completed)
+   - Reach: 0
+
+The system is working correctly. The earlier failure was due to metaDescription column being too short (160 chars) - this has been fixed to 500 chars.

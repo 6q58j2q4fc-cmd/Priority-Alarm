@@ -1,6 +1,15 @@
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, InsertLead, leads, InsertSubscriber, subscribers } from "../drizzle/schema";
+import { 
+  InsertUser, users, 
+  InsertLead, leads, 
+  InsertSubscriber, subscribers,
+  InsertArticle, articles,
+  InsertMarketingMetric, marketingMetrics,
+  InsertBotActivityLog, botActivityLog,
+  InsertBotLearningState, botLearningState,
+  InsertDistributionQueue, distributionQueue
+} from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -163,4 +172,297 @@ export async function getSubscribers() {
   }
 
   return await db.select().from(subscribers).where(eq(subscribers.active, true));
+}
+
+// Article management functions
+export async function createArticle(article: InsertArticle) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const result = await db.insert(articles).values(article);
+  return result;
+}
+
+export async function getArticles(limit?: number) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  const query = db.select().from(articles)
+    .where(eq(articles.status, "published"))
+    .orderBy(desc(articles.publishedAt));
+  
+  if (limit) {
+    return await query.limit(limit);
+  }
+  return await query;
+}
+
+export async function getArticleBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) {
+    return undefined;
+  }
+
+  const result = await db.select().from(articles).where(eq(articles.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getArticleById(id: number) {
+  const db = await getDb();
+  if (!db) {
+    return undefined;
+  }
+
+  const result = await db.select().from(articles).where(eq(articles.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function updateArticle(id: number, data: Partial<InsertArticle>) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.update(articles).set(data).where(eq(articles.id, id));
+}
+
+export async function incrementArticleViews(id: number) {
+  const db = await getDb();
+  if (!db) {
+    return;
+  }
+
+  await db.update(articles).set({ views: sql`${articles.views} + 1` }).where(eq(articles.id, id));
+}
+
+export async function incrementArticleClicks(id: number) {
+  const db = await getDb();
+  if (!db) {
+    return;
+  }
+
+  await db.update(articles).set({ clicks: sql`${articles.clicks} + 1` }).where(eq(articles.id, id));
+}
+
+export async function getAllArticles() {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(articles).orderBy(desc(articles.createdAt));
+}
+
+// Marketing metrics functions
+export async function createMarketingMetric(metric: InsertMarketingMetric) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.insert(marketingMetrics).values(metric);
+}
+
+export async function getMarketingMetrics(articleId?: number) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  if (articleId) {
+    return await db.select().from(marketingMetrics)
+      .where(eq(marketingMetrics.articleId, articleId))
+      .orderBy(desc(marketingMetrics.createdAt));
+  }
+  
+  return await db.select().from(marketingMetrics).orderBy(desc(marketingMetrics.createdAt));
+}
+
+export async function getAggregatedMetrics() {
+  const db = await getDb();
+  if (!db) {
+    return { totalImpressions: 0, totalClicks: 0, totalConversions: 0, totalReach: 0 };
+  }
+
+  const result = await db.select({
+    totalImpressions: sql<number>`SUM(${marketingMetrics.impressions})`,
+    totalClicks: sql<number>`SUM(${marketingMetrics.clicks})`,
+    totalConversions: sql<number>`SUM(${marketingMetrics.conversions})`,
+    totalReach: sql<number>`SUM(${marketingMetrics.reach})`,
+  }).from(marketingMetrics);
+
+  return result[0] || { totalImpressions: 0, totalClicks: 0, totalConversions: 0, totalReach: 0 };
+}
+
+// Bot activity log functions
+export async function createBotActivity(activity: InsertBotActivityLog) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const result = await db.insert(botActivityLog).values(activity);
+  return result;
+}
+
+export async function getBotActivities(limit?: number) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  const query = db.select().from(botActivityLog).orderBy(desc(botActivityLog.createdAt));
+  
+  if (limit) {
+    return await query.limit(limit);
+  }
+  return await query;
+}
+
+export async function updateBotActivity(id: number, data: Partial<InsertBotActivityLog>) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.update(botActivityLog).set(data).where(eq(botActivityLog.id, id));
+}
+
+export async function getBotStats() {
+  const db = await getDb();
+  if (!db) {
+    return { 
+      totalActivities: 0, 
+      articlesGenerated: 0, 
+      leadsGenerated: 0,
+      completedTasks: 0,
+      failedTasks: 0
+    };
+  }
+
+  const result = await db.select({
+    totalActivities: sql<number>`COUNT(*)`,
+    articlesGenerated: sql<number>`SUM(${botActivityLog.articlesGenerated})`,
+    leadsGenerated: sql<number>`SUM(${botActivityLog.leadsGenerated})`,
+    completedTasks: sql<number>`SUM(CASE WHEN ${botActivityLog.status} = 'completed' THEN 1 ELSE 0 END)`,
+    failedTasks: sql<number>`SUM(CASE WHEN ${botActivityLog.status} = 'failed' THEN 1 ELSE 0 END)`,
+  }).from(botActivityLog);
+
+  return result[0] || { totalActivities: 0, articlesGenerated: 0, leadsGenerated: 0, completedTasks: 0, failedTasks: 0 };
+}
+
+// Bot learning state functions
+export async function upsertBotLearning(category: string, key: string, value: string, score?: number) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.insert(botLearningState).values({ category, key, value, score: score || 0 })
+    .onDuplicateKeyUpdate({ set: { value, score: score || 0 } });
+}
+
+export async function getBotLearningByCategory(category: string) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(botLearningState)
+    .where(eq(botLearningState.category, category))
+    .orderBy(desc(botLearningState.score));
+}
+
+export async function getTopPerformingKeywords(limit: number = 10) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(botLearningState)
+    .where(eq(botLearningState.category, "keywords"))
+    .orderBy(desc(botLearningState.score))
+    .limit(limit);
+}
+
+// Distribution queue functions
+export async function addToDistributionQueue(item: InsertDistributionQueue) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.insert(distributionQueue).values(item);
+}
+
+export async function getPendingDistributions() {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(distributionQueue)
+    .where(eq(distributionQueue.status, "pending"))
+    .orderBy(distributionQueue.scheduledFor);
+}
+
+export async function updateDistributionStatus(
+  id: number, 
+  status: "pending" | "processing" | "completed" | "failed",
+  result?: string
+) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const updateData: Partial<InsertDistributionQueue> = { status };
+  if (status === "completed" || status === "failed") {
+    updateData.processedAt = new Date();
+  }
+  if (result) {
+    updateData.result = result;
+  }
+
+  await db.update(distributionQueue).set(updateData).where(eq(distributionQueue.id, id));
+}
+
+// Dashboard statistics
+export async function getDashboardStats() {
+  const db = await getDb();
+  if (!db) {
+    return {
+      totalLeads: 0,
+      newLeads: 0,
+      totalArticles: 0,
+      publishedArticles: 0,
+      totalViews: 0,
+      totalClicks: 0,
+    };
+  }
+
+  const leadStats = await db.select({
+    total: sql<number>`COUNT(*)`,
+    newCount: sql<number>`SUM(CASE WHEN ${leads.status} = 'new' THEN 1 ELSE 0 END)`,
+  }).from(leads);
+
+  const articleStats = await db.select({
+    total: sql<number>`COUNT(*)`,
+    published: sql<number>`SUM(CASE WHEN ${articles.status} = 'published' THEN 1 ELSE 0 END)`,
+    totalViews: sql<number>`SUM(${articles.views})`,
+    totalClicks: sql<number>`SUM(${articles.clicks})`,
+  }).from(articles);
+
+  return {
+    totalLeads: leadStats[0]?.total || 0,
+    newLeads: leadStats[0]?.newCount || 0,
+    totalArticles: articleStats[0]?.total || 0,
+    publishedArticles: articleStats[0]?.published || 0,
+    totalViews: articleStats[0]?.totalViews || 0,
+    totalClicks: articleStats[0]?.totalClicks || 0,
+  };
 }

@@ -1,0 +1,19 @@
+{
+  "query": "SELECT id, title, slug, status, views, clicks, publishedAt FROM articles LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, slug, status, views, clicks, publishedAt FROM articles LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Crafting Your Dream: Brasada Ranch Custom Home Design Ideas with Kevin Rea",
+      "slug": "brasada-ranch-custom-home-design-ideas-kevin-rea-1768219321613",
+      "status": "published",
+      "views": "0",
+      "clicks": "0",
+      "publishedAt": "2026-01-12 12:02:02"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tstatus\tviews\tclicks\tpublishedAt\n1\tCrafting Your Dream: Brasada Ranch Custom Home Design Ideas with Kevin Rea\tbrasada-ranch-custom-home-design-ideas-kevin-rea-1768219321613\tpublished\t0\t0\t2026-01-12 12:02:02\n",
+  "stderr": "",
+  "execution_time_ms": 56
+}

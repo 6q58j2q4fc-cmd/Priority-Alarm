@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE articles MODIFY metaDescription varchar(500);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute ALTER TABLE articles MODIFY metaDescription varchar(500);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 194
+}

@@ -16,57 +16,70 @@ const projects = [
     name: "Chiaramonte Residence",
     location: "Tetherow Rim",
     description: "A stunning showplace featuring floor-to-ceiling glass walls with panoramic mountain views.",
-    image: "/images/hero-portfolio.jpg",
+    image: "/images/reaco-chiaramonte-exterior.webp",
+    interiorImage: "/images/reaco-chiaramonte-interior.webp",
     features: ["Modern Contemporary", "Mountain Views", "Glass Walls"],
-  },
-  {
-    name: "Brasada Ranch Estate",
-    location: "Brasada Ranch",
-    description: "Ranch life elevated with seamless indoor-outdoor living and high desert luxury.",
-    image: "/images/hero-main.jpg",
-    features: ["Indoor-Outdoor Living", "High Desert", "Luxury Finishes"],
   },
   {
     name: "1st Street Rapids",
     location: "Bend, Oregon",
     description: "Modern elegance meets riverside living in the heart of Bend.",
-    image: "/images/qHKfAGVqL6Y8.jpg",
+    image: "/images/reaco-1st-street-exterior.webp",
+    interiorImage: "/images/reaco-1st-street-interior.webp",
     features: ["Riverside Location", "Modern Design", "City Living"],
   },
   {
     name: "Underwood Residence",
     location: "Brasada Ranch",
     description: "A masterpiece of timber and stone with dramatic covered outdoor spaces.",
-    image: "/images/oov3bdfkfk6B.jpg",
+    image: "/images/reaco-underwood-aerial.webp",
+    interiorImage: "/images/reaco-underwood-timber.webp",
     features: ["Timber Frame", "Stone Accents", "Outdoor Living"],
   },
   {
-    name: "Brown Residence",
-    location: "Awbrey Butte",
-    description: "Best of Show winner featuring innovative ICF construction and designer interiors.",
-    image: "/images/WkNH38aWPs08.jpg",
-    features: ["Award Winner", "ICF Construction", "Designer Interior"],
+    name: "McCartney Residence",
+    location: "Brasada Ranch",
+    description: "Where trust and craftsmanship come together in perfect harmony.",
+    image: "/images/reaco-mccartney-exterior.webp",
+    interiorImage: "/images/reaco-mccartney-kitchen.webp",
+    features: ["Craftsman Style", "Quality Build", "Family Home"],
   },
   {
     name: "O'Neil Residence",
     location: "Deschutes River Ranch",
     description: "A creative masterpiece with amazing details and amenities throughout.",
-    image: "/images/asoZsc8CLN0r.jpg",
+    image: "/images/reaco-oneil-living.webp",
     features: ["River Views", "Custom Details", "Luxury Amenities"],
   },
   {
     name: "Von Schlegell Residence",
     location: "Fort Klamath",
     description: "A unique and challenging project showcasing Kevin's ability to handle complex builds.",
-    image: "/images/LlxE9731ghDy.jpg",
+    image: "/images/reaco-vonschlegell-exterior.webp",
     features: ["Custom Design", "Complex Build", "Remote Location"],
   },
   {
-    name: "McCartney Residence",
+    name: "Rozewski Residence",
     location: "Brasada Ranch",
-    description: "Where trust and craftsmanship come together in perfect harmony.",
-    image: "/images/UCoE7gADVKD9.jpg",
-    features: ["Craftsman Style", "Quality Build", "Family Home"],
+    description: "Exceptional craftsmanship with stunning outdoor living spaces and gourmet kitchen.",
+    image: "/images/reaco-rozewski-porch.webp",
+    interiorImage: "/images/reaco-rozewski-kitchen.webp",
+    features: ["Outdoor Living", "Gourmet Kitchen", "Mountain Views"],
+  },
+  {
+    name: "Harrington Residence",
+    location: "Central Oregon",
+    description: "Beautiful living spaces with expansive deck areas perfect for entertaining.",
+    image: "/images/reaco-harrington-living.webp",
+    interiorImage: "/images/reaco-harrington-deck.webp",
+    features: ["Open Floor Plan", "Deck Living", "Natural Light"],
+  },
+  {
+    name: "Brown Residence",
+    location: "Awbrey Butte",
+    description: "Best of Show winner featuring innovative ICF construction and designer interiors.",
+    image: "/images/reaco-brown-sunroom.webp",
+    features: ["Award Winner", "ICF Construction", "Designer Interior"],
   },
 ];
 
@@ -77,7 +90,7 @@ export default function Portfolio() {
         title="Custom Home Portfolio"
         description="Explore our portfolio of award-winning luxury custom homes in Central Oregon. From Brasada Ranch to Tetherow, see Kevin Rea's finest work."
         keywords="custom home portfolio, Bend Oregon homes, luxury home gallery, Brasada Ranch homes, Tetherow custom homes"
-        ogImage="/images/hero-portfolio.jpg"
+        ogImage="/images/reaco-hero-portfolio.webp"
       />
       <Header />
 
@@ -85,7 +98,7 @@ export default function Portfolio() {
       <section className="relative h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-portfolio.jpg')" }}
+          style={{ backgroundImage: "url('/images/reaco-hero-portfolio.webp')" }}
         >
           <div className="absolute inset-0 bg-timber/80" />
         </div>
