@@ -1,0 +1,332 @@
+/**
+ * Scheduler Service for Automated Content Generation
+ * Handles automatic article generation on a configurable schedule
+ */
+
+import { eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/mysql2";
+import { schedulerConfig, articles, botActivityLog } from "../drizzle/schema";
+import { invokeLLM } from "./_core/llm";
+
+let _db: ReturnType<typeof drizzle> | null = null;
+let schedulerInterval: NodeJS.Timeout | null = null;
+
+async function getDb() {
+  if (!_db && process.env.DATABASE_URL) {
+    try {
+      _db = drizzle(process.env.DATABASE_URL);
+    } catch (error) {
+      console.warn("[Scheduler] Failed to connect to database:", error);
+      _db = null;
+    }
+  }
+  return _db;
+}
+
+// Topics to rotate through for content generation
+const CONTENT_TOPICS = [
+  { category: "Custom Home Design", keywords: ["custom home design", "luxury homes", "Brasada Ranch", "architectural design"] },
+  { category: "Central Oregon Living", keywords: ["Central Oregon", "Bend Oregon", "high desert living", "mountain views"] },
+  { category: "Neighborhoods", keywords: ["Tetherow", "Pronghorn", "Broken Top", "Awbrey Butte", "North Rim"] },
+  { category: "Building Process", keywords: ["custom home builder", "construction process", "home building timeline"] },
+  { category: "Luxury Features", keywords: ["luxury amenities", "smart home", "outdoor living", "gourmet kitchen"] },
+  { category: "Market Trends", keywords: ["real estate market", "home values", "investment", "Central Oregon growth"] },
+  { category: "Sustainability", keywords: ["sustainable building", "energy efficient", "green homes", "eco-friendly"] },
+  { category: "Interior Design", keywords: ["interior design trends", "modern rustic", "high desert aesthetic"] },
+];
+
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .substring(0, 100) + '-' + Date.now();
+}
+
+async function generateArticleContent(topic: typeof CONTENT_TOPICS[0]): Promise<{
+  title: string;
+  excerpt: string;
+  content: string;
+  tags: string[];
+  metaDescription: string;
+  metaKeywords: string;
+}> {
+  const prompt = `You are an expert content writer for Rea Co Homes, a premier custom home builder in Central Oregon led by Kevin Rea. 
+
+Generate a comprehensive, SEO-optimized blog article about: ${topic.category}
+
+Target keywords: ${topic.keywords.join(", ")}
+
+Requirements:
+1. Title should be compelling and include primary keyword
+2. Content should be 800-1200 words
+3. Include sections with H2 headings
+4. Naturally incorporate keywords throughout
+5. Include a call-to-action mentioning Kevin Rea (541-390-9848, kevin@reacohomes.com)
+6. Focus on Central Oregon locations: Bend, Brasada Ranch, Tetherow, Pronghorn, etc.
+7. Highlight Kevin Rea's 45+ years of experience and award-winning work
+
+Return JSON with this exact structure:
+{
+  "title": "Article title here",
+  "excerpt": "2-3 sentence summary for preview",
+  "content": "Full article content in markdown format",
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
+  "metaDescription": "SEO meta description under 160 characters",
+  "metaKeywords": "comma, separated, keywords"
+}`;
+
+  try {
+    const response = await invokeLLM({
+      messages: [
+        { role: "system", content: "You are an expert SEO content writer. Always respond with valid JSON only." },
+        { role: "user", content: prompt }
+      ],
+      response_format: {
+        type: "json_schema",
+        json_schema: {
+          name: "article_content",
+          strict: true,
+          schema: {
+            type: "object",
+            properties: {
+              title: { type: "string", description: "Article title" },
+              excerpt: { type: "string", description: "2-3 sentence summary" },
+              content: { type: "string", description: "Full article content in markdown" },
+              tags: { type: "array", items: { type: "string" }, description: "Article tags" },
+              metaDescription: { type: "string", description: "SEO meta description" },
+              metaKeywords: { type: "string", description: "Comma-separated keywords" }
+            },
+            required: ["title", "excerpt", "content", "tags", "metaDescription", "metaKeywords"],
+            additionalProperties: false
+          }
+        }
+      }
+    });
+
+    const messageContent = response.choices[0]?.message?.content;
+    if (!messageContent) {
+      throw new Error("No content in LLM response");
+    }
+
+    const content = typeof messageContent === 'string' 
+      ? messageContent 
+      : JSON.stringify(messageContent);
+
+    return JSON.parse(content);
+  } catch (error) {
+    console.error("[Scheduler] Error generating content:", error);
+    throw error;
+  }
+}
+
+async function createScheduledArticle(): Promise<boolean> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Scheduler] Database not available");
+    return false;
+  }
+
+  try {
+    // Log activity start
+    const [activityLog] = await db.insert(botActivityLog).values({
+      activityType: "content_generation",
+      description: "Scheduled automatic article generation",
+      status: "started",
+    }).$returningId();
+
+    // Select a random topic
+    const topic = CONTENT_TOPICS[Math.floor(Math.random() * CONTENT_TOPICS.length)];
+    
+    console.log(`[Scheduler] Generating article for topic: ${topic.category}`);
+
+    // Generate content
+    const articleData = await generateArticleContent(topic);
+    const slug = generateSlug(articleData.title);
+
+    // Create the article
+    await db.insert(articles).values({
+      slug,
+      title: articleData.title,
+      excerpt: articleData.excerpt,
+      content: articleData.content,
+      category: topic.category,
+      tags: JSON.stringify(articleData.tags),
+      metaDescription: articleData.metaDescription,
+      metaKeywords: articleData.metaKeywords,
+      authorName: "Kevin Rea",
+      authorEmail: "kevin@reacohomes.com",
+      authorPhone: "541-390-9848",
+      status: "published",
+      publishedAt: new Date(),
+    });
+
+    // Update activity log
+    await db.update(botActivityLog)
+      .set({
+        status: "completed",
+        result: JSON.stringify({ articleSlug: slug, topic: topic.category }),
+        articlesGenerated: 1,
+        completedAt: new Date(),
+      })
+      .where(eq(botActivityLog.id, activityLog.id));
+
+    console.log(`[Scheduler] Successfully created article: ${articleData.title}`);
+    return true;
+  } catch (error) {
+    console.error("[Scheduler] Error creating scheduled article:", error);
+    return false;
+  }
+}
+
+async function runScheduledGeneration(): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+
+  try {
+    // Get scheduler config
+    const [config] = await db.select().from(schedulerConfig).where(eq(schedulerConfig.name, "content_generator")).limit(1);
+    
+    if (!config || !config.enabled) {
+      console.log("[Scheduler] Content generation is disabled");
+      return;
+    }
+
+    const now = new Date();
+    const lastRun = config.lastRunAt ? new Date(config.lastRunAt) : null;
+    
+    // Check if we should run (at least 12 hours since last run for 2 articles/day)
+    const hoursPerArticle = 24 / config.articlesPerDay;
+    const minTimeBetweenRuns = hoursPerArticle * 60 * 60 * 1000; // Convert to milliseconds
+    
+    if (lastRun && (now.getTime() - lastRun.getTime()) < minTimeBetweenRuns) {
+      console.log("[Scheduler] Not enough time since last run, skipping");
+      return;
+    }
+
+    console.log("[Scheduler] Running scheduled content generation...");
+    
+    const success = await createScheduledArticle();
+    
+    if (success) {
+      // Update last run time and calculate next run
+      const nextRun = new Date(now.getTime() + minTimeBetweenRuns);
+      await db.update(schedulerConfig)
+        .set({
+          lastRunAt: now,
+          nextRunAt: nextRun,
+        })
+        .where(eq(schedulerConfig.name, "content_generator"));
+      
+      console.log(`[Scheduler] Next run scheduled for: ${nextRun.toISOString()}`);
+    }
+  } catch (error) {
+    console.error("[Scheduler] Error in scheduled generation:", error);
+  }
+}
+
+export async function initializeScheduler(): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Scheduler] Cannot initialize: database not available");
+    return;
+  }
+
+  try {
+    // Create default config if it doesn't exist
+    const [existing] = await db.select().from(schedulerConfig).where(eq(schedulerConfig.name, "content_generator")).limit(1);
+    
+    if (!existing) {
+      await db.insert(schedulerConfig).values({
+        name: "content_generator",
+        enabled: true,
+        articlesPerDay: 2,
+        topics: JSON.stringify(CONTENT_TOPICS.map(t => t.category)),
+      });
+      console.log("[Scheduler] Created default scheduler configuration");
+    }
+
+    // Start the scheduler interval (check every hour)
+    if (schedulerInterval) {
+      clearInterval(schedulerInterval);
+    }
+    
+    schedulerInterval = setInterval(runScheduledGeneration, 60 * 60 * 1000); // Every hour
+    console.log("[Scheduler] Scheduler initialized, checking every hour");
+
+    // Run immediately on startup
+    await runScheduledGeneration();
+  } catch (error) {
+    console.error("[Scheduler] Error initializing scheduler:", error);
+  }
+}
+
+export async function getSchedulerStatus(): Promise<{
+  enabled: boolean;
+  articlesPerDay: number;
+  lastRunAt: Date | null;
+  nextRunAt: Date | null;
+  topics: string[];
+}> {
+  const db = await getDb();
+  if (!db) {
+    return {
+      enabled: false,
+      articlesPerDay: 0,
+      lastRunAt: null,
+      nextRunAt: null,
+      topics: [],
+    };
+  }
+
+  const [config] = await db.select().from(schedulerConfig).where(eq(schedulerConfig.name, "content_generator")).limit(1);
+  
+  if (!config) {
+    return {
+      enabled: false,
+      articlesPerDay: 0,
+      lastRunAt: null,
+      nextRunAt: null,
+      topics: [],
+    };
+  }
+
+  return {
+    enabled: config.enabled,
+    articlesPerDay: config.articlesPerDay,
+    lastRunAt: config.lastRunAt,
+    nextRunAt: config.nextRunAt,
+    topics: config.topics ? JSON.parse(config.topics) : [],
+  };
+}
+
+export async function updateSchedulerConfig(updates: {
+  enabled?: boolean;
+  articlesPerDay?: number;
+}): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    // Validate and clamp articlesPerDay
+    const validatedUpdates = { ...updates };
+    if (validatedUpdates.articlesPerDay !== undefined) {
+      validatedUpdates.articlesPerDay = Math.max(1, Math.min(10, validatedUpdates.articlesPerDay));
+    }
+
+    await db.update(schedulerConfig)
+      .set(validatedUpdates)
+      .where(eq(schedulerConfig.name, "content_generator"));
+    return true;
+  } catch (error) {
+    console.error("[Scheduler] Error updating config:", error);
+    return false;
+  }
+}
+
+export async function triggerManualGeneration(): Promise<boolean> {
+  console.log("[Scheduler] Manual generation triggered");
+  return await createScheduledArticle();
+}
+
+export { runScheduledGeneration };

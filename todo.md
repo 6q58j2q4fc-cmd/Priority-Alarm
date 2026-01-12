@@ -63,3 +63,11 @@
 - [x] Create /articles page for listing all AI-generated content
 - [x] Create /articles/:slug page for individual article display
 - [x] Add view tracking for articles
+
+
+## Scheduled Content Generation
+- [x] Create server-side scheduled task system for automatic article generation
+- [x] Configure bot to generate 1-2 articles daily automatically
+- [x] Add admin controls to enable/disable and configure scheduling
+- [x] Add scheduling status display in admin dashboard
+- [x] Test automated content generation (31 tests passing)

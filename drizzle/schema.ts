@@ -175,3 +175,23 @@ export const distributionQueue = mysqlTable("distribution_queue", {
 
 export type DistributionQueue = typeof distributionQueue.$inferSelect;
 export type InsertDistributionQueue = typeof distributionQueue.$inferInsert;
+
+
+/**
+ * Scheduler configuration table
+ * Stores settings for automated content generation scheduling
+ */
+export const schedulerConfig = mysqlTable("scheduler_config", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  enabled: boolean("enabled").default(true).notNull(),
+  articlesPerDay: int("articlesPerDay").default(2).notNull(),
+  lastRunAt: timestamp("lastRunAt"),
+  nextRunAt: timestamp("nextRunAt"),
+  topics: text("topics"), // JSON array of topics to rotate through
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SchedulerConfig = typeof schedulerConfig.$inferSelect;
+export type InsertSchedulerConfig = typeof schedulerConfig.$inferInsert;

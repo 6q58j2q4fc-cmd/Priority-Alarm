@@ -29,7 +29,13 @@ import {
   BarChart3,
   Target,
   Sparkles,
+  Calendar,
+  Play,
+  Pause,
+  Settings,
 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -38,11 +44,13 @@ export default function AdminDashboard() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isOptimizing, setIsOptimizing] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isUpdatingScheduler, setIsUpdatingScheduler] = useState(false);
 
   // Fetch dashboard data
   const { data: dashboardData, isLoading: dashboardLoading, refetch: refetchDashboard } = trpc.dashboard.getData.useQuery();
   const { data: leads, isLoading: leadsLoading, refetch: refetchLeads } = trpc.leads.list.useQuery();
   const { data: articles, isLoading: articlesLoading, refetch: refetchArticles } = trpc.articles.listAll.useQuery();
+  const { data: schedulerStatus, refetch: refetchScheduler } = trpc.scheduler.getStatus.useQuery();
 
   // Mutations
   const generateContent = trpc.bot.generateContent.useMutation({
@@ -73,6 +81,28 @@ export default function AdminDashboard() {
     },
     onError: (error) => {
       toast.error(`Trend analysis failed: ${error.message}`);
+    },
+  });
+
+  const updateSchedulerConfig = trpc.scheduler.updateConfig.useMutation({
+    onSuccess: () => {
+      toast.success("Scheduler settings updated!");
+      refetchScheduler();
+    },
+    onError: (error) => {
+      toast.error(`Failed to update scheduler: ${error.message}`);
+    },
+  });
+
+  const triggerScheduledGeneration = trpc.scheduler.triggerGeneration.useMutation({
+    onSuccess: () => {
+      toast.success("Scheduled article generation triggered!");
+      refetchArticles();
+      refetchDashboard();
+      refetchScheduler();
+    },
+    onError: (error) => {
+      toast.error(`Failed to trigger generation: ${error.message}`);
     },
   });
 
@@ -300,6 +330,7 @@ export default function AdminDashboard() {
                   refetchDashboard();
                   refetchLeads();
                   refetchArticles();
+                  refetchScheduler();
                   toast.success("Dashboard refreshed!");
                 }}
                 variant="ghost"
@@ -307,6 +338,138 @@ export default function AdminDashboard() {
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Refresh Data
               </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Scheduler Status Card */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-amber" />
+              Automated Content Scheduler
+            </CardTitle>
+            <CardDescription>
+              Configure automatic article generation. The bot will create SEO-optimized content on a schedule.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Scheduler Controls */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label htmlFor="scheduler-enabled" className="text-base font-medium">
+                      Auto-Generation
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      Automatically generate articles daily
+                    </p>
+                  </div>
+                  <Switch
+                    id="scheduler-enabled"
+                    checked={schedulerStatus?.enabled ?? false}
+                    onCheckedChange={(checked) => {
+                      updateSchedulerConfig.mutate({ enabled: checked });
+                    }}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-base font-medium">Articles Per Day</Label>
+                  <div className="flex items-center gap-2">
+                    {[1, 2, 3, 5].map((num) => (
+                      <Button
+                        key={num}
+                        variant={schedulerStatus?.articlesPerDay === num ? "default" : "outline"}
+                        size="sm"
+                        className={schedulerStatus?.articlesPerDay === num ? "bg-amber text-timber" : ""}
+                        onClick={() => {
+                          updateSchedulerConfig.mutate({ articlesPerDay: num });
+                        }}
+                      >
+                        {num}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => triggerScheduledGeneration.mutate()}
+                  disabled={triggerScheduledGeneration.isPending}
+                  className="w-full bg-timber text-white hover:bg-timber/90"
+                >
+                  {triggerScheduledGeneration.isPending ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Play className="w-4 h-4 mr-2" />
+                      Generate Article Now
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {/* Scheduler Status */}
+              <div className="bg-stone/50 rounded-lg p-4 space-y-3">
+                <h4 className="font-medium text-timber flex items-center gap-2">
+                  <Activity className="w-4 h-4" />
+                  Scheduler Status
+                </h4>
+                
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Status:</span>
+                    <Badge variant={schedulerStatus?.enabled ? "default" : "secondary"} className={schedulerStatus?.enabled ? "bg-green-500" : ""}>
+                      {schedulerStatus?.enabled ? "Active" : "Paused"}
+                    </Badge>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Articles/Day:</span>
+                    <span className="font-medium">{schedulerStatus?.articlesPerDay || 0}</span>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Last Run:</span>
+                    <span className="font-medium">
+                      {schedulerStatus?.lastRunAt 
+                        ? new Date(schedulerStatus.lastRunAt).toLocaleString()
+                        : "Never"}
+                    </span>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Next Run:</span>
+                    <span className="font-medium">
+                      {schedulerStatus?.nextRunAt 
+                        ? new Date(schedulerStatus.nextRunAt).toLocaleString()
+                        : "Not scheduled"}
+                    </span>
+                  </div>
+                </div>
+
+                {schedulerStatus?.topics && schedulerStatus.topics.length > 0 && (
+                  <div className="pt-2 border-t">
+                    <p className="text-xs text-muted-foreground mb-2">Content Topics:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {schedulerStatus.topics.slice(0, 4).map((topic, i) => (
+                        <Badge key={i} variant="outline" className="text-xs">
+                          {topic}
+                        </Badge>
+                      ))}
+                      {schedulerStatus.topics.length > 4 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{schedulerStatus.topics.length - 4} more
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>

@@ -16,6 +16,7 @@ import {
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { invokeLLM } from "./_core/llm";
+import { getSchedulerStatus, updateSchedulerConfig, triggerManualGeneration } from "./scheduler";
 
 export const appRouter = router({
   system: systemRouter,
@@ -504,6 +505,31 @@ Contact Kevin Rea, Central Oregon's premier custom home builder with over 45 yea
         recentActivities,
         topKeywords,
       };
+    }),
+  }),
+
+  // Scheduler management
+  scheduler: router({
+    // Get scheduler status (protected)
+    getStatus: protectedProcedure.query(async () => {
+      return await getSchedulerStatus();
+    }),
+
+    // Update scheduler configuration (protected)
+    updateConfig: protectedProcedure
+      .input(z.object({
+        enabled: z.boolean().optional(),
+        articlesPerDay: z.number().min(1).max(10).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const success = await updateSchedulerConfig(input);
+        return { success };
+      }),
+
+    // Trigger manual article generation (protected)
+    triggerGeneration: protectedProcedure.mutation(async () => {
+      const success = await triggerManualGeneration();
+      return { success };
     }),
   }),
 });
