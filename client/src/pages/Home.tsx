@@ -115,15 +115,27 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-12 flex items-center gap-6 animate-fade-in-up animation-delay-400">
+            <div className="mt-12 flex flex-wrap items-center gap-4 animate-fade-in-up animation-delay-400">
               <div className="flex items-center gap-2">
-                <Award className="w-6 h-6 text-amber" />
+                <Award className="w-5 h-5 text-amber" />
                 <span className="font-body text-white/80 text-sm">
-                  Best of Show Winner
+                  2x National Best of Show
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-6 h-6 text-amber" />
+                <Award className="w-5 h-5 text-amber" />
+                <span className="font-body text-white/80 text-sm">
+                  Earth Hero Award
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-amber" />
+                <span className="font-body text-white/80 text-sm">
+                  Governor's Livability Award
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-amber" />
                 <span className="font-body text-white/80 text-sm">
                   CCB #193427
                 </span>
@@ -187,17 +199,23 @@ export default function Home() {
                 artful creative seasoned eye for fine details.
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-8">
+              <div className="flex flex-wrap gap-3 mb-8">
                 <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm">
                   <Award className="w-5 h-5 text-amber" />
                   <span className="font-body text-sm font-medium text-timber">
-                    Realtors Tour Best of Show
+                    2x National Best of Show
                   </span>
                 </div>
                 <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm">
                   <Award className="w-5 h-5 text-amber" />
                   <span className="font-body text-sm font-medium text-timber">
-                    ACA Award Winner
+                    Local Earth Hero Award
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm">
+                  <Award className="w-5 h-5 text-amber" />
+                  <span className="font-body text-sm font-medium text-timber">
+                    Governor's Livability Award - Village Wistoria
                   </span>
                 </div>
               </div>

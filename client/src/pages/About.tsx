@@ -58,14 +58,24 @@ const values = [
 
 const awards = [
   {
-    title: "Best of Show",
-    organization: "Realtors Tour of Homes",
-    description: "Brown Residence, Awbrey Butte",
+    title: "National Best of Show",
+    organization: "National Home Builders Association",
+    description: "First national recognition for exceptional custom home design and craftsmanship",
   },
   {
-    title: "Best Practice Award",
-    organization: "American Concrete Association",
-    description: "ICF Insulated Concrete Forms",
+    title: "National Best of Show",
+    organization: "National Home Builders Association",
+    description: "Second national award recognizing continued excellence in luxury home building",
+  },
+  {
+    title: "Earth Hero Award",
+    organization: "Local Environmental Council",
+    description: "Recognition for sustainable building practices and environmental stewardship",
+  },
+  {
+    title: "Governor's Livability Award",
+    organization: "State of Oregon",
+    description: "Village Wistoria - Honored for creating livable, community-focused development",
   },
 ];
 

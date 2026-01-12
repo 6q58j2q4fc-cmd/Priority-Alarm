@@ -7,6 +7,7 @@ import { useParams, Link } from "wouter";
 import Header from "@/components/Header";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
+import SocialShareButtons from "@/components/SocialShareButtons";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getNewsArticleBySlug, newsArticles } from "@/data/newsArticles";
@@ -113,6 +114,16 @@ export default function NewsArticle() {
               <ExternalLink className="w-4 h-4" />
               Source: {article.source}
             </span>
+          </div>
+
+          {/* Social Share Buttons */}
+          <div className="mt-6 pt-6 border-t border-white/20">
+            <SocialShareButtons
+              url={typeof window !== "undefined" ? window.location.href : `https://reacohomes.com/news/${slug}`}
+              title={article.title}
+              description={article.excerpt}
+              image={article.image}
+            />
           </div>
         </div>
       </section>

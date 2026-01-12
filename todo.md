@@ -71,3 +71,12 @@
 - [x] Add admin controls to enable/disable and configure scheduling
 - [x] Add scheduling status display in admin dashboard
 - [x] Test automated content generation (31 tests passing)
+
+
+## Social Sharing & Awards Update
+- [x] Add social sharing buttons (Facebook, LinkedIn, Pinterest) to generated articles
+- [x] Add social sharing buttons to blog posts
+- [x] Add social sharing buttons to news articles
+- [x] Update awards section with two National Best of Show awards
+- [x] Add local Earth Hero award to awards section
+- [x] Add Governor's Livability Award for Village Wistoria

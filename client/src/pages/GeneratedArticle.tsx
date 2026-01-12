@@ -6,6 +6,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import SocialShareButtons from "@/components/SocialShareButtons";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
@@ -109,6 +110,16 @@ export default function GeneratedArticle() {
                 <Eye className="w-4 h-4" />
                 <span>{article.views} views</span>
               </div>
+            </div>
+
+            {/* Social Share Buttons */}
+            <div className="mt-6 pt-6 border-t border-white/20">
+              <SocialShareButtons
+                url={typeof window !== "undefined" ? window.location.href : `https://reacohomes.com/articles/${slug}`}
+                title={article.title}
+                description={article.excerpt || ""}
+                image="/images/hero-main.jpg"
+              />
             </div>
           </div>
         </div>
