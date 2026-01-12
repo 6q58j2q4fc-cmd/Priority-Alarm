@@ -52,12 +52,12 @@ const stats = [
 ];
 
 const neighborhoods = [
-  { name: "Brasada Ranch", location: "Powell Butte", image: "/images/reaco-mccartney-exterior.webp" },
+  { name: "Brasada Ranch", location: "Powell Butte", image: "/images/mccartney-exterior.webp" },
   { name: "Tetherow", location: "Bend", image: "/images/reaco-chiaramonte-exterior.webp" },
-  { name: "Pronghorn", location: "Bend", image: "/images/reaco-underwood-aerial.webp" },
-  { name: "Broken Top", location: "Bend", image: "/images/reaco-harrington-living.webp" },
-  { name: "Awbrey Butte", location: "Bend", image: "/images/reaco-rozewski-porch.webp" },
-  { name: "Caldera Springs", location: "Sunriver", image: "/images/reaco-brown-sunroom.webp" },
+  { name: "Deschutes River Ranch", location: "Bend", image: "/images/oneil-exterior.webp" },
+  { name: "Fort Klamath", location: "Klamath County", image: "/images/vonschlegell-exterior.webp" },
+  { name: "Awbrey Butte", location: "Bend", image: "/images/brown-kitchen.webp" },
+  { name: "Tekampe Serene", location: "Bend", image: "/images/craft-exterior.webp" },
 ];
 
 export default function Home() {

@@ -1,6 +1,7 @@
 /**
  * Portfolio Page - High Desert Modernism Design
  * Showcases Rea Co Homes custom home projects with lightbox gallery
+ * All images sourced from reacohomes.com with accurate descriptions
  */
 
 import { useState, useMemo } from "react";
@@ -13,11 +14,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ArrowRight, MapPin, ExternalLink, Expand, Image } from "lucide-react";
 
+// Portfolio projects with accurate data from reacohomes.com
 const projects = [
   {
     name: "Chiaramonte Residence",
-    location: "Tetherow Rim",
-    description: "A stunning showplace featuring floor-to-ceiling glass walls with panoramic mountain views.",
+    location: "Tetherow Rim, Bend",
+    description: "Tetherow Rim Showplace featuring stunning mountain views and modern luxury design with seamless indoor-outdoor living spaces.",
     image: "/images/reaco-chiaramonte-exterior.webp",
     interiorImage: "/images/reaco-chiaramonte-interior.webp",
     features: ["Modern Contemporary", "Mountain Views", "Glass Walls"],
@@ -25,63 +27,76 @@ const projects = [
   {
     name: "1st Street Rapids",
     location: "Bend, Oregon",
-    description: "Modern elegance meets riverside living in the heart of Bend.",
-    image: "/images/reaco-1st-street-exterior.webp",
-    interiorImage: "/images/reaco-1st-street-interior.webp",
+    description: "A contemporary riverside residence showcasing modern architecture with expansive glass walls and natural materials.",
+    image: "/images/1st-street-rapids-exterior.webp",
+    interiorImage: "/images/1st-street-rapids-interior.webp",
     features: ["Riverside Location", "Modern Design", "City Living"],
   },
   {
     name: "Underwood Residence",
     location: "Brasada Ranch",
-    description: "A masterpiece of timber and stone with dramatic covered outdoor spaces.",
-    image: "/images/reaco-underwood-aerial.webp",
-    interiorImage: "/images/reaco-underwood-timber.webp",
+    description: "Stunning timber frame construction with panoramic high desert views and exceptional craftsmanship throughout.",
+    image: "/images/underwood-aerial.webp",
+    interiorImage: "/images/underwood-timber.webp",
     features: ["Timber Frame", "Stone Accents", "Outdoor Living"],
   },
   {
     name: "McCartney Residence",
     location: "Brasada Ranch",
-    description: "Where trust and craftsmanship come together in perfect harmony.",
-    image: "/images/reaco-mccartney-exterior.webp",
-    interiorImage: "/images/reaco-mccartney-kitchen.webp",
+    description: "Award-winning custom home featuring rustic elegance with modern amenities and breathtaking Cascade Mountain views.",
+    image: "/images/mccartney-exterior.webp",
+    interiorImage: "/images/mccartney-kitchen.webp",
     features: ["Craftsman Style", "Quality Build", "Family Home"],
   },
   {
     name: "O'Neil Residence",
     location: "Deschutes River Ranch",
-    description: "A creative masterpiece with amazing details and amenities throughout.",
-    image: "/images/reaco-oneil-living.webp",
+    description: "Contemporary ranch-style home with floor-to-ceiling windows, open floor plan, and stunning outdoor fire pit area.",
+    image: "/images/oneil-exterior.webp",
+    interiorImage: "/images/oneil-living.webp",
+    additionalImages: ["/images/oneil-firepit.webp"],
     features: ["River Views", "Custom Details", "Luxury Amenities"],
   },
   {
     name: "Von Schlegell Residence",
-    location: "Fort Klamath",
-    description: "A unique and challenging project showcasing Kevin's ability to handle complex builds.",
-    image: "/images/reaco-vonschlegell-exterior.webp",
+    location: "Fort Klamath, Oregon",
+    description: "Modern mountain retreat with concrete and wood elements, featuring an intimate outdoor living space with fire feature.",
+    image: "/images/vonschlegell-exterior.webp",
+    interiorImage: "/images/vonschlegell-interior.webp",
     features: ["Custom Design", "Complex Build", "Remote Location"],
   },
   {
     name: "Rozewski Residence",
     location: "Brasada Ranch",
-    description: "Exceptional craftsmanship with stunning outdoor living spaces and gourmet kitchen.",
-    image: "/images/reaco-rozewski-porch.webp",
-    interiorImage: "/images/reaco-rozewski-kitchen.webp",
+    description: "Elegant custom home with exposed timber ceilings, expansive views, and sophisticated interior design throughout.",
+    image: "/images/rozewski-living.webp",
+    interiorImage: "/images/rozewski-timber.webp",
     features: ["Outdoor Living", "Gourmet Kitchen", "Mountain Views"],
   },
   {
     name: "Harrington Residence",
-    location: "Central Oregon",
-    description: "Beautiful living spaces with expansive deck areas perfect for entertaining.",
-    image: "/images/reaco-harrington-living.webp",
-    interiorImage: "/images/reaco-harrington-deck.webp",
+    location: "Brasada Ranch",
+    description: "Mountain contemporary design with warm living spaces, stunning deck areas, and panoramic high desert views.",
+    image: "/images/harrington-living.webp",
+    interiorImage: "/images/harrington-deck.webp",
     features: ["Open Floor Plan", "Deck Living", "Natural Light"],
   },
   {
     name: "Brown Residence",
-    location: "Awbrey Butte",
-    description: "Best of Show winner featuring innovative ICF construction and designer interiors.",
-    image: "/images/reaco-brown-sunroom.webp",
+    location: "Awbrey Butte, Bend",
+    description: "Craftsman-style home featuring a distinctive red kitchen island, barn-wood accents, and elegant dining spaces.",
+    image: "/images/brown-kitchen.webp",
+    interiorImage: "/images/brown-dining.webp",
     features: ["Award Winner", "ICF Construction", "Designer Interior"],
+  },
+  {
+    name: "Ladkin's Craft Residence",
+    location: "Tekampe Serene, Bend",
+    description: "Luxurious estate with gourmet kitchen, timber frame details, and stunning pond-side setting.",
+    image: "/images/craft-exterior.webp",
+    interiorImage: "/images/ladkin-kitchen.webp",
+    additionalImages: ["/images/craft-living.webp", "/images/ladkin-exterior.webp"],
+    features: ["Luxury Estate", "Pond Setting", "Gourmet Kitchen"],
   },
 ];
 
@@ -107,6 +122,16 @@ export default function Portfolio() {
           description: `${project.location} - Interior view`,
         });
       }
+      if ((project as any).additionalImages) {
+        (project as any).additionalImages.forEach((img: string, idx: number) => {
+          images.push({
+            src: img,
+            alt: `${project.name} - View ${idx + 3}`,
+            title: `${project.name}`,
+            description: `${project.location} - Additional view`,
+          });
+        });
+      }
     });
     return images;
   }, []);
@@ -118,6 +143,9 @@ export default function Portfolio() {
       index++; // exterior image
       if (projects[i].interiorImage) {
         index++; // interior image
+      }
+      if ((projects[i] as any).additionalImages) {
+        index += (projects[i] as any).additionalImages.length;
       }
     }
     if (isInterior && projects[projectIndex].interiorImage) {
