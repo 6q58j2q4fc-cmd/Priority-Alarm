@@ -1,15 +1,17 @@
 /**
  * Portfolio Page - High Desert Modernism Design
- * Showcases Rea Co Homes custom home projects
+ * Showcases Rea Co Homes custom home projects with lightbox gallery
  */
 
+import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
+import Lightbox from "@/components/Lightbox";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ArrowRight, MapPin, ExternalLink } from "lucide-react";
+import { ArrowRight, MapPin, ExternalLink, Expand, Image } from "lucide-react";
 
 const projects = [
   {
@@ -84,6 +86,47 @@ const projects = [
 ];
 
 export default function Portfolio() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  // Flatten all images for lightbox
+  const allImages = useMemo(() => {
+    const images: { src: string; alt: string; title: string; description: string }[] = [];
+    projects.forEach((project) => {
+      images.push({
+        src: project.image,
+        alt: `${project.name} - Exterior`,
+        title: project.name,
+        description: `${project.location} - ${project.description}`,
+      });
+      if (project.interiorImage) {
+        images.push({
+          src: project.interiorImage,
+          alt: `${project.name} - Interior`,
+          title: `${project.name} - Interior`,
+          description: `${project.location} - Interior view`,
+        });
+      }
+    });
+    return images;
+  }, []);
+
+  const openLightbox = (projectIndex: number, isInterior: boolean = false) => {
+    // Calculate the correct index in the flattened array
+    let index = 0;
+    for (let i = 0; i < projectIndex; i++) {
+      index++; // exterior image
+      if (projects[i].interiorImage) {
+        index++; // interior image
+      }
+    }
+    if (isInterior && projects[projectIndex].interiorImage) {
+      index++; // move to interior image
+    }
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead
@@ -113,6 +156,10 @@ export default function Portfolio() {
           <p className="font-body text-xl text-white/90 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
             Explore our portfolio of award-winning luxury custom homes across Central Oregon's most prestigious communities.
           </p>
+          <p className="font-body text-sm text-white/60 mt-4 animate-fade-in-up animation-delay-300">
+            <Expand className="w-4 h-4 inline mr-1" />
+            Click any image to view in full screen
+          </p>
         </div>
       </section>
 
@@ -126,14 +173,23 @@ export default function Portfolio() {
                 className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 animate-fade-in-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-72 overflow-hidden">
+                {/* Main Image */}
+                <div 
+                  className="relative h-72 overflow-hidden cursor-pointer"
+                  onClick={() => openLightbox(index, false)}
+                >
                   <img
                     src={project.image}
                     alt={project.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-timber/90 via-timber/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-timber/90 via-timber/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <Expand className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
                 </div>
+
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div>
@@ -145,6 +201,15 @@ export default function Portfolio() {
                         {project.location}
                       </p>
                     </div>
+                    {project.interiorImage && (
+                      <button
+                        onClick={() => openLightbox(index, true)}
+                        className="flex items-center gap-1 text-xs text-timber/70 hover:text-amber transition-colors"
+                      >
+                        <Image className="w-4 h-4" />
+                        Interior
+                      </button>
+                    )}
                   </div>
                   <p className="font-body text-muted-foreground mb-4">
                     {project.description}
@@ -162,6 +227,21 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Gallery View Button */}
+          <div className="mt-12 text-center">
+            <Button
+              onClick={() => {
+                setLightboxIndex(0);
+                setLightboxOpen(true);
+              }}
+              variant="outline"
+              className="border-timber text-timber hover:bg-timber hover:text-white font-body font-semibold uppercase tracking-wide"
+            >
+              <Expand className="w-4 h-4 mr-2" />
+              View All Photos ({allImages.length})
+            </Button>
           </div>
 
           {/* CTA */}
@@ -190,6 +270,14 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <Lightbox
+        images={allImages}
+        initialIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
 
       <Footer />
     </div>

@@ -195,3 +195,26 @@ export const schedulerConfig = mysqlTable("scheduler_config", {
 
 export type SchedulerConfig = typeof schedulerConfig.$inferSelect;
 export type InsertSchedulerConfig = typeof schedulerConfig.$inferInsert;
+
+
+/**
+ * Testimonials table
+ * Stores client reviews and testimonials for display on the website
+ */
+export const testimonials = mysqlTable("testimonials", {
+  id: int("id").autoincrement().primaryKey(),
+  clientName: varchar("clientName", { length: 200 }).notNull(),
+  clientEmail: varchar("clientEmail", { length: 320 }),
+  location: varchar("location", { length: 200 }), // e.g., "Brasada Ranch", "Tetherow"
+  projectType: varchar("projectType", { length: 100 }), // e.g., "Custom Home", "Remodel"
+  rating: int("rating").default(5).notNull(), // 1-5 stars
+  testimonial: text("testimonial").notNull(),
+  featured: boolean("featured").default(false).notNull(),
+  status: mysqlEnum("status", ["pending", "approved", "rejected"]).default("pending").notNull(),
+  approvedAt: timestamp("approvedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Testimonial = typeof testimonials.$inferSelect;
+export type InsertTestimonial = typeof testimonials.$inferInsert;

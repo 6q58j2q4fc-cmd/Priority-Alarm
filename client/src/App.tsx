@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Neighborhoods from "./pages/Neighborhoods";
@@ -16,6 +17,7 @@ import About from "./pages/About";
 import AdminDashboard from "./pages/AdminDashboard";
 import Articles from "./pages/Articles";
 import GeneratedArticle from "./pages/GeneratedArticle";
+import Testimonials from "./pages/Testimonials";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -32,6 +34,7 @@ function Router() {
       <Route path="/articles/:slug" component={GeneratedArticle} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
+      <Route path="/testimonials" component={Testimonials} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
@@ -44,6 +47,7 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
+          <GoogleAnalytics />
           <Toaster />
           <Router />
         </TooltipProvider>

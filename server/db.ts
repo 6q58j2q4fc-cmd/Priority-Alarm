@@ -8,7 +8,8 @@ import {
   InsertMarketingMetric, marketingMetrics,
   InsertBotActivityLog, botActivityLog,
   InsertBotLearningState, botLearningState,
-  InsertDistributionQueue, distributionQueue
+  InsertDistributionQueue, distributionQueue,
+  InsertTestimonial, testimonials
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -465,4 +466,92 @@ export async function getDashboardStats() {
     totalViews: articleStats[0]?.totalViews || 0,
     totalClicks: articleStats[0]?.totalClicks || 0,
   };
+}
+
+
+// Testimonials functions
+export async function createTestimonial(testimonial: InsertTestimonial) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.insert(testimonials).values(testimonial);
+}
+
+export async function getApprovedTestimonials() {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(testimonials)
+    .where(eq(testimonials.status, "approved"))
+    .orderBy(desc(testimonials.createdAt));
+}
+
+export async function getFeaturedTestimonials(limit: number = 3) {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(testimonials)
+    .where(and(
+      eq(testimonials.status, "approved"),
+      eq(testimonials.featured, true)
+    ))
+    .orderBy(desc(testimonials.createdAt))
+    .limit(limit);
+}
+
+export async function getAllTestimonials() {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(testimonials)
+    .orderBy(desc(testimonials.createdAt));
+}
+
+export async function getPendingTestimonials() {
+  const db = await getDb();
+  if (!db) {
+    return [];
+  }
+
+  return await db.select().from(testimonials)
+    .where(eq(testimonials.status, "pending"))
+    .orderBy(desc(testimonials.createdAt));
+}
+
+export async function updateTestimonialStatus(
+  id: number, 
+  status: "pending" | "approved" | "rejected",
+  featured?: boolean
+) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const updateData: Partial<InsertTestimonial> = { status };
+  if (status === "approved") {
+    updateData.approvedAt = new Date();
+  }
+  if (featured !== undefined) {
+    updateData.featured = featured;
+  }
+
+  await db.update(testimonials).set(updateData).where(eq(testimonials.id, id));
+}
+
+export async function deleteTestimonial(id: number) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.delete(testimonials).where(eq(testimonials.id, id));
 }

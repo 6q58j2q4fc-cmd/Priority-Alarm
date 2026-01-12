@@ -80,3 +80,15 @@
 - [x] Update awards section with two National Best of Show awards
 - [x] Add local Earth Hero award to awards section
 - [x] Add Governor's Livability Award for Village Wistoria
+
+## Analytics, Testimonials & Gallery Features
+
+- [x] Add Google Analytics GA4 integration
+- [x] Create environment variable for GA4 Measurement ID
+- [x] Add testimonials database table
+- [x] Create testimonials submission form
+- [x] Create /testimonials page for display and submission
+- [x] Add testimonials API endpoints for admin management
+- [x] Create lightbox gallery component
+- [x] Implement full-screen image viewer for portfolio
+- [x] Add keyboard navigation for gallery (arrow keys, escape)

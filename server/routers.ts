@@ -12,7 +12,9 @@ import {
   createBotActivity, getBotActivities, updateBotActivity, getBotStats,
   upsertBotLearning, getBotLearningByCategory, getTopPerformingKeywords,
   addToDistributionQueue, getPendingDistributions, updateDistributionStatus,
-  getDashboardStats
+  getDashboardStats,
+  createTestimonial, getApprovedTestimonials, getFeaturedTestimonials,
+  getAllTestimonials, getPendingTestimonials, updateTestimonialStatus, deleteTestimonial
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { invokeLLM } from "./_core/llm";
@@ -531,6 +533,82 @@ Contact Kevin Rea, Central Oregon's premier custom home builder with over 45 yea
       const success = await triggerManualGeneration();
       return { success };
     }),
+  }),
+
+  // Testimonials management
+  testimonials: router({
+    // Submit a new testimonial (public - from website form)
+    submit: publicProcedure
+      .input(z.object({
+        clientName: z.string().min(1, "Name is required"),
+        clientEmail: z.string().email("Valid email is required").optional(),
+        location: z.string().optional(),
+        projectType: z.string().optional(),
+        rating: z.number().min(1).max(5).default(5),
+        testimonial: z.string().min(10, "Please write at least a few sentences"),
+      }))
+      .mutation(async ({ input }) => {
+        await createTestimonial({
+          clientName: input.clientName,
+          clientEmail: input.clientEmail || null,
+          location: input.location || null,
+          projectType: input.projectType || null,
+          rating: input.rating,
+          testimonial: input.testimonial,
+          status: "pending",
+          featured: false,
+        });
+
+        // Notify owner of new testimonial
+        await notifyOwner({
+          title: "New Testimonial Submitted",
+          content: `A new testimonial has been submitted by ${input.clientName}${input.location ? ` from ${input.location}` : ""}. Please review and approve it in the admin dashboard.\n\nRating: ${input.rating}/5 stars\n\n"${input.testimonial.substring(0, 200)}${input.testimonial.length > 200 ? "..." : ""}"`,
+        });
+
+        return { success: true, message: "Thank you for your testimonial! It will be reviewed shortly." };
+      }),
+
+    // Get approved testimonials (public - for display)
+    getApproved: publicProcedure.query(async () => {
+      return await getApprovedTestimonials();
+    }),
+
+    // Get featured testimonials (public - for homepage)
+    getFeatured: publicProcedure
+      .input(z.object({ limit: z.number().optional() }).optional())
+      .query(async ({ input }) => {
+        return await getFeaturedTestimonials(input?.limit || 3);
+      }),
+
+    // Get all testimonials (protected - for admin)
+    getAll: protectedProcedure.query(async () => {
+      return await getAllTestimonials();
+    }),
+
+    // Get pending testimonials (protected - for admin)
+    getPending: protectedProcedure.query(async () => {
+      return await getPendingTestimonials();
+    }),
+
+    // Update testimonial status (protected - for admin)
+    updateStatus: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        status: z.enum(["pending", "approved", "rejected"]),
+        featured: z.boolean().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await updateTestimonialStatus(input.id, input.status, input.featured);
+        return { success: true };
+      }),
+
+    // Delete testimonial (protected - for admin)
+    delete: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteTestimonial(input.id);
+        return { success: true };
+      }),
   }),
 });
 
