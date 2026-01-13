@@ -19,7 +19,7 @@ import {
   Sparkles,
   User
 } from "lucide-react";
-// Lead capture uses direct fetch
+import { trpc } from "@/lib/trpc";
 
 interface Message {
   id: string;
@@ -222,6 +222,9 @@ export default function ChatBot() {
   const [hasInteracted, setHasInteracted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  // tRPC mutation for lead submission (triggers email notification to Kevin)
+  const submitLeadMutation = trpc.leads.submit.useMutation();
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -293,20 +296,23 @@ export default function ChatBot() {
     const hasPhone = /\d{3}[-.\s]?\d{3}[-.\s]?\d{4}/.test(userMessage);
     
     if (hasEmail || hasPhone) {
-      // Try to capture as lead
+      // Extract contact info
+      const extractedEmail = hasEmail ? userMessage.match(/\S+@\S+\.\S+/)?.[0] : undefined;
+      const extractedPhone = hasPhone ? userMessage.match(/\d{3}[-.\s]?\d{3}[-.\s]?\d{4}/)?.[0] : undefined;
+      
+      // Try to capture as lead using tRPC (triggers email notification to Kevin)
       try {
-        await fetch("/api/leads", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: "Chat Visitor",
-            email: hasEmail ? userMessage.match(/\S+@\S+\.\S+/)?.[0] : undefined,
-            phone: hasPhone ? userMessage.match(/\d{3}[-.\s]?\d{3}[-.\s]?\d{4}/)?.[0] : undefined,
-            message: `Chat message: ${userMessage}`,
-            source: "chatbot",
-          }),
+        await submitLeadMutation.mutateAsync({
+          firstName: "Chat",
+          lastName: "Visitor",
+          email: extractedEmail || "chatbot@reacohomes.com",
+          phone: extractedPhone,
+          message: `[Chatbot Lead] ${userMessage}`,
+          source: "chatbot",
         });
+        console.log("[ChatBot] Lead captured and notification sent to Kevin");
       } catch (e) {
+        console.error("[ChatBot] Failed to capture lead:", e);
         // Silent fail - don't interrupt chat
       }
       

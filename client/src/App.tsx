@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import ChatBot from "./components/ChatBot";
+import LeadMagnet from "./components/LeadMagnet";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Neighborhoods from "./pages/Neighborhoods";
@@ -52,6 +53,7 @@ function App() {
           <Toaster />
           <Router />
           <ChatBot />
+          <LeadMagnet variant="popup" />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -23,16 +23,26 @@ async function getDb() {
   return _db;
 }
 
-// Topics to rotate through for content generation
+// Topics to rotate through for content generation - Enhanced with long-tail SEO keywords
 const CONTENT_TOPICS = [
-  { category: "Custom Home Design", keywords: ["custom home design", "luxury homes", "Brasada Ranch", "architectural design"] },
-  { category: "Central Oregon Living", keywords: ["Central Oregon", "Bend Oregon", "high desert living", "mountain views"] },
-  { category: "Neighborhoods", keywords: ["Tetherow", "Pronghorn", "Broken Top", "Awbrey Butte", "North Rim"] },
-  { category: "Building Process", keywords: ["custom home builder", "construction process", "home building timeline"] },
-  { category: "Luxury Features", keywords: ["luxury amenities", "smart home", "outdoor living", "gourmet kitchen"] },
-  { category: "Market Trends", keywords: ["real estate market", "home values", "investment", "Central Oregon growth"] },
-  { category: "Sustainability", keywords: ["sustainable building", "energy efficient", "green homes", "eco-friendly"] },
-  { category: "Interior Design", keywords: ["interior design trends", "modern rustic", "high desert aesthetic"] },
+  // Core Custom Home Topics
+  { category: "Custom Home Design", keywords: ["custom home design Bend Oregon", "luxury custom homes Central Oregon", "Brasada Ranch custom builder", "architectural design high desert"] },
+  { category: "Central Oregon Living", keywords: ["Central Oregon lifestyle", "Bend Oregon living", "high desert living benefits", "mountain views homes"] },
+  { category: "Neighborhoods", keywords: ["Tetherow homes for sale", "Pronghorn custom homes", "Broken Top luxury homes", "Awbrey Butte builders", "North Rim custom builder"] },
+  { category: "Building Process", keywords: ["custom home builder Bend", "home construction process Oregon", "building timeline custom home", "how long to build custom home"] },
+  { category: "Luxury Features", keywords: ["luxury home amenities", "smart home technology Oregon", "outdoor living spaces Bend", "gourmet kitchen design"] },
+  { category: "Market Trends", keywords: ["Bend Oregon real estate market", "Central Oregon home values", "luxury home investment Oregon", "Central Oregon growth"] },
+  { category: "Sustainability", keywords: ["sustainable building Oregon", "energy efficient homes Bend", "green homes Central Oregon", "eco-friendly custom homes"] },
+  { category: "Interior Design", keywords: ["interior design Bend Oregon", "modern rustic homes", "high desert aesthetic design", "mountain modern interior"] },
+  // Long-tail SEO Topics for Traffic Generation
+  { category: "Cost Guide", keywords: ["cost to build custom home Bend Oregon", "custom home price per square foot", "luxury home building costs Central Oregon", "how much does it cost to build in Brasada Ranch"] },
+  { category: "Lot Selection", keywords: ["best lots in Tetherow", "buying land Central Oregon", "custom home lot selection tips", "view lots Bend Oregon"] },
+  { category: "Builder Selection", keywords: ["how to choose custom home builder", "best custom home builders Bend Oregon", "questions to ask custom builder", "what to look for in luxury builder"] },
+  { category: "Financing", keywords: ["construction loan Oregon", "financing custom home build", "custom home mortgage options", "luxury home financing"] },
+  { category: "Timeline Planning", keywords: ["custom home building timeline", "how long to build luxury home", "construction schedule Oregon", "when to start building custom home"] },
+  { category: "Design Trends", keywords: ["2026 custom home trends", "modern mountain home design", "luxury home trends Oregon", "contemporary rustic design"] },
+  { category: "Outdoor Living", keywords: ["outdoor living design Bend", "patio design Central Oregon", "outdoor kitchen custom home", "fire pit design high desert"] },
+  { category: "Energy Efficiency", keywords: ["energy efficient home Oregon", "solar ready custom home", "passive house design Bend", "net zero home Central Oregon"] },
 ];
 
 function generateSlug(title: string): string {

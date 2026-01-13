@@ -133,3 +133,16 @@
 - [x] Integrate chatbot with contact form/leads system
 - [x] Test all website pages and functionality
 - [x] Test chatbot conversation flow and lead capture
+
+
+## Chatbot Email Notifications & Autonomous Lead Generation
+- [x] Connect chatbot lead capture to email notification system
+- [x] Send instant email to Kevin when chatbot captures a lead
+- [x] Enhance scheduler to generate more SEO-targeted content (16 topic categories)
+- [x] Add long-tail keyword targeting for Central Oregon home building
+- [x] Create lead magnets (free consultation, home building guide)
+- [x] Add exit-intent popup for lead capture
+- [ ] Implement newsletter signup with automated welcome sequence
+- [x] Add social sharing prompts after content engagement
+- [ ] Create referral program tracking
+- [x] Test all lead generation and notification systems
