@@ -19,6 +19,7 @@ import {
 import { notifyOwner } from "./_core/notification";
 import { invokeLLM } from "./_core/llm";
 import { getSchedulerStatus, updateSchedulerConfig, triggerManualGeneration } from "./scheduler";
+import { generateRSSFeed, generateAtomFeed, generateJSONFeed } from "./rss";
 
 export const appRouter = router({
   system: systemRouter,
@@ -609,6 +610,24 @@ Contact Kevin Rea, Central Oregon's premier custom home builder with over 45 yea
         await deleteTestimonial(input.id);
         return { success: true };
       }),
+  }),
+
+  // RSS/Atom/JSON Feed endpoints
+  feeds: router({
+    // Get RSS feed (public)
+    rss: publicProcedure.query(async () => {
+      return await generateRSSFeed();
+    }),
+
+    // Get Atom feed (public)
+    atom: publicProcedure.query(async () => {
+      return await generateAtomFeed();
+    }),
+
+    // Get JSON feed (public)
+    json: publicProcedure.query(async () => {
+      return await generateJSONFeed();
+    }),
   }),
 });
 

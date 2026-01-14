@@ -4,7 +4,8 @@
  * Uses RSS feeds and curated content for SEO
  */
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { trpc } from "@/lib/trpc";
 import Header from "@/components/Header";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
@@ -27,21 +28,53 @@ export default function News() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
   const [searchQuery, setSearchQuery] = useState("");
   const [lastUpdated, setLastUpdated] = useState(new Date());
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  // Fetch AI-generated articles from database
+  const { data: generatedArticles, refetch: refetchArticles } = trpc.articles.list.useQuery(
+    { limit: 20 },
+    { staleTime: 60000 }
+  );
 
-  const filteredArticles = newsArticles.filter((article) => {
-    const matchesCategory =
-      selectedCategory === "All News" || article.category === selectedCategory;
-    const matchesSearch =
-      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.tags.some((tag) =>
-        tag.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    return matchesCategory && matchesSearch;
-  });
+  // Combine static and dynamic articles
+  const allArticles = useMemo(() => {
+    const dbArticles = (generatedArticles || []).map((a: any, idx: number) => ({
+      id: 1000 + idx,
+      slug: a.slug,
+      title: a.title,
+      excerpt: a.content?.substring(0, 200) + '...' || '',
+      content: a.content,
+      date: a.createdAt,
+      category: a.category || 'Industry News',
+      source: 'Rea Co Homes',
+      image: '/images/hero-main.jpg',
+      tags: a.keywords?.split(',').slice(0, 3) || ['Central Oregon', 'Custom Homes'],
+    }));
+    return [...newsArticles, ...dbArticles];
+  }, [generatedArticles]);
 
-  const handleRefresh = () => {
-    setLastUpdated(new Date());
+  const filteredArticles = useMemo(() => {
+    return allArticles.filter((article: any) => {
+      const matchesCategory =
+        selectedCategory === "All News" || article.category === selectedCategory;
+      const matchesSearch =
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (article.tags || []).some((tag: string) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      return matchesCategory && matchesSearch;
+    });
+  }, [allArticles, selectedCategory, searchQuery]);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await refetchArticles();
+      setLastUpdated(new Date());
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   return (
@@ -115,8 +148,8 @@ export default function News() {
                 onClick={handleRefresh}
                 className="border-timber text-timber"
               >
-                <RefreshCw className="w-4 h-4 mr-2" />
-                Refresh
+                <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+                {isRefreshing ? 'Refreshing...' : 'Refresh'}
               </Button>
             </div>
           </div>
@@ -163,7 +196,7 @@ export default function News() {
                       {article.excerpt}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {article.tags.slice(0, 3).map((tag) => (
+                      {(article.tags || []).slice(0, 3).map((tag: string) => (
                         <span
                           key={tag}
                           className="font-body text-xs bg-stone px-2 py-1 rounded text-timber flex items-center gap-1"
