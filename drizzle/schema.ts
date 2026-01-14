@@ -218,3 +218,82 @@ export const testimonials = mysqlTable("testimonials", {
 
 export type Testimonial = typeof testimonials.$inferSelect;
 export type InsertTestimonial = typeof testimonials.$inferInsert;
+
+
+/**
+ * Email sequences table
+ * Defines automated email drip campaigns
+ */
+export const emailSequences = mysqlTable("email_sequences", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 200 }).notNull(),
+  description: text("description"),
+  triggerType: mysqlEnum("triggerType", ["lead_magnet", "newsletter_signup", "contact_form", "manual"]).default("lead_magnet").notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EmailSequence = typeof emailSequences.$inferSelect;
+export type InsertEmailSequence = typeof emailSequences.$inferInsert;
+
+/**
+ * Email templates table
+ * Individual emails within a sequence
+ */
+export const emailTemplates = mysqlTable("email_templates", {
+  id: int("id").autoincrement().primaryKey(),
+  sequenceId: int("sequenceId").notNull(),
+  orderIndex: int("orderIndex").notNull(), // Order in the sequence (1, 2, 3...)
+  subject: varchar("subject", { length: 500 }).notNull(),
+  previewText: varchar("previewText", { length: 200 }),
+  htmlContent: text("htmlContent").notNull(),
+  textContent: text("textContent"),
+  delayDays: int("delayDays").default(0).notNull(), // Days after previous email
+  delayHours: int("delayHours").default(0).notNull(), // Hours after previous email
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EmailTemplate = typeof emailTemplates.$inferSelect;
+export type InsertEmailTemplate = typeof emailTemplates.$inferInsert;
+
+/**
+ * Email queue table
+ * Scheduled emails waiting to be sent
+ */
+export const emailQueue = mysqlTable("email_queue", {
+  id: int("id").autoincrement().primaryKey(),
+  subscriberId: int("subscriberId").notNull(),
+  templateId: int("templateId").notNull(),
+  sequenceId: int("sequenceId").notNull(),
+  scheduledFor: timestamp("scheduledFor").notNull(),
+  status: mysqlEnum("status", ["pending", "sent", "failed", "cancelled"]).default("pending").notNull(),
+  sentAt: timestamp("sentAt"),
+  openedAt: timestamp("openedAt"),
+  clickedAt: timestamp("clickedAt"),
+  errorMessage: text("errorMessage"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type EmailQueueItem = typeof emailQueue.$inferSelect;
+export type InsertEmailQueueItem = typeof emailQueue.$inferInsert;
+
+/**
+ * Subscriber sequences table
+ * Tracks which subscribers are enrolled in which sequences
+ */
+export const subscriberSequences = mysqlTable("subscriber_sequences", {
+  id: int("id").autoincrement().primaryKey(),
+  subscriberId: int("subscriberId").notNull(),
+  sequenceId: int("sequenceId").notNull(),
+  currentStep: int("currentStep").default(0).notNull(), // Current email index in sequence
+  status: mysqlEnum("status", ["active", "completed", "paused", "unsubscribed"]).default("active").notNull(),
+  enrolledAt: timestamp("enrolledAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+  lastEmailSentAt: timestamp("lastEmailSentAt"),
+});
+
+export type SubscriberSequence = typeof subscriberSequences.$inferSelect;
+export type InsertSubscriberSequence = typeof subscriberSequences.$inferInsert;

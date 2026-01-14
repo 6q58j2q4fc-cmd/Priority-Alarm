@@ -155,12 +155,16 @@ export async function createSubscriber(subscriber: InsertSubscriber) {
   }
 
   try {
-    await db.insert(subscribers).values(subscriber);
-    return { success: true };
+    const result = await db.insert(subscribers).values(subscriber);
+    // Get the inserted ID
+    const insertId = Number(result[0].insertId);
+    return { success: true, subscriberId: insertId, isNew: true };
   } catch (error: unknown) {
     // Check for duplicate email
     if (error && typeof error === 'object' && 'code' in error && error.code === 'ER_DUP_ENTRY') {
-      return { success: true, message: "Already subscribed" };
+      // Get existing subscriber ID
+      const [existing] = await db.select().from(subscribers).where(eq(subscribers.email, subscriber.email)).limit(1);
+      return { success: true, message: "Already subscribed", subscriberId: existing?.id, isNew: false };
     }
     throw error;
   }

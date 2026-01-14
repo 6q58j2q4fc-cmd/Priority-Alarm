@@ -20,6 +20,7 @@ import { notifyOwner } from "./_core/notification";
 import { invokeLLM } from "./_core/llm";
 import { getSchedulerStatus, updateSchedulerConfig, triggerManualGeneration } from "./scheduler";
 import { generateRSSFeed, generateAtomFeed, generateJSONFeed } from "./rss";
+import { enrollInWelcomeSequence, getEmailSequenceStats } from "./emailDrip";
 
 export const appRouter = router({
   system: systemRouter,
@@ -131,6 +132,17 @@ ${input.message || "No message provided"}
       }))
       .mutation(async ({ input }) => {
         const result = await createSubscriber({ email: input.email });
+        
+        // Enroll new subscribers in the welcome email sequence
+        if (result.isNew && result.subscriberId) {
+          try {
+            await enrollInWelcomeSequence(result.subscriberId);
+            console.log(`[Newsletter] Enrolled subscriber ${result.subscriberId} in welcome sequence`);
+          } catch (error) {
+            console.warn("[Newsletter] Failed to enroll in welcome sequence:", error);
+          }
+        }
+        
         return { success: true, message: result.message || "Successfully subscribed to the newsletter!" };
       }),
 
@@ -610,6 +622,14 @@ Contact Kevin Rea, Central Oregon's premier custom home builder with over 45 yea
         await deleteTestimonial(input.id);
         return { success: true };
       }),
+  }),
+
+  // Email drip campaign management
+  emailDrip: router({
+    // Get email sequence stats (protected)
+    getStats: protectedProcedure.query(async () => {
+      return await getEmailSequenceStats();
+    }),
   }),
 
   // RSS/Atom/JSON Feed endpoints

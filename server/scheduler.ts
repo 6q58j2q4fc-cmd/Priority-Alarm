@@ -7,6 +7,7 @@ import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { schedulerConfig, articles, botActivityLog } from "../drizzle/schema";
 import { invokeLLM } from "./_core/llm";
+import { processEmailQueue, initializeWelcomeSequence } from "./emailDrip";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 let schedulerInterval: NodeJS.Timeout | null = null;
@@ -263,6 +264,26 @@ export async function initializeScheduler(): Promise<void> {
     
     schedulerInterval = setInterval(runScheduledGeneration, 60 * 60 * 1000); // Every hour
     console.log("[Scheduler] Scheduler initialized, checking every hour");
+
+    // Initialize email drip campaign
+    try {
+      await initializeWelcomeSequence();
+      console.log("[Scheduler] Email drip campaign initialized");
+    } catch (error) {
+      console.warn("[Scheduler] Failed to initialize email drip:", error);
+    }
+
+    // Start email queue processor (check every 15 minutes)
+    setInterval(async () => {
+      try {
+        const sent = await processEmailQueue();
+        if (sent > 0) {
+          console.log(`[Scheduler] Processed ${sent} emails from queue`);
+        }
+      } catch (error) {
+        console.warn("[Scheduler] Email queue processing error:", error);
+      }
+    }, 15 * 60 * 1000); // Every 15 minutes
 
     // Run immediately on startup
     await runScheduledGeneration();
