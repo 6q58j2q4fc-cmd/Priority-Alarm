@@ -14,16 +14,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ArrowRight, MapPin, ExternalLink, Expand, Grid3X3 } from "lucide-react";
 
-// Portfolio projects with accurate data from reacohomes.com
+// Portfolio projects with accurate data and images from reacohomes.com
+// Each project has unique images - no duplicates across projects
 const projects = [
   {
     name: "Chiaramonte Residence",
     location: "Tetherow Rim, Bend",
     description: "Tetherow Rim Showplace featuring stunning mountain views and modern luxury design. Designed by James Rozewski with expansive west-facing glass walls, swim spa, and Batu hardwood decks.",
-    image: "/images/chiaramonte-exterior-dusk.webp",
+    image: "/images/chiaramonte-hero-exterior.webp",
     additionalImages: [
-      "/images/chiaramonte-outdoor-living.webp",
+      "/images/chiaramonte-exterior-angle.webp",
+      "/images/chiaramonte-outdoor-living-fireplace.webp",
       "/images/chiaramonte-pool-deck.webp",
+      "/images/chiaramonte-deck-sunset.webp",
+      "/images/chiaramonte-living-room.webp",
+      "/images/chiaramonte-interior-entry.webp",
     ],
     features: ["Contemporary Luxury", "Mountain Views", "Glass Walls"],
     sqft: "5,200+",
@@ -32,41 +37,47 @@ const projects = [
   {
     name: "1st Street Rapids",
     location: "Bend, Oregon",
-    description: "A contemporary riverside residence showcasing modern architecture with expansive glass walls, natural materials, and stunning river views.",
-    image: "/images/1st-street-rapids-full-exterior.webp",
+    description: "Contemporary riverside residence nestled along the Deschutes River in Bend's historic district. Designed by Jim Rozewski featuring dramatic multi-slide glass walls, Batu hardwood decks, and a welcoming firepit.",
+    image: "/images/1ststreet-hero-exterior.webp",
     additionalImages: [
-      "/images/1st-street-rapids-full-interior.webp",
+      "/images/1ststreet-dining.webp",
+      "/images/1ststreet-kitchen.webp",
+      "/images/1ststreet-living-room.webp",
+      "/images/1ststreet-fireplace.webp",
+      "/images/1ststreet-kitchen-dining.webp",
+      "/images/1ststreet-exterior-trees.webp",
     ],
-    features: ["Riverside Location", "Modern Design", "City Living"],
-    style: "Modern Contemporary",
+    features: ["Riverside Location", "Modern Design", "3,500 Sq Ft"],
+    sqft: "3,500",
+    style: "Contemporary Custom Riverfront",
   },
   {
     name: "Underwood Residence",
     location: "Brasada Ranch",
-    description: "Modern ranch design by Liz Dexter, AIA featuring a non-reflective metal roof, wall of glass, and 1,500 sq ft of outdoor decks with pool.",
-    image: "/images/underwood-residence-hero-exterior.webp",
+    description: "Modern ranch design by Liz Dexter, AIA of Reveal Architecture. Features striking non-reflective metal roof, wall of glass, pedestal pavers on decks, and seamless indoor-outdoor living.",
+    image: "/images/underwood-hero-exterior.webp",
     additionalImages: [
-      "/images/underwood-residence-great-room.webp",
-      "/images/underwood-residence-pool-view.webp",
-      "/images/underwood-residence-dining.webp",
-      "/images/underwood-residence-game-room.webp",
-      "/images/underwood-residence-kitchen.webp",
+      "/images/underwood-kitchen.webp",
+      "/images/underwood-great-room.webp",
+      "/images/underwood-exterior-night.webp",
+      "/images/underwood-game-room.webp",
+      "/images/underwood-dining.webp",
     ],
     features: ["Modern Ranch", "Pool & Spa", "4,311 Sq Ft"],
-    sqft: "4,311",
+    sqft: "4,311 + 1,500 deck",
     style: "Modern Ranch",
   },
   {
     name: "McCartney Residence",
     location: "Brasada Ranch",
-    description: "Modern Ranch Contemporary with expansive views of the Cascade Mountain Range. Features wall of glass facing west and pedestal paver decks.",
+    description: "Modern Ranch Contemporary with expansive views of the Cascade Mountain Range. Features wall of glass facing west and premium pedestal paver decks.",
     image: "/images/mccartney-exterior-night.webp",
     additionalImages: [
-      "/images/mccartney-deck-view.webp",
+      "/images/mccartney-deck-sunset.webp",
       "/images/mccartney-kitchen.webp",
       "/images/mccartney-bedroom.webp",
       "/images/mccartney-living-room.webp",
-      "/images/mccartney-dining-sunset.webp",
+      "/images/mccartney-dining.webp",
     ],
     features: ["Modern Ranch", "Mountain Views", "3,800 Sq Ft"],
     sqft: "3,800 + 2,000 deck",
@@ -76,12 +87,12 @@ const projects = [
     name: "O'Neil Residence",
     location: "Deschutes River Ranch",
     description: "Contemporary Agrarian design on the edge of a pasture bordering the Deschutes River. Features expansive walls of glass and unique barn vernacular style.",
-    image: "/images/oneil-exterior.webp",
+    image: "/images/oneil-hero-exterior.webp",
     additionalImages: [
       "/images/oneil-living-room.webp",
       "/images/oneil-kitchen.webp",
       "/images/oneil-dining.webp",
-      "/images/oneil-firepit.webp",
+      "/images/oneil-bedroom.webp",
     ],
     features: ["River Views", "Agrarian Style", "4,800 Sq Ft"],
     sqft: "4,800",
@@ -91,11 +102,13 @@ const projects = [
     name: "Von Schlegell Residence",
     location: "Fort Klamath, Oregon",
     description: "Ranch House Contemporary on Seven Mile Creek. Three connected buildings using Aspen trees from the property, reclaimed boxcar wood, and custom sugar pine.",
-    image: "/images/vonschlegell-exterior.webp",
+    image: "/images/vonschlegell-hero-hallway.webp",
     additionalImages: [
-      "/images/vonschlegell-deck.webp",
+      "/images/vonschlegell-exterior-pasture.webp",
+      "/images/vonschlegell-deck-wood.webp",
       "/images/vonschlegell-kitchen.webp",
       "/images/vonschlegell-living-room.webp",
+      "/images/vonschlegell-bedroom.webp",
     ],
     features: ["Ranch House", "9,000 Sq Ft", "Remote Location"],
     sqft: "9,000",
@@ -105,11 +118,12 @@ const projects = [
     name: "Rozewski Residence",
     location: "Brasada Ranch",
     description: "Custom Ranch Contemporary with L-shaped footprint. Features lava rock fireplace, hand-hewn flooring, and ADU above the garage with Cascade Mountain views.",
-    image: "/images/rozewski-living.webp",
+    image: "/images/rozewski-hero-exterior.webp",
     additionalImages: [
+      "/images/rozewski-exterior-stone.webp",
       "/images/rozewski-living-room.webp",
-      "/images/rozewski-kitchen-dining.webp",
-      "/images/rozewski-deck-outdoor.webp",
+      "/images/rozewski-kitchen.webp",
+      "/images/rozewski-adu-deck.webp",
     ],
     features: ["Ranch Style", "ADU Suite", "3,100 Sq Ft"],
     sqft: "3,100 + 1,500 deck",
@@ -118,82 +132,67 @@ const projects = [
   {
     name: "Brown Residence",
     location: "Awbrey Butte, Bend",
-    description: "Award-winning ICF home designed by Scott and June Brown. Won Best of Show at Realtors Tour of Homes and OCAPA Excellence in Concrete award.",
-    image: "/images/brown-residence-hero-exterior.webp",
+    description: "Award-winning ICF home designed by Scott and June Brown. Won Best of Show at Realtors Tour of Homes and OCAPA Excellence in Concrete award. First ICF home in Bend.",
+    image: "/images/brown-hero-exterior.webp",
     additionalImages: [
-      "/images/brown-residence-fireplace-detail.webp",
-      "/images/brown-residence-living-room.webp",
-      "/images/brown-residence-bedroom.webp",
-      "/images/brown-residence-kitchen-view.webp",
+      "/images/brown-sitting-area.webp",
+      "/images/brown-rock-fountain.webp",
+      "/images/brown-living-room-windows.webp",
+      "/images/brown-fireplace-asian.webp",
+      "/images/brown-fireplace-night.webp",
     ],
     features: ["Best of Show", "ICF Construction", "4,500 Sq Ft"],
     sqft: "4,500",
-    style: "Contemporary ICF",
-  },
-  {
-    name: "Ladkin's Craft Residence",
-    location: "Bend, Oregon",
-    description: "Luxurious estate with gourmet kitchen, timber frame details, and stunning pond-side setting in a serene Bend neighborhood.",
-    image: "/images/craft-exterior.webp",
-    additionalImages: [
-      "/images/ladkin-kitchen.webp",
-      "/images/craft-living.webp",
-    ],
-    features: ["Luxury Estate", "Pond Setting", "Gourmet Kitchen"],
-    style: "Craftsman Luxury",
+    style: "Contemporary Elegance",
   },
 ];
 
 export default function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
-  // Flatten all images for lightbox - remove duplicates
-  const allImages = useMemo(() => {
-    const images: { src: string; alt: string; title: string; description: string }[] = [];
-    const seenSrcs = new Set<string>();
+  // Get images for a specific project (for project-specific lightbox)
+  const getProjectImages = (projectIndex: number) => {
+    const project = projects[projectIndex];
+    const images = [
+      {
+        src: project.image,
+        alt: `${project.name} - Exterior`,
+        title: project.name,
+        description: `${project.location} - ${project.description}`,
+      },
+    ];
     
-    projects.forEach((project) => {
-      // Add main image
-      if (!seenSrcs.has(project.image)) {
-        seenSrcs.add(project.image);
+    if (project.additionalImages) {
+      project.additionalImages.forEach((img, idx) => {
         images.push({
-          src: project.image,
-          alt: `${project.name} - Exterior`,
+          src: img,
+          alt: `${project.name} - View ${idx + 2}`,
           title: project.name,
-          description: `${project.location} - ${project.description}`,
+          description: `${project.location} - ${project.style || 'Custom Home'}`,
         });
-      }
-      
-      // Add additional images
-      if (project.additionalImages) {
-        project.additionalImages.forEach((img, idx) => {
-          if (!seenSrcs.has(img)) {
-            seenSrcs.add(img);
-            images.push({
-              src: img,
-              alt: `${project.name} - View ${idx + 2}`,
-              title: project.name,
-              description: `${project.location} - ${project.style || 'Custom Home'}`,
-            });
-          }
-        });
-      }
-    });
+      });
+    }
+    
     return images;
-  }, []);
+  };
+
+  // Current project images for lightbox
+  const currentProjectImages = useMemo(() => {
+    if (selectedProject === null) return [];
+    return getProjectImages(selectedProject);
+  }, [selectedProject]);
 
   const openLightbox = (projectIndex: number) => {
-    // Calculate the correct index in the flattened array
-    let index = 0;
-    for (let i = 0; i < projectIndex; i++) {
-      index++; // main image
-      if (projects[i].additionalImages) {
-        index += projects[i].additionalImages.length;
-      }
-    }
-    setLightboxIndex(index);
+    setSelectedProject(projectIndex);
+    setLightboxIndex(0);
     setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setSelectedProject(null);
   };
 
   // Get image count for a project
@@ -211,7 +210,7 @@ export default function Portfolio() {
         title="Custom Home Portfolio"
         description="Explore our portfolio of award-winning luxury custom homes in Central Oregon. From Brasada Ranch to Tetherow, see Kevin Rea's finest work."
         keywords="custom home portfolio, Bend Oregon homes, luxury home gallery, Brasada Ranch homes, Tetherow custom homes"
-        ogImage="/images/reaco-hero-portfolio.webp"
+        ogImage="/images/chiaramonte-hero-exterior.webp"
       />
       <Header />
 
@@ -219,7 +218,7 @@ export default function Portfolio() {
       <section className="relative h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/reaco-hero-portfolio.webp')" }}
+          style={{ backgroundImage: "url('/images/chiaramonte-hero-exterior.webp')" }}
         >
           <div className="absolute inset-0 bg-timber/80" />
         </div>
@@ -277,59 +276,65 @@ export default function Portfolio() {
                   )}
                 </div>
 
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="font-display text-xl font-semibold text-timber mb-1">
-                        {project.name}
-                      </h3>
-                      <p className="font-body text-sm text-stone flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        {project.location}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => openLightbox(index)}
-                      className="p-2 rounded-full bg-sand/50 hover:bg-amber/20 transition-colors"
-                      aria-label="View interior"
-                    >
-                      <Expand className="w-4 h-4 text-timber" />
-                    </button>
+                <CardContent className="p-6 bg-white">
+                  <div className="flex items-center gap-2 text-sage mb-2">
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-sm font-body">{project.location}</span>
                   </div>
-
-                  <p className="font-body text-stone text-sm mb-4 line-clamp-2">
+                  <h3 className="font-display text-2xl font-semibold text-timber mb-2">
+                    {project.name}
+                  </h3>
+                  <p className="font-body text-timber/70 text-sm mb-4 line-clamp-2">
                     {project.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-2">
+                  
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.features.map((feature) => (
                       <span
                         key={feature}
-                        className="font-body text-xs px-3 py-1 bg-sand/50 text-timber rounded-full"
+                        className="text-xs bg-sage/10 text-sage px-2 py-1 rounded-full"
                       >
                         {feature}
                       </span>
                     ))}
                   </div>
+
+                  {/* Thumbnail strip */}
+                  {project.additionalImages && project.additionalImages.length > 0 && (
+                    <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
+                      {project.additionalImages.slice(0, 4).map((img, imgIndex) => (
+                        <div
+                          key={imgIndex}
+                          className="w-16 h-12 flex-shrink-0 rounded overflow-hidden cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProject(index);
+                            setLightboxIndex(imgIndex + 1);
+                            setLightboxOpen(true);
+                          }}
+                        >
+                          <img
+                            src={img}
+                            alt={`${project.name} thumbnail ${imgIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                      ))}
+                      {project.additionalImages.length > 4 && (
+                        <div
+                          className="w-16 h-12 flex-shrink-0 rounded overflow-hidden cursor-pointer bg-timber/80 flex items-center justify-center text-white text-xs"
+                          onClick={() => openLightbox(index)}
+                        >
+                          +{project.additionalImages.length - 4}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
-          </div>
-
-          {/* View All Button */}
-          <div className="text-center mt-12">
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-timber text-timber hover:bg-timber hover:text-white"
-              onClick={() => {
-                setLightboxIndex(0);
-                setLightboxOpen(true);
-              }}
-            >
-              <Grid3X3 className="w-4 h-4 mr-2" />
-              VIEW ALL PHOTOS ({allImages.length})
-            </Button>
           </div>
         </div>
       </section>
@@ -338,48 +343,39 @@ export default function Portfolio() {
       <section className="py-20 bg-timber text-white">
         <div className="container text-center">
           <h2 className="font-display text-3xl md:text-4xl font-semibold mb-6">
-            Want to see more of our work?
+            Ready to Build Your Dream Home?
           </h2>
-          <p className="font-body text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Visit our official portfolio for the complete collection of custom homes, or start your own project today.
+          <p className="font-body text-lg text-white/80 max-w-2xl mx-auto mb-8">
+            Let's discuss your vision and explore how we can bring it to life in Central Oregon's most beautiful settings.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://www.reacohomes.com/portfolio/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-timber"
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                VIEW FULL PORTFOLIO
-              </Button>
-            </a>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-amber text-timber hover:bg-amber/90"
-              >
-                START YOUR PROJECT
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
+            <Button asChild size="lg" className="bg-amber hover:bg-amber/90 text-timber">
+              <Link href="/contact">
+                Schedule a Consultation
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+              <a href="https://www.reacohomes.com/portfolio/" target="_blank" rel="noopener noreferrer">
+                View Full Portfolio
+                <ExternalLink className="ml-2 w-4 h-4" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
 
       <Footer />
 
-      {/* Lightbox */}
-      <Lightbox
-        images={allImages}
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-        initialIndex={lightboxIndex}
-      />
+      {/* Lightbox - Now shows only the selected project's images */}
+      {selectedProject !== null && (
+        <Lightbox
+          images={currentProjectImages}
+          isOpen={lightboxOpen}
+          onClose={closeLightbox}
+          initialIndex={lightboxIndex}
+        />
+      )}
     </div>
   );
 }
