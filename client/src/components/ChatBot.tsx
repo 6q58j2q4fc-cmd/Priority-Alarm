@@ -40,10 +40,26 @@ const botResponses: Record<string, { response: string; options?: QuickOption[] }
   greeting: {
     response: "Hi there! 👋 I'm Kevin's virtual assistant at Rea Co Homes. I'm here to help you learn about our custom home building services in Central Oregon. What can I help you with today?",
     options: [
+      { label: "🏠 Design My Dream Home", value: "dream_home", icon: <Sparkles className="w-3 h-3" /> },
       { label: "View Portfolio", value: "portfolio", icon: <Home className="w-3 h-3" /> },
       { label: "Building Process", value: "process", icon: <Calendar className="w-3 h-3" /> },
-      { label: "Neighborhoods", value: "neighborhoods", icon: <MapPin className="w-3 h-3" /> },
       { label: "Get a Quote", value: "quote", icon: <Sparkles className="w-3 h-3" /> },
+    ],
+  },
+  dream_home: {
+    response: "🏠 **Design Your Dream Home!**\n\nOur AI Dream Home Builder lets you:\n\n✨ Visualize your perfect custom home\n📐 Adjust square footage with a slider (1,500 - 10,000 sq ft)\n🏔️ Choose mountain view locations\n☀️ Add solar panels, solar tiles & thermal energy\n⚡ Include zero-point energy enhancements\n💰 See real-time cost estimates\n\nWhen you're done designing, send it directly to Kevin and schedule a call!\n\n👉 **Visit /dream-home-builder to start designing!**",
+    options: [
+      { label: "Open Dream Home Builder", value: "open_builder" },
+      { label: "Talk to Kevin First", value: "contact" },
+      { label: "View Portfolio", value: "portfolio" },
+      { label: "Back to Menu", value: "menu" },
+    ],
+  },
+  open_builder: {
+    response: "Opening the Dream Home Builder for you! 🏠\n\nYou'll be able to:\n• Adjust square footage from 1,500 to 10,000 sq ft\n• Select your home style (Modern, Ranch, Craftsman, etc.)\n• Choose premium locations with mountain views\n• Add energy features like solar and geothermal\n• See instant cost estimates\n• Send your design to Kevin when ready\n\n👉 **Click here or visit /dream-home-builder**",
+    options: [
+      { label: "Go to Builder →", value: "navigate_builder" },
+      { label: "Back to Menu", value: "menu" },
     ],
   },
   portfolio: {
@@ -175,9 +191,9 @@ const botResponses: Record<string, { response: string; options?: QuickOption[] }
   menu: {
     response: "What else can I help you with today?",
     options: [
+      { label: "🏠 Design My Dream Home", value: "dream_home", icon: <Sparkles className="w-3 h-3" /> },
       { label: "View Portfolio", value: "portfolio", icon: <Home className="w-3 h-3" /> },
       { label: "Building Process", value: "process", icon: <Calendar className="w-3 h-3" /> },
-      { label: "Neighborhoods", value: "neighborhoods", icon: <MapPin className="w-3 h-3" /> },
       { label: "Get a Quote", value: "quote", icon: <Sparkles className="w-3 h-3" /> },
     ],
   },
@@ -370,6 +386,8 @@ export default function ChatBot() {
       window.location.href = "/portfolio";
     } else if (value === "all_neighborhoods") {
       window.location.href = "/neighborhoods";
+    } else if (value === "navigate_builder" || value === "open_builder") {
+      window.location.href = "/dream-home-builder";
     } else if (value === "goodbye") {
       setIsTyping(true);
       setTimeout(() => {

@@ -80,7 +80,7 @@ export default function Header() {
             <Phone className="w-4 h-4" />
             541-390-9848
           </a>
-          <Link href="/contact">
+          <Link href="/dream-home-builder">
             <Button
               className="bg-amber text-timber hover:bg-amber/90 font-body font-semibold uppercase tracking-wide text-sm px-6"
             >
@@ -127,9 +127,9 @@ export default function Header() {
                 <Phone className="w-5 h-5" />
                 541-390-9848
               </a>
-              <Link href="/contact">
+              <Link href="/dream-home-builder">
                 <Button className="w-full mt-4 bg-amber text-timber hover:bg-amber/90 font-body font-semibold uppercase tracking-wide">
-                  Get Started
+                  Build Your Dream Home
                 </Button>
               </Link>
             </div>
