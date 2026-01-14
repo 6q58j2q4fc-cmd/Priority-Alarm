@@ -23,6 +23,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { trpc } from "@/lib/trpc";
+import FloorPlanVisualization from "@/components/FloorPlanVisualization";
+import FinancingCalculator from "@/components/FinancingCalculator";
+import { Link } from "wouter";
 import {
   Home,
   Mountain,
@@ -348,6 +351,48 @@ ${contactForm.message}
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-timber/60">Est. Monthly Payment (30yr @ 6.5%)</span>
                     <span className="text-timber">{formatCurrency(costs.monthlyPayment)}/mo</span>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 3D Floor Plan Visualization */}
+              <FloorPlanVisualization
+                squareFootage={squareFootage}
+                bedrooms={bedrooms}
+                bathrooms={bathrooms}
+                garageSpaces={garage}
+                homeStyle={homeStyles.find(s => s.id === homeStyle)?.name || "Modern Contemporary"}
+              />
+
+              {/* Financing Calculator */}
+              <FinancingCalculator
+                homePrice={costs.totalCost}
+                onPreQualify={(data) => {
+                  setShowContactForm(true);
+                  setContactForm(prev => ({
+                    ...prev,
+                    message: `Pre-Qualification Request:\nHome Price: ${formatCurrency(data.homePrice)}\nDown Payment: ${formatCurrency(data.downPayment)} (${data.downPaymentPercent}%)\nLoan Amount: ${formatCurrency(data.loanAmount)}\nInterest Rate: ${data.interestRate}%\nLoan Term: ${data.loanTerm} years\nMonthly Payment: ${formatCurrency(data.monthlyPayment)}\n\n${prev.message}`
+                  }));
+                }}
+              />
+
+              {/* Design Inspiration Link */}
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-amber/10 to-timber/5">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-amber/20 flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-amber" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display font-semibold text-timber">Need Inspiration?</h3>
+                      <p className="text-sm text-muted-foreground">Browse our gallery of premium features</p>
+                    </div>
+                    <Link href="/inspiration">
+                      <Button className="bg-timber text-white hover:bg-timber/90">
+                        View Gallery
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
