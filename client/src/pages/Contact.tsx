@@ -4,6 +4,7 @@
  */
 
 import Header from "@/components/Header";
+import Breadcrumb, { breadcrumbConfigs } from "@/components/Breadcrumb";
 import PageSEO from "@/components/PageSEO";
 import Footer from "@/components/Footer";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
@@ -31,6 +32,7 @@ export default function Contact() {
         </div>
 
         <div className="container relative z-10 text-center">
+          <Breadcrumb items={breadcrumbConfigs.contact} className="justify-center mb-6 text-white/70 [&_a]:text-white/70 [&_a:hover]:text-amber [&_span]:text-white" />
           <p className="font-body text-amber uppercase tracking-widest text-sm mb-4 animate-fade-in">
             Let's Build Together
           </p>

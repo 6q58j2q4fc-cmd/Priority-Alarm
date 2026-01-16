@@ -1,29 +1,59 @@
-# Robots.txt for Rea Co Homes Lead Generation Website
-# https://www.reacohomes.com
+# Robots.txt for Rea Co Homes - Custom Home Builder in Central Oregon
+# https://reacohomes.com
 
+# Allow all search engine crawlers
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://reaco-leads.manus.space/sitemap.xml
+# Sitemap location
+Sitemap: https://reacohomes.com/sitemap.xml
 
-# Crawl-delay for respectful crawling
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+
+# Crawl delay for polite crawling
 Crawl-delay: 1
 
-# Allow all major search engines
+# Google-specific directives
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
+# Google Images bot - allow all images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+
+# Bing bot
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
+# Yahoo/Slurp
 User-agent: Slurp
 Allow: /
 
+# DuckDuckGo
 User-agent: DuckDuckBot
 Allow: /
 
-# Block AI training bots (optional - remove if you want AI indexing)
+# Allow social media crawlers for rich previews
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterest
+Allow: /
+
+# Block AI training bots
 User-agent: GPTBot
 Disallow: /
 
@@ -32,3 +62,9 @@ Disallow: /
 
 User-agent: CCBot
 Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Host directive (canonical domain)
+Host: https://reacohomes.com

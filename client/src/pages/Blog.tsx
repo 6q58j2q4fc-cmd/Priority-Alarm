@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import Breadcrumb, { breadcrumbConfigs } from "@/components/Breadcrumb";
 import PageSEO from "@/components/PageSEO";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,7 @@ export default function Blog() {
         </div>
 
         <div className="container relative z-10 text-center">
+          <Breadcrumb items={breadcrumbConfigs.blog} className="justify-center mb-6 text-white/70 [&_a]:text-white/70 [&_a:hover]:text-amber [&_span]:text-white" />
           <p className="font-body text-amber uppercase tracking-widest text-sm mb-4 animate-fade-in">
             Insights & Expertise
           </p>

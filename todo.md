@@ -324,3 +324,17 @@
 - [x] Upload PDFs to S3 storage (6 PDFs uploaded to CDN)
 - [x] Update Resources page with download URLs (auto-download after email capture)
 - [x] Create Google Search Console setup instructions (available at /google-search-console-setup.md)
+
+
+## Breadcrumb Navigation & Robots.txt
+- [x] Create breadcrumb component with JSON-LD structured data
+- [x] Add breadcrumbs to Home page
+- [x] Add breadcrumbs to Portfolio page
+- [x] Add breadcrumbs to Neighborhoods page
+- [x] Add breadcrumbs to About page
+- [x] Add breadcrumbs to Contact page
+- [x] Add breadcrumbs to Blog page
+- [x] Add breadcrumbs to News page
+- [x] Add breadcrumbs to Resources page
+- [x] Add breadcrumbs to all neighborhood landing pages
+- [x] Create robots.txt file with proper directives (social media bots, image crawlers, AI bot blocking)

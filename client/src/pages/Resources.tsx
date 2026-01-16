@@ -5,6 +5,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import Breadcrumb, { breadcrumbConfigs } from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 import PageSEO from "@/components/PageSEO";
 import { Button } from "@/components/ui/button";
@@ -308,6 +309,7 @@ export default function Resources() {
       <section className="relative py-20 bg-timber">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
+            <Breadcrumb items={breadcrumbConfigs.resources} className="justify-center mb-6 text-white/70 [&_a]:text-white/70 [&_a:hover]:text-amber [&_span]:text-white" />
             <p className="font-body text-amber uppercase tracking-widest text-sm mb-4">
               Free Resources
             </p>
