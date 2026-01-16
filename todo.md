@@ -268,3 +268,10 @@
 
 ## SEO Title Fix
 - [x] Fix homepage title to be between 30-60 characters (now 43 chars: "Custom Home Builder Bend Oregon | Rea Co Homes")
+
+
+## SEO Title & Description Audit
+- [x] Audit all page titles to ensure under 60 characters (all 8 pages OK)
+- [x] Audit all meta descriptions to ensure under 160 characters (1 issue found)
+- [x] Fix any titles exceeding 60 characters (none needed)
+- [x] Fix any descriptions exceeding 160 characters (Home: 225→148 chars)
