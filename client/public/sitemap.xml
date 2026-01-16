@@ -138,4 +138,37 @@
     </image:image>
   </url>
   
+  <url>
+    <loc>https://reacohomes.com/awbrey-butte-builder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/LlxE9731ghDy.jpg</image:loc>
+      <image:title>Awbrey Butte Custom Home Builder</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://reacohomes.com/sunriver-builder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/UCoE7gADVKD9.jpg</image:loc>
+      <image:title>Sunriver Custom Home Builder</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://reacohomes.com/resources</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/hero-portfolio.jpg</image:loc>
+      <image:title>Free Custom Home Building Guides</image:title>
+    </image:image>
+  </url>
+  
 </urlset>

@@ -15,6 +15,7 @@ const quickLinks = [
   { href: "/portfolio", label: "Portfolio" },
   { href: "/neighborhoods", label: "Neighborhoods" },
   { href: "/about", label: "About Kevin" },
+  { href: "/resources", label: "Free Guides" },
   { href: "/news", label: "Industry News" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
@@ -26,6 +27,8 @@ const neighborhoodLinks = [
   { href: "/tetherow-custom-homes", label: "Tetherow" },
   { href: "/pronghorn-builder", label: "Pronghorn" },
   { href: "/broken-top-builder", label: "Broken Top" },
+  { href: "/awbrey-butte-builder", label: "Awbrey Butte" },
+  { href: "/sunriver-builder", label: "Sunriver" },
   { href: "/caldera-springs-builder", label: "Caldera Springs" },
   { href: "/neighborhoods", label: "All Neighborhoods" },
 ];
@@ -89,6 +92,18 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-amber flex-shrink-0 mt-0.5" />
                 <span>Bend, Oregon<br />Central Oregon</span>
               </div>
+              <a
+                href="https://g.page/reacohomes"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 font-body text-white/90 hover:text-amber transition-colors mt-4 bg-white/10 px-3 py-2 rounded-lg"
+              >
+                <svg className="w-5 h-5 text-amber" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span className="text-sm font-medium">Google Business Profile</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </div>
 

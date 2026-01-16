@@ -31,6 +31,10 @@ import TetherowCustomHomes from "./pages/TetherowCustomHomes";
 import PronghornBuilder from "./pages/PronghornBuilder";
 import BrokenTopBuilder from "./pages/BrokenTopBuilder";
 import CalderaSpringsBuilder from "./pages/CalderaSpringsBuilder";
+import AwbreyButteBuilder from "./pages/AwbreyButteBuilder";
+import SunriverBuilder from "./pages/SunriverBuilder";
+import Resources from "./pages/Resources";
+import LocalBusinessSchema from "./components/LocalBusinessSchema";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -56,6 +60,9 @@ function Router() {
       <Route path="/pronghorn-builder" component={PronghornBuilder} />
       <Route path="/broken-top-builder" component={BrokenTopBuilder} />
       <Route path="/caldera-springs-builder" component={CalderaSpringsBuilder} />
+      <Route path="/awbrey-butte-builder" component={AwbreyButteBuilder} />
+      <Route path="/sunriver-builder" component={SunriverBuilder} />
+      <Route path="/resources" component={Resources} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
@@ -68,9 +75,10 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          {/* Analytics & Retargeting */}
+          {/* Analytics, SEO & Retargeting */}
           <GoogleAnalytics />
           <RetargetingPixels />
+          <LocalBusinessSchema />
           
           {/* Urgency Banner - Shows limited 2026 build slots message */}
           <UrgencyBanner variant="slots" />

@@ -300,3 +300,14 @@
 - [x] Audit all neighborhood images across landing pages (12 neighborhoods verified)
 - [x] Verify all images load correctly (all images exist in public/images)
 - [x] Add external links to official neighborhood websites for SEO (8 external links added)
+
+
+## Awbrey Butte, Sunriver, Resources & Google Business Profile
+- [x] Create Awbrey Butte landing page
+- [x] Create Sunriver landing page
+- [x] Add routes for new landing pages
+- [x] Create Resources/Guides section page
+- [x] Add downloadable PDF guides for lead capture (6 guides with email capture)
+- [x] Add LocalBusiness JSON-LD structured data (HomeBuilder schema with reviews, services, areas)
+- [x] Add Google Business Profile link to footer (https://g.page/reacohomes)
+- [x] Update sitemap with new pages (3 new: Awbrey Butte, Sunriver, Resources)
