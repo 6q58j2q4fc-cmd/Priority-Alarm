@@ -311,3 +311,16 @@
 - [x] Add LocalBusiness JSON-LD structured data (HomeBuilder schema with reviews, services, areas)
 - [x] Add Google Business Profile link to footer (https://g.page/reacohomes)
 - [x] Update sitemap with new pages (3 new: Awbrey Butte, Sunriver, Resources)
+
+
+## Header Navigation, PDF Guides & Google Search Console
+- [x] Add Free Guides link to header navigation
+- [x] Create Central Oregon Custom Home Building Guide PDF
+- [x] Create Custom Home Cost Breakdown PDF
+- [x] Create Central Oregon Neighborhood Guide PDF
+- [x] Create Custom Home Building Timeline PDF
+- [x] Create Custom Home Design Inspiration PDF
+- [x] Create How to Choose a Custom Home Builder PDF
+- [x] Upload PDFs to S3 storage (6 PDFs uploaded to CDN)
+- [x] Update Resources page with download URLs (auto-download after email capture)
+- [x] Create Google Search Console setup instructions (available at /google-search-console-setup.md)

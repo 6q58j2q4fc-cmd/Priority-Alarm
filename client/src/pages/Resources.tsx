@@ -56,6 +56,7 @@ const guides: Guide[] = [
       "Selecting materials and finishes",
     ],
     pages: "32 pages",
+    downloadUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663234433834/emKRjOIawWDHAtgx.pdf",
   },
   {
     id: "cost-guide",
@@ -71,6 +72,7 @@ const guides: Guide[] = [
       "Contingency planning",
     ],
     pages: "18 pages",
+    downloadUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663234433834/KfPRyOYnlJXvyRvP.pdf",
   },
   {
     id: "neighborhood-guide",
@@ -86,6 +88,7 @@ const guides: Guide[] = [
       "Sunriver lifestyle",
     ],
     pages: "24 pages",
+    downloadUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663234433834/LSZvlCnUuNnVuMgP.pdf",
   },
   {
     id: "timeline-guide",
@@ -101,6 +104,7 @@ const guides: Guide[] = [
       "Final inspections and move-in",
     ],
     pages: "16 pages",
+    downloadUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663234433834/HrPzArcGHmdvLGta.pdf",
   },
   {
     id: "design-guide",
@@ -116,6 +120,7 @@ const guides: Guide[] = [
       "Smart home technology",
     ],
     pages: "28 pages",
+    downloadUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663234433834/eJXcmFgrQwKPOumd.pdf",
   },
   {
     id: "builder-selection",
@@ -131,6 +136,7 @@ const guides: Guide[] = [
       "Red flags to avoid",
     ],
     pages: "14 pages",
+    downloadUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663234433834/zsYdBUIIJOlIAXyw.pdf",
   },
 ];
 
@@ -142,10 +148,14 @@ function GuideCard({ guide }: { guide: Guide }) {
 
   const createLead = trpc.leads.submit.useMutation({
     onSuccess: () => {
-      toast.success("Thank you! Check your email for the download link.");
+      toast.success("Thank you! Your download is starting...");
       setShowForm(false);
       setEmail("");
       setName("");
+      // Open PDF download in new tab
+      if (guide.downloadUrl) {
+        window.open(guide.downloadUrl, '_blank');
+      }
     },
     onError: (error: { message?: string }) => {
       toast.error(error.message || "Something went wrong. Please try again.");
