@@ -1,45 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
   <url>
-    <loc>https://reaco-leads.manus.space/</loc>
-    <lastmod>2026-01-11</lastmod>
+    <loc>https://reacohomes.com/</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/hero-main.jpg</image:loc>
+      <image:title>Award-Winning Custom Homes in Central Oregon</image:title>
+    </image:image>
   </url>
+  
+  <!-- Portfolio -->
   <url>
-    <loc>https://reaco-leads.manus.space/portfolio</loc>
-    <lastmod>2026-01-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://reaco-leads.manus.space/neighborhoods</loc>
-    <lastmod>2026-01-11</lastmod>
+    <loc>https://reacohomes.com/portfolio</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/chiaramonte-hero-exterior.webp</image:loc>
+      <image:title>Custom Home Portfolio - Rea Co Homes</image:title>
+    </image:image>
   </url>
+  
+  <!-- Neighborhoods -->
   <url>
-    <loc>https://reaco-leads.manus.space/about</loc>
-    <lastmod>2026-01-11</lastmod>
+    <loc>https://reacohomes.com/neighborhoods</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/hero-neighborhoods.jpg</image:loc>
+      <image:title>Central Oregon Luxury Home Communities</image:title>
+    </image:image>
+  </url>
+  
+  <!-- About -->
+  <url>
+    <loc>https://reacohomes.com/about</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/kevin-rea.webp</image:loc>
+      <image:title>Kevin Rea - Master Custom Home Builder</image:title>
+    </image:image>
   </url>
+  
+  <!-- Contact -->
   <url>
-    <loc>https://reaco-leads.manus.space/news</loc>
-    <lastmod>2026-01-11</lastmod>
+    <loc>https://reacohomes.com/contact</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Blog -->
+  <url>
+    <loc>https://reacohomes.com/blog</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- News -->
   <url>
-    <loc>https://reaco-leads.manus.space/blog</loc>
-    <lastmod>2026-01-11</lastmod>
+    <loc>https://reacohomes.com/news</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
+  
+  <!-- Testimonials -->
   <url>
-    <loc>https://reaco-leads.manus.space/contact</loc>
-    <lastmod>2026-01-11</lastmod>
+    <loc>https://reacohomes.com/testimonials</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Location-Specific Landing Pages -->
+  <url>
+    <loc>https://reacohomes.com/brasada-ranch-builder</loc>
+    <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/hero-neighborhoods.jpg</image:loc>
+      <image:title>Brasada Ranch Custom Home Builder</image:title>
+    </image:image>
   </url>
+  
+  <url>
+    <loc>https://reacohomes.com/tetherow-custom-homes</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/qHKfAGVqL6Y8.jpg</image:loc>
+      <image:title>Tetherow Custom Home Builder</image:title>
+    </image:image>
+  </url>
+  
 </urlset>

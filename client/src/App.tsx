@@ -26,6 +26,8 @@ import GeneratedArticle from "./pages/GeneratedArticle";
 import Testimonials from "./pages/Testimonials";
 import DreamHomeBuilder from "./pages/DreamHomeBuilder";
 import DesignInspiration from "./pages/DesignInspiration";
+import BrasadaRanchBuilder from "./pages/BrasadaRanchBuilder";
+import TetherowCustomHomes from "./pages/TetherowCustomHomes";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -46,6 +48,8 @@ function Router() {
       <Route path="/dream-home-builder" component={DreamHomeBuilder} />
       <Route path="/inspiration" component={DesignInspiration} />
       <Route path="/inspiration/:category" component={DesignInspiration} />
+      <Route path="/brasada-ranch-builder" component={BrasadaRanchBuilder} />
+      <Route path="/tetherow-custom-homes" component={TetherowCustomHomes} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />

@@ -275,3 +275,12 @@
 - [x] Audit all meta descriptions to ensure under 160 characters (1 issue found)
 - [x] Fix any titles exceeding 60 characters (none needed)
 - [x] Fix any descriptions exceeding 160 characters (Home: 225→148 chars)
+
+
+## XML Sitemap, Alt Text Audit & Landing Pages
+- [x] Create XML sitemap for Google Search Console (with image tags and new landing pages)
+- [x] Audit all image alt texts across all pages (21 images checked, all have descriptive alts)
+- [x] Fix any missing or generic alt texts (none found - all images properly described)
+- [x] Create Brasada Ranch Builder landing page
+- [x] Create Tetherow Custom Homes landing page
+- [x] Add routes for new landing pages
