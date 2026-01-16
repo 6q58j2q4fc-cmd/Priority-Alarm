@@ -260,3 +260,7 @@
 - [x] Verify automated news feed cron job is processing
 - [x] Confirm scheduler auto-wake is functional (runs on server startup)
 - [x] Test all automated systems are fully operational
+
+
+## Check Availability Button Fix
+- [x] Fix Check Availability button to be clickable and direct to contact Kevin Rea
