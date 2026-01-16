@@ -1,11 +1,11 @@
 /**
  * Footer Component - High Desert Modernism Design
  * Dark timber background with warm accents
- * Contains contact info, navigation, and newsletter signup
+ * Contains contact info, navigation, press links, and newsletter signup
  */
 
 import { Link } from "wouter";
-import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -20,15 +20,28 @@ const quickLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-const neighborhoods = [
-  "Brasada Ranch",
-  "Tetherow",
-  "Pronghorn",
-  "Broken Top",
-  "Awbrey Butte",
-  "North Rim",
-  "Tree Farm",
-  "Caldera Springs",
+// Neighborhood landing pages with dedicated SEO pages
+const neighborhoodLinks = [
+  { href: "/brasada-ranch-builder", label: "Brasada Ranch" },
+  { href: "/tetherow-custom-homes", label: "Tetherow" },
+  { href: "/pronghorn-builder", label: "Pronghorn" },
+  { href: "/broken-top-builder", label: "Broken Top" },
+  { href: "/caldera-springs-builder", label: "Caldera Springs" },
+  { href: "/neighborhoods", label: "All Neighborhoods" },
+];
+
+// Press & Media - Top custom home builder publications and local news
+const pressLinks = [
+  // National Custom Home Builder Publications
+  { href: "https://www.customhomeonline.com", label: "Custom Home Magazine", external: true },
+  { href: "https://www.architecturaldigest.com", label: "Architectural Digest", external: true },
+  { href: "https://www.luxuryhomedesign.com", label: "Luxury Home Design", external: true },
+  { href: "https://www.builderonline.com", label: "Builder Magazine", external: true },
+  // Central Oregon Local News
+  { href: "https://www.bendbulletin.com", label: "Bend Bulletin", external: true },
+  { href: "https://www.ktvz.com", label: "KTVZ NewsChannel 21", external: true },
+  { href: "https://cascadebusjnews.com", label: "Cascade Business News", external: true },
+  { href: "https://www.sourceweekly.com", label: "The Source Weekly", external: true },
 ];
 
 export default function Footer() {
@@ -46,9 +59,9 @@ export default function Footer() {
     <footer className="bg-timber text-white">
       {/* Main Footer */}
       <div className="container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Company Info */}
-          <div>
+          <div className="lg:col-span-1">
             <h3 className="font-display text-2xl font-semibold mb-6">
               Rea Co Homes
             </h3>
@@ -111,16 +124,39 @@ export default function Footer() {
           {/* Neighborhoods */}
           <div>
             <h4 className="font-display text-lg font-semibold mb-6 text-amber">
-              Neighborhoods
+              Build Locations
             </h4>
             <ul className="space-y-3">
-              {neighborhoods.map((neighborhood) => (
-                <li key={neighborhood}>
-                  <Link href="/neighborhoods">
+              {neighborhoodLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}>
                     <span className="font-body text-white/80 hover:text-amber transition-colors">
-                      {neighborhood}
+                      {link.label}
                     </span>
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Press & Media */}
+          <div>
+            <h4 className="font-display text-lg font-semibold mb-6 text-amber flex items-center gap-2">
+              <Newspaper className="w-5 h-5" />
+              Press & Media
+            </h4>
+            <ul className="space-y-3">
+              {pressLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-white/80 hover:text-amber transition-colors flex items-center gap-2"
+                  >
+                    {link.label}
+                    <ExternalLink className="w-3 h-3 opacity-60" />
+                  </a>
                 </li>
               ))}
             </ul>

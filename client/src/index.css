@@ -434,3 +434,17 @@
 .animate-slideUp {
   animation: slideUp 0.4s ease-out;
 }
+
+/* Shrink animation for progress bars */
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.animate-shrink {
+  animation: shrink 15s linear forwards;
+}

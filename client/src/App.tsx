@@ -28,6 +28,9 @@ import DreamHomeBuilder from "./pages/DreamHomeBuilder";
 import DesignInspiration from "./pages/DesignInspiration";
 import BrasadaRanchBuilder from "./pages/BrasadaRanchBuilder";
 import TetherowCustomHomes from "./pages/TetherowCustomHomes";
+import PronghornBuilder from "./pages/PronghornBuilder";
+import BrokenTopBuilder from "./pages/BrokenTopBuilder";
+import CalderaSpringsBuilder from "./pages/CalderaSpringsBuilder";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -50,6 +53,9 @@ function Router() {
       <Route path="/inspiration/:category" component={DesignInspiration} />
       <Route path="/brasada-ranch-builder" component={BrasadaRanchBuilder} />
       <Route path="/tetherow-custom-homes" component={TetherowCustomHomes} />
+      <Route path="/pronghorn-builder" component={PronghornBuilder} />
+      <Route path="/broken-top-builder" component={BrokenTopBuilder} />
+      <Route path="/caldera-springs-builder" component={CalderaSpringsBuilder} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />

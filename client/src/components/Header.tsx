@@ -1,18 +1,28 @@
 /**
  * Header Component - High Desert Modernism Design
  * Sticky navigation with transparent-to-solid transition on scroll
+ * Includes dropdown menu for Neighborhoods with landing page links
  * Typography: Source Sans 3 for nav, letter-spaced uppercase
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const neighborhoodLinks = [
+  { href: "/brasada-ranch-builder", label: "Brasada Ranch" },
+  { href: "/tetherow-custom-homes", label: "Tetherow" },
+  { href: "/pronghorn-builder", label: "Pronghorn" },
+  { href: "/broken-top-builder", label: "Broken Top" },
+  { href: "/caldera-springs-builder", label: "Caldera Springs" },
+  { href: "/neighborhoods", label: "All Neighborhoods" },
+];
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/neighborhoods", label: "Neighborhoods" },
+  { href: "/neighborhoods", label: "Neighborhoods", hasDropdown: true },
   { href: "/about", label: "About" },
   { href: "/news", label: "News" },
   { href: "/blog", label: "Blog" },
@@ -22,7 +32,10 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNeighborhoodDropdownOpen, setIsNeighborhoodDropdownOpen] = useState(false);
+  const [isMobileNeighborhoodOpen, setIsMobileNeighborhoodOpen] = useState(false);
   const [location] = useLocation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +43,17 @@ export default function Header() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsNeighborhoodDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -57,15 +81,53 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              <span
-                className={`font-body text-sm font-medium uppercase tracking-wider transition-all hover:opacity-70 ${
-                  isScrolled ? "text-timber" : "text-white"
-                } ${location === link.href ? "border-b-2 border-amber pb-1" : ""}`}
+            link.hasDropdown ? (
+              <div 
+                key={link.href} 
+                className="relative"
+                ref={dropdownRef}
+                onMouseEnter={() => setIsNeighborhoodDropdownOpen(true)}
+                onMouseLeave={() => setIsNeighborhoodDropdownOpen(false)}
               >
-                {link.label}
-              </span>
-            </Link>
+                <button
+                  className={`flex items-center gap-1 font-body text-sm font-medium uppercase tracking-wider transition-all hover:opacity-70 ${
+                    isScrolled ? "text-timber" : "text-white"
+                  } ${location.startsWith("/neighborhoods") || location.includes("-builder") || location.includes("-custom-homes") ? "border-b-2 border-amber pb-1" : ""}`}
+                  onClick={() => setIsNeighborhoodDropdownOpen(!isNeighborhoodDropdownOpen)}
+                >
+                  {link.label}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${isNeighborhoodDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+                
+                {/* Dropdown Menu */}
+                {isNeighborhoodDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-border overflow-hidden animate-fadeIn">
+                    {neighborhoodLinks.map((subLink, index) => (
+                      <Link key={subLink.href} href={subLink.href}>
+                        <span
+                          className={`block px-4 py-3 font-body text-sm text-timber hover:bg-stone hover:text-amber transition-colors ${
+                            index === neighborhoodLinks.length - 1 ? "border-t border-border font-semibold" : ""
+                          } ${location === subLink.href ? "bg-stone text-amber" : ""}`}
+                          onClick={() => setIsNeighborhoodDropdownOpen(false)}
+                        >
+                          {subLink.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link key={link.href} href={link.href}>
+                <span
+                  className={`font-body text-sm font-medium uppercase tracking-wider transition-all hover:opacity-70 ${
+                    isScrolled ? "text-timber" : "text-white"
+                  } ${location === link.href ? "border-b-2 border-amber pb-1" : ""}`}
+                >
+                  {link.label}
+                </span>
+              </Link>
+            )
           ))}
         </nav>
 
@@ -105,21 +167,56 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl animate-fade-in">
-          <nav className="container py-6 flex flex-col gap-4">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl animate-fade-in max-h-[80vh] overflow-y-auto">
+          <nav className="container py-6 flex flex-col gap-2">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <span
-                  className={`font-body text-base font-medium uppercase tracking-wider text-timber hover:text-amber transition-colors block py-2 ${
-                    location === link.href ? "text-amber" : ""
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </span>
-              </Link>
+              link.hasDropdown ? (
+                <div key={link.href}>
+                  <button
+                    className={`flex items-center justify-between w-full font-body text-base font-medium uppercase tracking-wider text-timber hover:text-amber transition-colors py-3 ${
+                      location.startsWith("/neighborhoods") || location.includes("-builder") || location.includes("-custom-homes") ? "text-amber" : ""
+                    }`}
+                    onClick={() => setIsMobileNeighborhoodOpen(!isMobileNeighborhoodOpen)}
+                  >
+                    {link.label}
+                    <ChevronDown className={`w-5 h-5 transition-transform ${isMobileNeighborhoodOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  
+                  {/* Mobile Dropdown */}
+                  {isMobileNeighborhoodOpen && (
+                    <div className="pl-4 border-l-2 border-amber ml-2 mt-1 mb-2">
+                      {neighborhoodLinks.map((subLink) => (
+                        <Link key={subLink.href} href={subLink.href}>
+                          <span
+                            className={`block font-body text-sm text-timber hover:text-amber transition-colors py-2 ${
+                              location === subLink.href ? "text-amber font-semibold" : ""
+                            }`}
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setIsMobileNeighborhoodOpen(false);
+                            }}
+                          >
+                            {subLink.label}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link key={link.href} href={link.href}>
+                  <span
+                    className={`font-body text-base font-medium uppercase tracking-wider text-timber hover:text-amber transition-colors block py-3 ${
+                      location === link.href ? "text-amber" : ""
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              )
             ))}
-            <div className="pt-4 border-t border-border">
+            <div className="pt-4 border-t border-border mt-2">
               <a
                 href="tel:541-390-9848"
                 className="flex items-center gap-2 font-body text-base font-semibold text-timber py-2"
@@ -128,7 +225,10 @@ export default function Header() {
                 541-390-9848
               </a>
               <Link href="/dream-home-builder">
-                <Button className="w-full mt-4 bg-amber text-timber hover:bg-amber/90 font-body font-semibold uppercase tracking-wide">
+                <Button 
+                  className="w-full mt-4 bg-amber text-timber hover:bg-amber/90 font-body font-semibold uppercase tracking-wide"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   Build Your Dream Home
                 </Button>
               </Link>

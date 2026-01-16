@@ -284,3 +284,13 @@
 - [x] Create Brasada Ranch Builder landing page
 - [x] Create Tetherow Custom Homes landing page
 - [x] Add routes for new landing pages
+
+
+## Urgency Banner Fix, Press Links & More Landing Pages
+- [x] Fix urgency banner to not block mobile navigation dropdown
+- [x] Make urgency banner a temporary appearing banner (auto-hides after 15s)
+- [x] Add press and media links to footer (8 links: Custom Home Magazine, Architectural Digest, Luxury Home Design, Builder Magazine, Bend Bulletin, KTVZ, Cascade Business News, Source Weekly)
+- [x] Create Pronghorn landing page
+- [x] Create Broken Top landing page
+- [x] Create Caldera Springs landing page
+- [x] Add dropdown navigation under Neighborhoods for all landing pages (5 locations + All Neighborhoods)

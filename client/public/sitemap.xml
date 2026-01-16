@@ -105,4 +105,37 @@
     </image:image>
   </url>
   
+  <url>
+    <loc>https://reacohomes.com/pronghorn-builder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/asoZsc8CLN0r.jpg</image:loc>
+      <image:title>Pronghorn Custom Home Builder</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://reacohomes.com/broken-top-builder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/WkNH38aWPs08.jpg</image:loc>
+      <image:title>Broken Top Custom Home Builder</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://reacohomes.com/caldera-springs-builder</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://reacohomes.com/images/UCoE7gADVKD9.jpg</image:loc>
+      <image:title>Caldera Springs Custom Home Builder</image:title>
+    </image:image>
+  </url>
+  
 </urlset>
