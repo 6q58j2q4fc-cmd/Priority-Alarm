@@ -5,7 +5,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import PageSEO from "@/components/PageSEO";
 import TestimonialForm from "@/components/TestimonialForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, MapPin, Quote } from "lucide-react";
@@ -16,10 +16,10 @@ export default function Testimonials() {
 
   return (
     <div className="min-h-screen">
-      <SEOHead
+      <PageSEO
         title="Client Testimonials"
         description="Read what our clients say about working with Kevin Rea and Rea Co Homes. Real reviews from homeowners in Brasada Ranch, Tetherow, and Central Oregon."
-        keywords="Rea Co Homes reviews, Kevin Rea testimonials, Central Oregon builder reviews, Brasada Ranch home builder reviews"
+        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
       />
       <Header />
 

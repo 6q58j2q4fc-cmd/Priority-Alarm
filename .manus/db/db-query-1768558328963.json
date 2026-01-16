@@ -1,0 +1,33 @@
+{
+  "query": "SELECT * FROM scheduler_config; SELECT id, title, category, status, publishedAt FROM articles ORDER BY publishedAt DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT * FROM scheduler_config; SELECT id, title, category, status, publishedAt FROM articles ORDER BY publishedAt DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "content_generator",
+      "enabled": "1",
+      "articlesPerDay": "15",
+      "lastRunAt": "2026-01-16 10:04:46",
+      "nextRunAt": "2026-01-16 11:40:46",
+      "topics": "[\"Custom Home Design\",\"Central Oregon Living\",\"Neighborhoods\",\"Building Process\",\"Luxury Features\",\"Market Trends\",\"Sustainability\",\"Interior Design\"]",
+      "createdAt": "2026-01-12 13:15:34",
+      "updatedAt": "2026-01-16 10:04:57"
+    }
+  ],
+  "messages": [
+    "id\ttitle\tcategory\tstatus\tpublishedAt",
+    "300001\tThe True Cost to Build a Custom Home in Bend, Oregon: A 2024 Guide\tCost Guide\tpublished\t2026-01-16 10:04:58",
+    "270001\tMastering Your Custom Home Building Timeline: A Guide for Central Oregon\tTimeline Planning\tpublished\t2026-01-14 17:15:22",
+    "240001\tHow to Choose a Custom Home Builder: Your Guide to Building in Central Oregon\tBuilder Selection\tpublished\t2026-01-14 15:21:58",
+    "240002\tUnveiling Unrivaled Luxury: Essential Features for Your Custom Central Oregon Home\tLuxury Features\tpublished\t2026-01-14 15:21:56",
+    "210001\tHow to Choose the Best Custom Home Builder in Bend, Oregon: Your Guide to Luxury Living\tBuilder Selection\tpublished\t2026-01-14 13:20:35",
+    "180001\tNavigating the Bend Oregon Real Estate Market: Trends, Values, and Luxury Investment\tMarket Trends\tpublished\t2026-01-14 04:12:54",
+    "150002\tMastering Your Custom Home Building Timeline in Central Oregon with Rea Co Homes\tTimeline Planning\tpublished\t2026-01-13 23:09:49",
+    "150001\tUnlocking Your Dream Home: The Rea Co Homes Custom Home Building Process in Central Oregon\tBuilding Process\tpublished\t2026-01-13 21:29:05",
+    "120001\tBuilding a Sustainable Future: Your Guide to Eco-Friendly Homes in Central Oregon\tSustainability\tpublished\t2026-01-12 21:42:36",
+    "90002\tUnlocking Your Vision: The Art of Custom Home Design with Rea Co Homes\tCustom Home Design\tpublished\t2026-01-12 19:14:35"
+  ],
+  "stdout": "id\tname\tenabled\tarticlesPerDay\tlastRunAt\tnextRunAt\ttopics\tcreatedAt\tupdatedAt\n1\tcontent_generator\t1\t15\t2026-01-16 10:04:46\t2026-01-16 11:40:46\t[\"Custom Home Design\",\"Central Oregon Living\",\"Neighborhoods\",\"Building Process\",\"Luxury Features\",\"Market Trends\",\"Sustainability\",\"Interior Design\"]\t2026-01-12 13:15:34\t2026-01-16 10:04:57\nid\ttitle\tcategory\tstatus\tpublishedAt\n300001\tThe True Cost to Build a Custom Home in Bend, Oregon: A 2024 Guide\tCost Guide\tpublished\t2026-01-16 10:04:58\n270001\tMastering Your Custom Home Building Timeline: A Guide for Central Oregon\tTimeline Planning\tpublished\t2026-01-14 17:15:22\n240001\tHow to Choose a Custom Home Builder: Your Guide to Building in Central Oregon\tBuilder Selection\tpublished\t2026-01-14 15:21:58\n240002\tUnveiling Unrivaled Luxury: Essential Features for Your Custom Central Oregon Home\tLuxury Features\tpublished\t2026-01-14 15:21:56\n210001\tHow to Choose the Best Custom Home Builder in Bend, Oregon: Your Guide to Luxury Living\tBuilder Selection\tpublished\t2026-01-14 13:20:35\n180001\tNavigating the Bend Oregon Real Estate Market: Trends, Values, and Luxury Investment\tMarket Trends\tpublished\t2026-01-14 04:12:54\n150002\tMastering Your Custom Home Building Timeline in Central Oregon with Rea Co Homes\tTimeline Planning\tpublished\t2026-01-13 23:09:49\n150001\tUnlocking Your Dream Home: The Rea Co Homes Custom Home Building Process in Central Oregon\tBuilding Process\tpublished\t2026-01-13 21:29:05\n120001\tBuilding a Sustainable Future: Your Guide to Eco-Friendly Homes in Central Oregon\tSustainability\tpublished\t2026-01-12 21:42:36\n90002\tUnlocking Your Vision: The Art of Custom Home Design with Rea Co Homes\tCustom Home Design\tpublished\t2026-01-12 19:14:35\n",
+  "stderr": "",
+  "execution_time_ms": 74
+}

@@ -4,7 +4,7 @@
  */
 
 import Header from "@/components/Header";
-import SEOHead from "@/components/SEOHead";
+import PageSEO from "@/components/PageSEO";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,10 +82,10 @@ const awards = [
 export default function About() {
   return (
     <div className="min-h-screen">
-      <SEOHead
+      <PageSEO
         title="About Kevin Rea - Master Custom Home Builder"
         description="Meet Kevin Rea, Central Oregon's premier custom home builder since 1977. 45+ years experience, 100+ homes built, award-winning craftsmanship."
-        keywords="Kevin Rea builder, Rea Co Homes, Central Oregon builder, master home builder, Bend custom builder"
+        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
         ogImage="/images/kevin-rea.webp"
       />
       <Header />

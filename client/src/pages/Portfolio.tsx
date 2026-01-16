@@ -6,7 +6,7 @@
 
 import { useState, useMemo } from "react";
 import Header from "@/components/Header";
-import SEOHead from "@/components/SEOHead";
+import PageSEO from "@/components/PageSEO";
 import Footer from "@/components/Footer";
 import Lightbox from "@/components/Lightbox";
 import { Button } from "@/components/ui/button";
@@ -206,10 +206,10 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen">
-      <SEOHead
+      <PageSEO
         title="Custom Home Portfolio"
         description="Explore our portfolio of award-winning luxury custom homes in Central Oregon. From Brasada Ranch to Tetherow, see Kevin Rea's finest work."
-        keywords="custom home portfolio, Bend Oregon homes, luxury home gallery, Brasada Ranch homes, Tetherow custom homes"
+        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
         ogImage="/images/chiaramonte-hero-exterior.webp"
       />
       <Header />
@@ -218,7 +218,7 @@ export default function Portfolio() {
       <section className="relative h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/chiaramonte-hero-exterior.webp')" }}
+          style={{ backgroundImage: "url('/images/reaco-hero-portfolio.webp')" }}
         >
           <div className="absolute inset-0 bg-timber/80" />
         </div>

@@ -7,6 +7,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import ChatBot from "./components/ChatBot";
 import LeadMagnet from "./components/LeadMagnet";
+import ScrollCTA from "./components/ScrollCTA";
+import SocialProofNotification from "./components/SocialProofNotification";
+import RetargetingPixels from "./components/RetargetingPixels";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Neighborhoods from "./pages/Neighborhoods";
@@ -54,11 +57,18 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
+          {/* Analytics & Retargeting */}
           <GoogleAnalytics />
+          <RetargetingPixels />
+          
           <Toaster />
           <Router />
+          
+          {/* Lead Generation Components */}
           <ChatBot />
           <LeadMagnet variant="popup" />
+          <ScrollCTA variant="phone" scrollThreshold={40} />
+          <SocialProofNotification />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

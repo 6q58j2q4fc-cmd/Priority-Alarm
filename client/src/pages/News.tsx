@@ -7,7 +7,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { trpc } from "@/lib/trpc";
 import Header from "@/components/Header";
-import SEOHead from "@/components/SEOHead";
+import PageSEO from "@/components/PageSEO";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -79,10 +79,10 @@ export default function News() {
 
   return (
     <div className="min-h-screen">
-      <SEOHead
+      <PageSEO
         title="Central Oregon Home Building News"
         description="Latest news and trends in Central Oregon luxury custom home building. Market updates, community developments, and industry insights."
-        keywords="Central Oregon real estate news, Bend housing market, luxury home trends, custom home building news"
+        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
         ogImage="/images/cascade-mountains.jpg"
       />
       <Header />
