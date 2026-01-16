@@ -21,6 +21,7 @@ import {
   Mountain,
   Sun,
   TreePine,
+  ExternalLink,
 } from "lucide-react";
 
 const brasadaFeatures = [
@@ -133,7 +134,7 @@ export default function BrasadaRanchBuilder() {
               </Link>
             </div>
 
-            <div className="mt-8 flex items-center gap-6">
+            <div className="mt-8 flex flex-wrap items-center gap-6">
               <div className="flex items-center gap-2">
                 <Award className="w-6 h-6 text-amber" />
                 <span className="font-body text-white/80 text-sm">
@@ -146,6 +147,15 @@ export default function BrasadaRanchBuilder() {
                   CCB #193427
                 </span>
               </div>
+              <a
+                href="https://www.brasada.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 font-body text-white/80 text-sm hover:text-amber transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Visit Brasada Ranch
+              </a>
             </div>
           </div>
         </div>

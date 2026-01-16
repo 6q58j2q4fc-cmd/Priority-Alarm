@@ -1,6 +1,7 @@
 /**
  * Neighborhoods Page - High Desert Modernism Design
  * Showcases all Central Oregon communities where Rea Co Homes builds
+ * Includes external links to official neighborhood websites for SEO
  */
 
 import Header from "@/components/Header";
@@ -9,7 +10,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ArrowRight, MapPin, Mountain, Trees, Home, Circle } from "lucide-react";
+import { ArrowRight, MapPin, Mountain, Trees, Home, Circle, ExternalLink } from "lucide-react";
 
 const neighborhoods = [
   {
@@ -19,6 +20,8 @@ const neighborhoods = [
     image: "/images/hero-neighborhoods.jpg",
     features: ["Golf Course", "Spa & Fitness", "Equestrian"],
     icon: Mountain,
+    website: "https://www.brasada.com",
+    landingPage: "/brasada-ranch-builder",
   },
   {
     name: "Tetherow",
@@ -27,6 +30,8 @@ const neighborhoods = [
     image: "/images/qHKfAGVqL6Y8.jpg",
     features: ["Golf Course", "Resort Amenities", "Mountain Views"],
     icon: Circle,
+    website: "https://www.tetherow.com",
+    landingPage: "/tetherow-custom-homes",
   },
   {
     name: "Pronghorn",
@@ -35,6 +40,8 @@ const neighborhoods = [
     image: "/images/asoZsc8CLN0r.jpg",
     features: ["Two Golf Courses", "Spa", "Fine Dining"],
     icon: Circle,
+    website: "https://www.pronghornresort.com",
+    landingPage: "/pronghorn-builder",
   },
   {
     name: "North Rim",
@@ -43,6 +50,8 @@ const neighborhoods = [
     image: "/images/WkNH38aWPs08.jpg",
     features: ["Canyon Views", "Modern Design", "Privacy"],
     icon: Mountain,
+    website: null,
+    landingPage: null,
   },
   {
     name: "Highlands at Broken Top",
@@ -51,6 +60,8 @@ const neighborhoods = [
     image: "/images/LlxE9731ghDy.jpg",
     features: ["Golf Access", "Mature Trees", "Mountain Access"],
     icon: Trees,
+    website: "https://www.brokentop.com",
+    landingPage: "/broken-top-builder",
   },
   {
     name: "Tree Farm",
@@ -59,6 +70,8 @@ const neighborhoods = [
     image: "/images/UCoE7gADVKD9.jpg",
     features: ["Large Lots", "Natural Setting", "Trails"],
     icon: Trees,
+    website: null,
+    landingPage: null,
   },
   {
     name: "Northwest Crossing",
@@ -67,6 +80,8 @@ const neighborhoods = [
     image: "/images/oov3bdfkfk6B.jpg",
     features: ["Walkable", "Parks", "Community Feel"],
     icon: Home,
+    website: "https://www.northwestcrossing.com",
+    landingPage: null,
   },
   {
     name: "Awbrey Butte",
@@ -75,6 +90,8 @@ const neighborhoods = [
     image: "/images/hero-portfolio.jpg",
     features: ["City Views", "Established", "Central Location"],
     icon: Mountain,
+    website: null,
+    landingPage: null,
   },
   {
     name: "Caldera Springs",
@@ -83,6 +100,8 @@ const neighborhoods = [
     image: "/images/cascade-mountains.jpg",
     features: ["Hot Springs", "Resort Access", "Nature"],
     icon: Mountain,
+    website: "https://www.calderasprings.com",
+    landingPage: "/caldera-springs-builder",
   },
   {
     name: "Broken Top",
@@ -91,6 +110,8 @@ const neighborhoods = [
     image: "/images/hero-main.jpg",
     features: ["Golf Course", "Prestigious", "Views"],
     icon: Circle,
+    website: "https://www.brokentop.com",
+    landingPage: "/broken-top-builder",
   },
   {
     name: "Sunriver",
@@ -99,6 +120,8 @@ const neighborhoods = [
     image: "/images/StN3qFqGILG2.jpg",
     features: ["Resort Living", "Recreation", "Nature"],
     icon: Trees,
+    website: "https://www.sunriverresort.com",
+    landingPage: null,
   },
   {
     name: "Black Butte Ranch",
@@ -107,6 +130,8 @@ const neighborhoods = [
     image: "/images/XzcSzQzgCZoy.jpg",
     features: ["Two Golf Courses", "Mountain Views", "Peaceful"],
     icon: Mountain,
+    website: "https://www.blackbutteranch.com",
+    landingPage: null,
   },
 ];
 
@@ -170,7 +195,7 @@ export default function Neighborhoods() {
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={neighborhood.image}
-                    alt={neighborhood.name}
+                    alt={`${neighborhood.name} - Luxury Custom Home Community in ${neighborhood.location}`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
@@ -189,7 +214,7 @@ export default function Neighborhoods() {
                   <p className="font-body text-muted-foreground text-sm mb-4">
                     {neighborhood.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {neighborhood.features.map((feature) => (
                       <span
                         key={feature}
@@ -198,6 +223,29 @@ export default function Neighborhoods() {
                         {feature}
                       </span>
                     ))}
+                  </div>
+                  
+                  {/* Action Links */}
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-border">
+                    {neighborhood.landingPage && (
+                      <Link href={neighborhood.landingPage}>
+                        <span className="inline-flex items-center gap-1 font-body text-xs font-semibold text-timber hover:text-amber transition-colors cursor-pointer">
+                          Build Here
+                          <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </Link>
+                    )}
+                    {neighborhood.website && (
+                      <a
+                        href={neighborhood.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-body text-xs font-semibold text-muted-foreground hover:text-amber transition-colors"
+                      >
+                        Official Site
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
                   </div>
                 </CardContent>
               </Card>

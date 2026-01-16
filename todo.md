@@ -294,3 +294,9 @@
 - [x] Create Broken Top landing page
 - [x] Create Caldera Springs landing page
 - [x] Add dropdown navigation under Neighborhoods for all landing pages (5 locations + All Neighborhoods)
+
+
+## Neighborhood Images & External Links
+- [x] Audit all neighborhood images across landing pages (12 neighborhoods verified)
+- [x] Verify all images load correctly (all images exist in public/images)
+- [x] Add external links to official neighborhood websites for SEO (8 external links added)
