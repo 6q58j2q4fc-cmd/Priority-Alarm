@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, name, enabled, articlesPerDay, lastRunAt, nextRunAt FROM scheduler_config;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, name, enabled, articlesPerDay, lastRunAt, nextRunAt FROM scheduler_config;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "content_generator",
+      "enabled": "1",
+      "articlesPerDay": "15",
+      "lastRunAt": "2026-01-16 11:41:29",
+      "nextRunAt": "2026-01-16 13:17:29"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tenabled\tarticlesPerDay\tlastRunAt\tnextRunAt\n1\tcontent_generator\t1\t15\t2026-01-16 11:41:29\t2026-01-16 13:17:29\n",
+  "stderr": "",
+  "execution_time_ms": 68
+}

@@ -10,6 +10,7 @@ import LeadMagnet from "./components/LeadMagnet";
 import ScrollCTA from "./components/ScrollCTA";
 import SocialProofNotification from "./components/SocialProofNotification";
 import RetargetingPixels from "./components/RetargetingPixels";
+import UrgencyBanner from "./components/UrgencyBanner";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Neighborhoods from "./pages/Neighborhoods";
@@ -60,6 +61,9 @@ function App() {
           {/* Analytics & Retargeting */}
           <GoogleAnalytics />
           <RetargetingPixels />
+          
+          {/* Urgency Banner - Shows limited 2026 build slots message */}
+          <UrgencyBanner variant="slots" />
           
           <Toaster />
           <Router />

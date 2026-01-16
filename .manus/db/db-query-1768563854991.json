@@ -1,0 +1,31 @@
+{
+  "query": "SELECT COUNT(*) as total_articles FROM articles; SELECT id, slug, title, category, status FROM articles ORDER BY id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT COUNT(*) as total_articles FROM articles; SELECT id, slug, title, category, status FROM articles ORDER BY id DESC LIMIT 5;",
+  "rows": [
+    {
+      "total_articles": "16"
+    },
+    {
+      "total_articles": "id\tslug\ttitle\tcategory\tstatus"
+    },
+    {
+      "total_articles": "330002\thow-to-choose-the-best-custom-home-builder-in-bend-oregon-a-guide-for-luxury-homeowners-1768563714672\tHow to Choose the Best Custom Home Builder in Bend, Oregon: A Guide for Luxury Homeowners\tBuilder Selection\tpublished"
+    },
+    {
+      "total_articles": "330001\tmastering-interior-design-in-bend-oregon-high-desert-aesthetic-meets-mountain-modern-luxury-1768563708371\tMastering Interior Design in Bend Oregon: High Desert Aesthetic Meets Mountain Modern Luxury\tInterior Design\tpublished"
+    },
+    {
+      "total_articles": "300001\tthe-true-cost-to-build-a-custom-home-in-bend-oregon-a-2024-guide-1768557897583\tThe True Cost to Build a Custom Home in Bend, Oregon: A 2024 Guide\tCost Guide\tpublished"
+    },
+    {
+      "total_articles": "270001\tmastering-your-custom-home-building-timeline-a-guide-for-central-oregon-1768410922189\tMastering Your Custom Home Building Timeline: A Guide for Central Oregon\tTimeline Planning\tpublished"
+    },
+    {
+      "total_articles": "240002\tunveiling-unrivaled-luxury-essential-features-for-your-custom-central-oregon-home-1768404116041\tUnveiling Unrivaled Luxury: Essential Features for Your Custom Central Oregon Home\tLuxury Features\tpublished"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_articles\n16\nid\tslug\ttitle\tcategory\tstatus\n330002\thow-to-choose-the-best-custom-home-builder-in-bend-oregon-a-guide-for-luxury-homeowners-1768563714672\tHow to Choose the Best Custom Home Builder in Bend, Oregon: A Guide for Luxury Homeowners\tBuilder Selection\tpublished\n330001\tmastering-interior-design-in-bend-oregon-high-desert-aesthetic-meets-mountain-modern-luxury-1768563708371\tMastering Interior Design in Bend Oregon: High Desert Aesthetic Meets Mountain Modern Luxury\tInterior Design\tpublished\n300001\tthe-true-cost-to-build-a-custom-home-in-bend-oregon-a-2024-guide-1768557897583\tThe True Cost to Build a Custom Home in Bend, Oregon: A 2024 Guide\tCost Guide\tpublished\n270001\tmastering-your-custom-home-building-timeline-a-guide-for-central-oregon-1768410922189\tMastering Your Custom Home Building Timeline: A Guide for Central Oregon\tTimeline Planning\tpublished\n240002\tunveiling-unrivaled-luxury-essential-features-for-your-custom-central-oregon-home-1768404116041\tUnveiling Unrivaled Luxury: Essential Features for Your Custom Central Oregon Home\tLuxury Features\tpublished\n",
+  "stderr": "",
+  "execution_time_ms": 62
+}
