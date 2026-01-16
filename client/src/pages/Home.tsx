@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <PageSEO
-        title="Central Oregon Custom Home Builder"
+        title="Custom Home Builder Bend Oregon"
         description="Award-winning custom home builder in Central Oregon since 1977. Kevin Rea builds luxury homes in Bend, Brasada Ranch, Tetherow, and Sunriver. 45+ years experience, 100+ custom homes. Call 541-390-9848 for a free consultation."
         canonicalUrl="/"
         ogImage="/images/hero-main.jpg"

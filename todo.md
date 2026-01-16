@@ -264,3 +264,7 @@
 
 ## Check Availability Button Fix
 - [x] Fix Check Availability button to be clickable and direct to contact Kevin Rea
+
+
+## SEO Title Fix
+- [x] Fix homepage title to be between 30-60 characters (now 43 chars: "Custom Home Builder Bend Oregon | Rea Co Homes")

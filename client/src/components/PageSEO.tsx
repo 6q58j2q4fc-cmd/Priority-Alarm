@@ -39,7 +39,8 @@ export default function PageSEO({
   noindex = false,
   structuredData,
 }: PageSEOProps) {
-  const fullTitle = `${title} | Rea Co Homes - Central Oregon Custom Home Builder`;
+  // Keep title between 30-60 characters for optimal SEO
+  const fullTitle = title.length > 40 ? title : `${title} | Rea Co Homes`;
   const fullUrl = canonicalUrl ? `${BASE_URL}${canonicalUrl}` : BASE_URL;
   const fullImageUrl = ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`;
   
