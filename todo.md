@@ -338,3 +338,17 @@
 - [x] Add breadcrumbs to Resources page
 - [x] Add breadcrumbs to all neighborhood landing pages
 - [x] Create robots.txt file with proper directives (social media bots, image crawlers, AI bot blocking)
+
+
+## FAQ Page, Open Graph Images & RSS Feed
+- [x] Create FAQ page with comprehensive custom home building questions (23 FAQs in 6 categories)
+- [x] Add JSON-LD FAQ schema markup for featured snippets
+- [x] Add unique Open Graph images for Home page (/images/hero-main.jpg)
+- [x] Add unique Open Graph images for Portfolio page (/images/chiaramonte-hero-exterior.webp)- [x] Add unique Open Graph images for all neighborhood landing pages (7 unique images)ero-neighborhoods.jpg)
+- [x] Add unique Open Graph images for About page (/images/kevin-rea.webp)
+- [x] Add unique Open Graph images for Contact page (/images/kevin-rea.webp)
+- [x] Add unique Open Graph images for Blog page (/images/hero-main.jpg)
+- [x] Add unique Open Graph images for News page (/images/cascade-mountains.jpg)
+- [x] Add unique Open Graph images for Resources page (/images/hero-portfolio.jpg)
+- [x] Create RSS feed endpoint for blog articles (/rss.xml, /atom.xml, /feed.json)
+- [x] Add RSS feed link to site header (in HTML head)

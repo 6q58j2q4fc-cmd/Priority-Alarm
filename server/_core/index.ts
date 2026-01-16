@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { initializeScheduler } from "../scheduler";
+import { generateRSSFeed, generateAtomFeed, generateJSONFeed } from "../rss";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -44,6 +45,37 @@ async function startServer() {
       createContext,
     })
   );
+  // RSS/Atom/JSON Feed routes (must be before Vite/static)
+  app.get("/rss.xml", async (_req, res) => {
+    try {
+      const feed = await generateRSSFeed();
+      res.type("application/rss+xml").send(feed);
+    } catch (err) {
+      console.error("[RSS] Error generating feed:", err);
+      res.status(500).send("Error generating RSS feed");
+    }
+  });
+  
+  app.get("/atom.xml", async (_req, res) => {
+    try {
+      const feed = await generateAtomFeed();
+      res.type("application/atom+xml").send(feed);
+    } catch (err) {
+      console.error("[Atom] Error generating feed:", err);
+      res.status(500).send("Error generating Atom feed");
+    }
+  });
+  
+  app.get("/feed.json", async (_req, res) => {
+    try {
+      const feed = await generateJSONFeed();
+      res.type("application/json").send(feed);
+    } catch (err) {
+      console.error("[JSON Feed] Error generating feed:", err);
+      res.status(500).send("Error generating JSON feed");
+    }
+  });
+
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);

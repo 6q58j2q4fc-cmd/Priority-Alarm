@@ -34,6 +34,7 @@ import CalderaSpringsBuilder from "./pages/CalderaSpringsBuilder";
 import AwbreyButteBuilder from "./pages/AwbreyButteBuilder";
 import SunriverBuilder from "./pages/SunriverBuilder";
 import Resources from "./pages/Resources";
+import FAQ from "./pages/FAQ";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
 
 function Router() {
@@ -63,6 +64,7 @@ function Router() {
       <Route path="/awbrey-butte-builder" component={AwbreyButteBuilder} />
       <Route path="/sunriver-builder" component={SunriverBuilder} />
       <Route path="/resources" component={Resources} />
+      <Route path="/faq" component={FAQ} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
