@@ -406,3 +406,11 @@
 - [ ] Create smart follow-up email sequences
 - [ ] Implement re-engagement campaigns for inactive leads
 - [ ] Add automated birthday/anniversary outreach
+
+
+## Automated Blog Posting & Google Search Console
+- [x] Verify LLM-powered article generation is working (22 articles generated, latest today)
+- [x] Increase article frequency from 2 to 5 per day (database config updated)
+- [x] Trigger immediate article generation to test system (verified 22 articles, latest today 1/17/2026)
+- [x] Add Google Search Console verification meta tag (placeholder added in index.html)
+- [x] Create Google Search Console setup instructions (already exists at /google-search-console-setup.md)
