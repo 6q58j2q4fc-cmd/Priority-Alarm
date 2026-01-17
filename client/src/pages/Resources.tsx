@@ -3,7 +3,7 @@
  * Downloadable content for lead capture and SEO authority building
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Breadcrumb, { breadcrumbConfigs } from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
@@ -30,6 +30,7 @@ import {
   DollarSign,
   Ruler,
   Hammer,
+  X,
 } from "lucide-react";
 
 interface Guide {
@@ -147,6 +148,18 @@ function GuideCard({ guide }: { guide: Guide }) {
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (showForm) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showForm]);
+
   const createLead = trpc.leads.submit.useMutation({
     onSuccess: () => {
       toast.success("Thank you! Your download is starting...");
@@ -227,67 +240,111 @@ function GuideCard({ guide }: { guide: Guide }) {
         </div>
 
         <div className="mt-auto">
-          {!showForm ? (
-            <Button
-              onClick={() => setShowForm(true)}
-              className="w-full bg-timber text-white hover:bg-timber/90 font-body font-semibold uppercase tracking-wide"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Download Free Guide
-            </Button>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <Label htmlFor={`name-${guide.id}`} className="font-body text-sm">
-                  Your Name
-                </Label>
-                <Input
-                  id={`name-${guide.id}`}
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="John Smith"
-                  required
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label htmlFor={`email-${guide.id}`} className="font-body text-sm">
-                  Email Address
-                </Label>
-                <Input
-                  id={`email-${guide.id}`}
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="john@example.com"
-                  required
-                  className="mt-1"
-                />
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex-1 bg-amber text-timber hover:bg-amber/90 font-body font-semibold"
-                >
-                  {isSubmitting ? "Sending..." : "Get Guide"}
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setShowForm(false)}
-                  className="font-body"
-                >
-                  Cancel
-                </Button>
-              </div>
-              <p className="font-body text-xs text-muted-foreground text-center">
-                We respect your privacy. Unsubscribe anytime.
-              </p>
-            </form>
-          )}
+          <Button
+            onClick={() => setShowForm(true)}
+            className="w-full bg-timber text-white hover:bg-timber/90 font-body font-semibold uppercase tracking-wide"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Download Free Guide
+          </Button>
         </div>
+
+        {/* Mobile-friendly Modal Form */}
+        {showForm && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setShowForm(false);
+            }}
+          >
+            <div className="bg-white rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white border-b border-border p-4 flex items-center justify-between">
+                <h3 className="font-display text-lg font-semibold text-timber">
+                  Download Free Guide
+                </h3>
+                <button
+                  onClick={() => setShowForm(false)}
+                  className="p-2 hover:bg-stone rounded-full transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </div>
+              
+              <div className="p-6">
+                <div className="flex items-start gap-3 mb-6 pb-4 border-b border-border">
+                  <div className="bg-amber/10 p-2 rounded-lg flex-shrink-0">
+                    <guide.icon className="w-6 h-6 text-amber" />
+                  </div>
+                  <div>
+                    <p className="font-display font-semibold text-timber text-sm">
+                      {guide.title}
+                    </p>
+                    <p className="font-body text-xs text-muted-foreground mt-1">
+                      {guide.pages} • PDF Download
+                    </p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <Label htmlFor={`modal-name-${guide.id}`} className="font-body text-sm font-medium">
+                      Your Name *
+                    </Label>
+                    <Input
+                      id={`modal-name-${guide.id}`}
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="John Smith"
+                      required
+                      className="mt-1.5 h-12 text-base"
+                      autoComplete="name"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor={`modal-email-${guide.id}`} className="font-body text-sm font-medium">
+                      Email Address *
+                    </Label>
+                    <Input
+                      id={`modal-email-${guide.id}`}
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="john@example.com"
+                      required
+                      className="mt-1.5 h-12 text-base"
+                      autoComplete="email"
+                    />
+                  </div>
+                  
+                  <div className="pt-2 space-y-3">
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-12 bg-amber text-timber hover:bg-amber/90 font-body font-semibold text-base"
+                    >
+                      {isSubmitting ? "Sending..." : "Get My Free Guide"}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => setShowForm(false)}
+                      className="w-full font-body text-muted-foreground"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                  
+                  <p className="font-body text-xs text-muted-foreground text-center pt-2">
+                    We respect your privacy and will never share your information.
+                    Unsubscribe anytime.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

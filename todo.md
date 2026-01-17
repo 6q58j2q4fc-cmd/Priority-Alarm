@@ -367,3 +367,9 @@
 - [x] Create evergreen content hub pages (FAQ, Resources, neighborhood landing pages)
 - [x] Implement lazy loading for images (browser native loading="lazy" on images)
 - [x] Add canonical URLs to prevent duplicate content (PageSEO component has canonical support)
+
+
+## Mobile Form Fix & Email Notifications
+- [x] Fix mobile form display on Resources/Free Guides page (converted to fullscreen modal)
+- [x] Add email notification to Kevin Rea (kevin@reacohomes.com) for all form submissions (leads, newsletter, testimonials)
+- [x] Test forms on mobile viewport (all 40 tests passing)

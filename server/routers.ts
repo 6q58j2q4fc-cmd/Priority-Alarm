@@ -141,6 +141,16 @@ ${input.message || "No message provided"}
           } catch (error) {
             console.warn("[Newsletter] Failed to enroll in welcome sequence:", error);
           }
+          
+          // Notify Kevin of new subscriber
+          try {
+            await notifyOwner({
+              title: "📧 New Newsletter Subscriber",
+              content: `A new subscriber has joined the Rea Co Homes newsletter!\n\n**Email:** ${input.email}\n\n---\n*This subscriber was added through the website.*\n*Contact Kevin: 541-390-9848 | kevin@reacohomes.com*`,
+            });
+          } catch (error) {
+            console.error("[Newsletter] Failed to send notification:", error);
+          }
         }
         
         return { success: true, message: result.message || "Successfully subscribed to the newsletter!" };
