@@ -352,3 +352,18 @@
 - [x] Add unique Open Graph images for Resources page (/images/hero-portfolio.jpg)
 - [x] Create RSS feed endpoint for blog articles (/rss.xml, /atom.xml, /feed.json)
 - [x] Add RSS feed link to site header (in HTML head)
+
+
+## Daily Cron Jobs, FAQ Navigation & Organic Marketing
+- [x] Verify daily cron job is generating SEO-friendly blog posts (scheduler enabled, 2 articles/day)
+- [x] Check scheduler configuration and recent article generation (17+ articles generated)
+- [x] Add FAQ link to header navigation between Free Guides and Contact
+- [x] Implement internal linking strategy for SEO juice flow (InternalLinkingWidget component)
+- [x] Add social sharing buttons to blog articles (enhanced with Twitter/X, Email, Copy Link)
+- [x] Implement content freshness signals (ContentFreshness component)
+- [x] Add related articles section to blog posts (RelatedArticles component)
+- [x] Implement keyword-rich anchor text for internal links (InternalLinkingWidget has descriptive labels)
+- [x] Add Article schema markup for blog posts (ArticleSchema component)
+- [x] Create evergreen content hub pages (FAQ, Resources, neighborhood landing pages)
+- [x] Implement lazy loading for images (browser native loading="lazy" on images)
+- [x] Add canonical URLs to prevent duplicate content (PageSEO component has canonical support)

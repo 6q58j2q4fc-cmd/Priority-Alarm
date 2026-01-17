@@ -25,6 +25,7 @@ const navLinks = [
   { href: "/neighborhoods", label: "Neighborhoods", hasDropdown: true },
   { href: "/about", label: "About" },
   { href: "/resources", label: "Free Guides" },
+  { href: "/faq", label: "FAQ" },
   { href: "/news", label: "News" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },

@@ -1,0 +1,8 @@
+{
+  "query": "SELECT id, enabled, articles_per_day, last_run_at, next_run_at FROM scheduler_config;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, enabled, articles_per_day, last_run_at, next_run_at FROM scheduler_config;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'articles_per_day' in 'field list'"
+  ]
+}

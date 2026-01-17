@@ -3,7 +3,8 @@
  * Allows visitors to share content on Facebook, LinkedIn, and Pinterest
  */
 
-import { Facebook, Linkedin, Share2 } from "lucide-react";
+import { Facebook, Linkedin, Share2, Mail, Link2, Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface SocialShareButtonsProps {
@@ -37,10 +38,24 @@ export default function SocialShareButtons({
   const encodedDescription = encodeURIComponent(description);
   const encodedImage = encodeURIComponent(image);
 
+  const [copied, setCopied] = useState(false);
+
   const shareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
     pinterest: `https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${encodedImage}&description=${encodedTitle}`,
+    email: `mailto:?subject=${encodedTitle}&body=${encodedDescription}%0A%0ARead more: ${encodedUrl}`,
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
   };
 
   const handleShare = (platform: keyof typeof shareLinks) => {
@@ -88,11 +103,48 @@ export default function SocialShareButtons({
       <Button
         variant="outline"
         size="sm"
+        onClick={() => handleShare("twitter")}
+        className="bg-[#1DA1F2] hover:bg-[#1DA1F2]/90 text-white border-0 h-8 w-8 p-0"
+        title="Share on Twitter/X"
+      >
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </Button>
+
+      <Button
+        variant="outline"
+        size="sm"
         onClick={() => handleShare("pinterest")}
         className="bg-[#E60023] hover:bg-[#E60023]/90 text-white border-0 h-8 w-8 p-0"
         title="Share on Pinterest"
       >
         <PinterestIcon />
+      </Button>
+
+      <a href={shareLinks.email}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="bg-timber hover:bg-timber/90 text-white border-0 h-8 w-8 p-0"
+          title="Share via Email"
+        >
+          <Mail className="w-4 h-4" />
+        </Button>
+      </a>
+
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={copyToClipboard}
+        className="h-8 w-8 p-0"
+        title="Copy link"
+      >
+        {copied ? (
+          <Check className="w-4 h-4 text-green-600" />
+        ) : (
+          <Link2 className="w-4 h-4" />
+        )}
       </Button>
 
       {typeof navigator !== "undefined" && "share" in navigator && (

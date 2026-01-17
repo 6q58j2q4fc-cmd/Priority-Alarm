@@ -1,0 +1,31 @@
+{
+  "query": "SELECT COUNT(*) as total FROM articles; SELECT id, title, status FROM articles ORDER BY id DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT COUNT(*) as total FROM articles; SELECT id, title, status FROM articles ORDER BY id DESC LIMIT 5;",
+  "rows": [
+    {
+      "total": "22"
+    },
+    {
+      "total": "id\ttitle\tstatus"
+    },
+    {
+      "total": "480001\tThe Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon\tpublished"
+    },
+    {
+      "total": "450002\tBuilding Your Dream: Exploring Luxury Central Oregon Neighborhoods and Tetherow Homes for Sale\tpublished"
+    },
+    {
+      "total": "450001\tElevating Central Oregon Living: Essential Luxury Home Amenities for Custom Builds\tpublished"
+    },
+    {
+      "total": "420001\tNavigating the Bend Oregon Real Estate Market: Trends and Opportunities in Central Oregon\tpublished"
+    },
+    {
+      "total": "390001\tCustom Home Lot Selection Tips: Finding the Best Lots in Tetherow and Central Oregon\tpublished"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\n22\nid\ttitle\tstatus\n480001\tThe Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon\tpublished\n450002\tBuilding Your Dream: Exploring Luxury Central Oregon Neighborhoods and Tetherow Homes for Sale\tpublished\n450001\tElevating Central Oregon Living: Essential Luxury Home Amenities for Custom Builds\tpublished\n420001\tNavigating the Bend Oregon Real Estate Market: Trends and Opportunities in Central Oregon\tpublished\n390001\tCustom Home Lot Selection Tips: Finding the Best Lots in Tetherow and Central Oregon\tpublished\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}
