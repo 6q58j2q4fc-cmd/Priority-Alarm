@@ -414,3 +414,10 @@
 - [x] Trigger immediate article generation to test system (verified 22 articles, latest today 1/17/2026)
 - [x] Add Google Search Console verification meta tag (placeholder added in index.html)
 - [x] Create Google Search Console setup instructions (already exists at /google-search-console-setup.md)
+
+## Blog Posting Debug (Jan 19, 2026)
+- [x] Identified issue: scheduler was running but not creating articles due to time check
+- [x] Fixed by restarting server which triggers immediate article generation
+- [x] Generated 5 new articles manually to catch up
+- [x] Verified articles now showing with current dates (1/19/2026)
+- [x] Total articles now: 29 (was 22)

@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, createdAt FROM articles ORDER BY createdAt DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, createdAt FROM articles ORDER BY createdAt DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "540002",
+      "title": "The Definitive Guide to the Custom Home Construction Process in Oregon: A Builder's Perspective",
+      "createdAt": "2026-01-18 16:17:51"
+    },
+    {
+      "id": "540001",
+      "title": "Building Your Dream: Exploring Luxury Neighborhoods & Custom Homes in Central Oregon",
+      "createdAt": "2026-01-18 16:17:12"
+    },
+    {
+      "id": "510001",
+      "title": "Unveiling the Future: 2026 Custom Home Trends in Central Oregon Luxury Design",
+      "createdAt": "2026-01-17 23:12:05"
+    },
+    {
+      "id": "480001",
+      "title": "The Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon",
+      "createdAt": "2026-01-17 13:58:07"
+    },
+    {
+      "id": "450002",
+      "title": "Building Your Dream: Exploring Luxury Central Oregon Neighborhoods and Tetherow Homes for Sale",
+      "createdAt": "2026-01-16 21:24:53"
+    },
+    {
+      "id": "450001",
+      "title": "Elevating Central Oregon Living: Essential Luxury Home Amenities for Custom Builds",
+      "createdAt": "2026-01-16 21:24:50"
+    },
+    {
+      "id": "420001",
+      "title": "Navigating the Bend Oregon Real Estate Market: Trends and Opportunities in Central Oregon",
+      "createdAt": "2026-01-16 19:22:06"
+    },
+    {
+      "id": "390001",
+      "title": "Custom Home Lot Selection Tips: Finding the Best Lots in Tetherow and Central Oregon",
+      "createdAt": "2026-01-16 17:42:41"
+    },
+    {
+      "id": "360001",
+      "title": "The True Cost to Build a Custom Home in Bend, Oregon: A 2024 Guide",
+      "createdAt": "2026-01-16 15:42:43"
+    },
+    {
+      "id": "330002",
+      "title": "How to Choose the Best Custom Home Builder in Bend, Oregon: A Guide for Luxury Homeowners",
+      "createdAt": "2026-01-16 11:41:55"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcreatedAt\n540002\tThe Definitive Guide to the Custom Home Construction Process in Oregon: A Builder's Perspective\t2026-01-18 16:17:51\n540001\tBuilding Your Dream: Exploring Luxury Neighborhoods & Custom Homes in Central Oregon\t2026-01-18 16:17:12\n510001\tUnveiling the Future: 2026 Custom Home Trends in Central Oregon Luxury Design\t2026-01-17 23:12:05\n480001\tThe Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon\t2026-01-17 13:58:07\n450002\tBuilding Your Dream: Exploring Luxury Central Oregon Neighborhoods and Tetherow Homes for Sale\t2026-01-16 21:24:53\n450001\tElevating Central Oregon Living: Essential Luxury Home Amenities for Custom Builds\t2026-01-16 21:24:50\n420001\tNavigating the Bend Oregon Real Estate Market: Trends and Opportunities in Central Oregon\t2026-01-16 19:22:06\n390001\tCustom Home Lot Selection Tips: Finding the Best Lots in Tetherow and Central Oregon\t2026-01-16 17:42:41\n360001\tThe True Cost to Build a Custom Home in Bend, Oregon: A 2024 Guide\t2026-01-16 15:42:43\n330002\tHow to Choose the Best Custom Home Builder in Bend, Oregon: A Guide for Luxury Homeowners\t2026-01-16 11:41:55\n",
+  "stderr": "",
+  "execution_time_ms": 832
+}
