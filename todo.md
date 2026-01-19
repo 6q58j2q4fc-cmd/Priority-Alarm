@@ -472,3 +472,12 @@
 - [x] Add strategic competitor-related meta keywords (subtle, organic) - 25+ keywords added
 - [x] Test social sharing preview (verified OG + Twitter tags working)
 - [x] Verify meta tags are properly rendered (all tags confirmed in browser)
+
+
+## Article Schema Structured Data (Jan 19, 2026)
+- [x] Create ArticleSchema component with JSON-LD (enhanced with 3 schemas)
+- [x] Add Article schema to GeneratedArticle page
+- [x] Include author, publisher, datePublished, dateModified
+- [x] Add image schema with dimensions
+- [x] Add breadcrumb schema for navigation
+- [x] Test with Google Rich Results validator (verified 6 schemas: Article, BreadcrumbList, LocalBusiness, HomeBuilder, HomeAndConstructionBusiness)

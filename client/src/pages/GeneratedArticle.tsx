@@ -6,6 +6,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import ArticleSchema from "@/components/ArticleSchema";
 import SocialShareButtons from "@/components/SocialShareButtons";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -71,6 +72,18 @@ export default function GeneratedArticle() {
         articleAuthor="Kevin Rea"
         articleCategory={article.category}
         articleTags={article.tags || ""}
+      />
+      <ArticleSchema
+        title={article.title}
+        description={article.metaDescription || article.excerpt || ""}
+        url={`https://reacohomes.com/articles/${slug}`}
+        image={article.featuredImage || "https://reacohomes.com/images/hero-main.jpg"}
+        datePublished={article.publishedAt ? new Date(article.publishedAt).toISOString() : new Date().toISOString()}
+        dateModified={article.updatedAt ? new Date(article.updatedAt).toISOString() : undefined}
+        authorName={article.authorName || "Kevin Rea"}
+        keywords={article.tags?.split(",").map((t: string) => t.trim()) || []}
+        wordCount={article.content?.split(/\s+/).length}
+        category={article.category}
       />
       <Header />
 
