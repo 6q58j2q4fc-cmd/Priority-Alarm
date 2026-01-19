@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, title, slug, featuredImage FROM articles WHERE featuredImage IS NULL OR featuredImage = '' ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, slug, featuredImage FROM articles WHERE featuredImage IS NULL OR featuredImage = '' ORDER BY id;",
+  "rows": [
+    {
+      "id": "570016",
+      "title": "Defining Mountain Modern Homes Bend: Rea Co Homes' Guide to Contemporary Rustic Design",
+      "slug": "defining-mountain-modern-homes-bend-rea-co-homes-guide-to-contemporary-rustic-design-1768817341326",
+      "featuredImage": "NULL"
+    },
+    {
+      "id": "570017",
+      "title": "Elevating Outdoor Living in Bend Oregon: Custom Designs for the High Desert Lifestyle",
+      "slug": "elevating-outdoor-living-in-bend-oregon-custom-designs-for-the-high-desert-lifestyle-1768817353888",
+      "featuredImage": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tfeaturedImage\n570016\tDefining Mountain Modern Homes Bend: Rea Co Homes' Guide to Contemporary Rustic Design\tdefining-mountain-modern-homes-bend-rea-co-homes-guide-to-contemporary-rustic-design-1768817341326\tNULL\n570017\tElevating Outdoor Living in Bend Oregon: Custom Designs for the High Desert Lifestyle\televating-outdoor-living-in-bend-oregon-custom-designs-for-the-high-desert-lifestyle-1768817353888\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 405
+}

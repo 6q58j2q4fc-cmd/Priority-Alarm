@@ -481,3 +481,13 @@
 - [x] Add image schema with dimensions
 - [x] Add breadcrumb schema for navigation
 - [x] Test with Google Rich Results validator (verified 6 schemas: Article, BreadcrumbList, LocalBusiness, HomeBuilder, HomeAndConstructionBusiness)
+
+
+## Missing Photos, RSS Feed & FAQ Schema (Jan 19, 2026)
+- [x] Identify articles missing featured images (found 2)
+- [x] Generate AI images for all articles without photos (2 images generated)
+- [x] Create RSS feed at /rss.xml (already exists with RSS, Atom, and JSON feeds)
+- [x] Add RSS autodiscovery link to HTML head (already in index.html)
+- [x] Add FAQ schema structured data to FAQ page (already implemented with 22 FAQs)
+- [x] Test RSS feed validation
+- [x] Test FAQ schema with Google Rich Results (verified FAQPage schema in page)

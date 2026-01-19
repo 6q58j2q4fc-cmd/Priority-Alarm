@@ -1,0 +1,20 @@
+{
+  "query": "SELECT id, title, category FROM articles WHERE featuredImage IS NULL OR featuredImage = '';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, category FROM articles WHERE featuredImage IS NULL OR featuredImage = '';",
+  "rows": [
+    {
+      "id": "570016",
+      "title": "Defining Mountain Modern Homes Bend: Rea Co Homes' Guide to Contemporary Rustic Design",
+      "category": "Mountain Modern Design"
+    },
+    {
+      "id": "570017",
+      "title": "Elevating Outdoor Living in Bend Oregon: Custom Designs for the High Desert Lifestyle",
+      "category": "Outdoor Living"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcategory\n570016\tDefining Mountain Modern Homes Bend: Rea Co Homes' Guide to Contemporary Rustic Design\tMountain Modern Design\n570017\tElevating Outdoor Living in Bend Oregon: Custom Designs for the High Desert Lifestyle\tOutdoor Living\n",
+  "stderr": "",
+  "execution_time_ms": 373
+}
