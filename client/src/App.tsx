@@ -33,6 +33,13 @@ import BrokenTopBuilder from "./pages/BrokenTopBuilder";
 import CalderaSpringsBuilder from "./pages/CalderaSpringsBuilder";
 import AwbreyButteBuilder from "./pages/AwbreyButteBuilder";
 import SunriverBuilder from "./pages/SunriverBuilder";
+import AspenLakesBuilder from "./pages/AspenLakesBuilder";
+import CrosswaterBuilder from "./pages/CrosswaterBuilder";
+import EagleCrestBuilder from "./pages/EagleCrestBuilder";
+import RiverRimBuilder from "./pages/RiverRimBuilder";
+import ShevlinCommonsBuilder from "./pages/ShevlinCommonsBuilder";
+import SummitWestBuilder from "./pages/SummitWestBuilder";
+import WidgiCreekBuilder from "./pages/WidgiCreekBuilder";
 import Resources from "./pages/Resources";
 import FAQ from "./pages/FAQ";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
@@ -63,6 +70,13 @@ function Router() {
       <Route path="/caldera-springs-builder" component={CalderaSpringsBuilder} />
       <Route path="/awbrey-butte-builder" component={AwbreyButteBuilder} />
       <Route path="/sunriver-builder" component={SunriverBuilder} />
+      <Route path="/aspen-lakes-builder" component={AspenLakesBuilder} />
+      <Route path="/crosswater-builder" component={CrosswaterBuilder} />
+      <Route path="/eagle-crest-builder" component={EagleCrestBuilder} />
+      <Route path="/river-rim-builder" component={RiverRimBuilder} />
+      <Route path="/shevlin-commons-builder" component={ShevlinCommonsBuilder} />
+      <Route path="/summit-west-builder" component={SummitWestBuilder} />
+      <Route path="/widgi-creek-builder" component={WidgiCreekBuilder} />
       <Route path="/resources" component={Resources} />
       <Route path="/faq" component={FAQ} />
       <Route path="/admin" component={AdminDashboard} />

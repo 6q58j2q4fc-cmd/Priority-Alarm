@@ -134,6 +134,76 @@ const neighborhoods = [
     website: "https://www.blackbutteranch.com",
     landingPage: null,
   },
+  {
+    name: "Aspen Lakes",
+    location: "Sisters, Oregon",
+    description: "A stunning golf community at the base of the Three Sisters mountains with pristine lakes and natural beauty.",
+    image: "/images/cascade-mountains.jpg",
+    features: ["Golf Course", "Mountain Views", "Lakes"],
+    icon: Mountain,
+    website: "https://www.aspenlakes.com",
+    landingPage: "/aspen-lakes-builder",
+  },
+  {
+    name: "Crosswater",
+    location: "Sunriver, Oregon",
+    description: "An exclusive private golf community within Sunriver featuring a world-class Bob Cupp designed course.",
+    image: "/images/StN3qFqGILG2.jpg",
+    features: ["Private Golf", "Exclusive", "Nature"],
+    icon: Circle,
+    website: "https://www.crosswater.com",
+    landingPage: "/crosswater-builder",
+  },
+  {
+    name: "Eagle Crest",
+    location: "Redmond, Oregon",
+    description: "A premier resort community with multiple golf courses, pools, and year-round recreation.",
+    image: "/images/hero-neighborhoods.jpg",
+    features: ["Resort Living", "Golf Courses", "Recreation"],
+    icon: Mountain,
+    website: "https://www.eagle-crest.com",
+    landingPage: "/eagle-crest-builder",
+  },
+  {
+    name: "River Rim",
+    location: "Bend, Oregon",
+    description: "Exclusive riverfront homesites along the Deschutes River with direct water access and privacy.",
+    image: "/images/hero-portfolio.jpg",
+    features: ["Riverfront", "Privacy", "Water Access"],
+    icon: Trees,
+    website: null,
+    landingPage: "/river-rim-builder",
+  },
+  {
+    name: "Shevlin Commons",
+    location: "Bend, Oregon",
+    description: "A walkable community adjacent to Shevlin Park with trails, shops, and a strong sense of community.",
+    image: "/images/oov3bdfkfk6B.jpg",
+    features: ["Walkable", "Park Access", "Trails"],
+    icon: Trees,
+    website: null,
+    landingPage: "/shevlin-commons-builder",
+  },
+  {
+    name: "Summit West",
+    location: "Bend, Oregon",
+    description: "A newer west-side community with modern homes and convenient access to Mt. Bachelor and downtown.",
+    image: "/images/WkNH38aWPs08.jpg",
+    features: ["Modern Homes", "West Side", "Mountain Access"],
+    icon: Home,
+    website: null,
+    landingPage: "/summit-west-builder",
+  },
+  {
+    name: "Widgi Creek",
+    location: "Bend, Oregon",
+    description: "A golf community featuring the Widgi Creek Golf Club with beautiful fairway and mountain views.",
+    image: "/images/asoZsc8CLN0r.jpg",
+    features: ["Golf Course", "Mountain Views", "Community"],
+    icon: Circle,
+    website: "https://www.widgicreek.com",
+    landingPage: "/widgi-creek-builder",
+  },
 ];
 
 export default function Neighborhoods() {
@@ -141,7 +211,7 @@ export default function Neighborhoods() {
     <div className="min-h-screen">
       <PageSEO
         title="Central Oregon Neighborhoods"
-        description="Build your custom home in Central Oregon's finest communities: Brasada Ranch, Tetherow, Pronghorn, Broken Top, Awbrey Butte, and more."
+        description="Build your custom home in Central Oregon's 19 finest communities: Brasada Ranch, Tetherow, Pronghorn, Broken Top, Awbrey Butte, Sunriver, Caldera Springs, and more."
         keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
         ogImage="/images/hero-neighborhoods.jpg"
       />
