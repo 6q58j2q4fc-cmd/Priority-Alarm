@@ -443,3 +443,12 @@
 - [x] Check if articles are being created with correct status/dates (all correct)
 - [x] Fix all identified issues (date display format fixed)
 - [x] Generate test articles and verify they appear on published site (42 articles, today's at top)
+
+
+## Blog and News Daily Updates (Jan 19, 2026)
+- [x] Check Blog page (/blog) current state and content dates (was static, now fixed)
+- [x] Check News page (/news) current state and content dates (already uses database)
+- [x] Verify Blog has automatic content generation (now connected to database)
+- [x] Verify News has automatic content generation (combines static + database articles)
+- [x] Fix any missing auto-generation (Blog.tsx rewritten to use trpc.articles.list)
+- [x] Test both pages show fresh daily content (42 articles with 1/19/2026 dates showing)
