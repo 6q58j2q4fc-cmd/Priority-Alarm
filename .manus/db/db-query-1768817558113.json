@@ -1,0 +1,13 @@
+{
+  "query": "SELECT COUNT(*) as total FROM articles WHERE status = 'published';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT COUNT(*) as total FROM articles WHERE status = 'published';",
+  "rows": [
+    {
+      "total": "42"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\n42\n",
+  "stderr": "",
+  "execution_time_ms": 369
+}
