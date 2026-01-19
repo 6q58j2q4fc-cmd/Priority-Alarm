@@ -9,6 +9,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { initializeScheduler } from "../scheduler";
 import { generateRSSFeed, generateAtomFeed, generateJSONFeed } from "../rss";
+import { generateDynamicSitemap } from "../sitemap";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -73,6 +74,17 @@ async function startServer() {
     } catch (err) {
       console.error("[JSON Feed] Error generating feed:", err);
       res.status(500).send("Error generating JSON feed");
+    }
+  });
+
+  // Dynamic sitemap with all articles for SEO
+  app.get("/sitemap.xml", async (_req, res) => {
+    try {
+      const sitemap = await generateDynamicSitemap();
+      res.type("application/xml").send(sitemap);
+    } catch (err) {
+      console.error("[Sitemap] Error generating sitemap:", err);
+      res.status(500).send("Error generating sitemap");
     }
   });
 
