@@ -452,3 +452,13 @@
 - [x] Verify News has automatic content generation (combines static + database articles)
 - [x] Fix any missing auto-generation (Blog.tsx rewritten to use trpc.articles.list)
 - [x] Test both pages show fresh daily content (42 articles with 1/19/2026 dates showing)
+
+
+## AI-Generated Featured Images for Articles (Jan 19, 2026)
+- [x] Check if articles table has imageUrl column (has featuredImage column)
+- [x] Add imageUrl column to articles schema if missing (already has featuredImage)
+- [x] Integrate image generation into scheduler's article creation
+- [x] Update Blog page to display article images
+- [x] Update Articles page to display article images
+- [x] Generate images for existing articles without images (40 images generated)
+- [x] Test images display correctly on both pages

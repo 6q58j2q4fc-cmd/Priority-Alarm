@@ -118,7 +118,15 @@ export default function Blog() {
                           <Link key={article.id} href={`/articles/${article.slug}`}>
                             <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer h-full">
                               <div className="relative h-48 overflow-hidden bg-stone">
-                                <div className="absolute inset-0 bg-gradient-to-br from-timber/20 to-amber/20" />
+                                {article.featuredImage ? (
+                                  <img
+                                    src={article.featuredImage}
+                                    alt={article.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                  />
+                                ) : (
+                                  <div className="absolute inset-0 bg-gradient-to-br from-timber/20 to-amber/20" />
+                                )}
                                 <div className="absolute top-4 left-4">
                                   <span className="font-body text-xs bg-amber text-timber px-3 py-1 rounded-full font-medium">
                                     Featured
@@ -180,9 +188,17 @@ export default function Blog() {
                             >
                               <div className="flex flex-col md:flex-row">
                                 <div className="md:w-1/3 h-48 md:h-auto overflow-hidden bg-stone">
-                                  <div className="w-full h-full bg-gradient-to-br from-timber/20 to-amber/20 flex items-center justify-center">
-                                    <span className="text-timber/50 font-display text-sm">{article.category}</span>
-                                  </div>
+                                  {article.featuredImage ? (
+                                    <img
+                                      src={article.featuredImage}
+                                      alt={article.title}
+                                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-timber/20 to-amber/20 flex items-center justify-center">
+                                      <span className="text-timber/50 font-display text-sm">{article.category}</span>
+                                    </div>
+                                  )}
                                 </div>
                                 <CardContent className="md:w-2/3 p-6">
                                   <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground">

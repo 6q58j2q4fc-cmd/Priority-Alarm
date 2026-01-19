@@ -63,7 +63,18 @@ export default function Articles() {
               ) : articles && articles.length > 0 ? (
                 <div className="space-y-6">
                   {articles.map((article) => (
-                    <Card key={article.id} className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+                    <Card key={article.id} className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+                      {article.featuredImage && (
+                        <Link href={`/articles/${article.slug}`}>
+                          <div className="h-48 overflow-hidden">
+                            <img
+                              src={article.featuredImage}
+                              alt={article.title}
+                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                        </Link>
+                      )}
                       <CardContent className="p-6">
                         <div className="flex flex-wrap gap-2 mb-3">
                           <span className="bg-amber/20 text-amber px-3 py-1 rounded-full text-xs font-medium">

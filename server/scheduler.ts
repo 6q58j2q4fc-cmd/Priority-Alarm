@@ -7,6 +7,7 @@ import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { schedulerConfig, articles, botActivityLog } from "../drizzle/schema";
 import { invokeLLM } from "./_core/llm";
+import { generateImage } from "./_core/imageGeneration";
 import { processEmailQueue, initializeWelcomeSequence } from "./emailDrip";
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -155,6 +156,18 @@ async function createScheduledArticle(): Promise<boolean> {
     const articleData = await generateArticleContent(topic);
     const slug = generateSlug(articleData.title);
 
+    // Generate featured image for the article
+    let featuredImageUrl: string | null = null;
+    try {
+      console.log(`[Scheduler] Generating featured image for: ${articleData.title}`);
+      const imagePrompt = `Professional architectural photography of a luxury custom home in Central Oregon high desert landscape. ${topic.category} theme. Modern mountain contemporary design with natural materials like wood, stone, and glass. Cascade mountain views in background. Golden hour lighting. No text or watermarks. Photorealistic, high quality.`;
+      const imageResult = await generateImage({ prompt: imagePrompt });
+      featuredImageUrl = imageResult.url || null;
+      console.log(`[Scheduler] Featured image generated: ${featuredImageUrl}`);
+    } catch (imageError) {
+      console.warn(`[Scheduler] Failed to generate image, continuing without:`, imageError);
+    }
+
     // Create the article
     await db.insert(articles).values({
       slug,
@@ -165,6 +178,7 @@ async function createScheduledArticle(): Promise<boolean> {
       tags: JSON.stringify(articleData.tags),
       metaDescription: articleData.metaDescription,
       metaKeywords: articleData.metaKeywords,
+      featuredImage: featuredImageUrl,
       authorName: "Kevin Rea",
       authorEmail: "kevin@reacohomes.com",
       authorPhone: "541-390-9848",
