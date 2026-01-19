@@ -69,7 +69,7 @@ export default function Articles() {
                           <div className="h-48 overflow-hidden">
                             <img
                               src={article.featuredImage}
-                              alt={article.title}
+                              alt={`${article.title} - ${article.category || 'Custom Home'} in Bend Oregon by Kevin Rea, award-winning Central Oregon luxury home builder`}
                               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                             />
                           </div>

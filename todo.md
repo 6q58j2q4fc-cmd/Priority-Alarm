@@ -462,3 +462,13 @@
 - [x] Update Articles page to display article images
 - [x] Generate images for existing articles without images (40 images generated)
 - [x] Test images display correctly on both pages
+
+
+## Open Graph, Alt Text & Competitor Keywords (Jan 19, 2026)
+- [x] Research top competitors in Central Oregon custom home building (16 competitors identified)
+- [x] Add Open Graph meta tags with featured images to article pages
+- [x] Add Twitter Card meta tags for better Twitter sharing
+- [x] Optimize image alt text with category-specific keywords (Blog + Articles pages updated)
+- [x] Add strategic competitor-related meta keywords (subtle, organic) - 25+ keywords added
+- [x] Test social sharing preview (verified OG + Twitter tags working)
+- [x] Verify meta tags are properly rendered (all tags confirmed in browser)

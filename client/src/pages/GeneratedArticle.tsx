@@ -61,9 +61,16 @@ export default function GeneratedArticle() {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title={`${article.title} | Rea Co Homes`}
+        title={article.title}
         description={article.metaDescription || article.excerpt || ""}
         keywords={article.metaKeywords || ""}
+        ogImage={article.featuredImage || "/images/hero-main.jpg"}
+        ogType="article"
+        canonicalUrl={`/articles/${slug}`}
+        articlePublishedTime={article.publishedAt ? new Date(article.publishedAt).toISOString() : undefined}
+        articleAuthor="Kevin Rea"
+        articleCategory={article.category}
+        articleTags={article.tags || ""}
       />
       <Header />
 
@@ -118,7 +125,7 @@ export default function GeneratedArticle() {
                 url={typeof window !== "undefined" ? window.location.href : `https://reacohomes.com/articles/${slug}`}
                 title={article.title}
                 description={article.excerpt || ""}
-                image="/images/hero-main.jpg"
+                image={article.featuredImage || "/images/hero-main.jpg"}
               />
             </div>
           </div>

@@ -121,7 +121,7 @@ export default function Blog() {
                                 {article.featuredImage ? (
                                   <img
                                     src={article.featuredImage}
-                                    alt={article.title}
+                                    alt={`${article.title} - ${article.category || 'Custom Home'} in Central Oregon by Kevin Rea, Bend Oregon luxury home builder`}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                   />
                                 ) : (
@@ -191,7 +191,7 @@ export default function Blog() {
                                   {article.featuredImage ? (
                                     <img
                                       src={article.featuredImage}
-                                      alt={article.title}
+                                      alt={`${article.title} - ${article.category || 'Custom Home Building'} article by Kevin Rea, Central Oregon luxury home builder serving Brasada Ranch, Tetherow, Pronghorn`}
                                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                   ) : (
