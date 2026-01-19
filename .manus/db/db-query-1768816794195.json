@@ -1,0 +1,14 @@
+{
+  "query": "UPDATE articles SET publishedAt = createdAt WHERE publishedAt IS NULL; SELECT COUNT(*) as total, SUM(CASE WHEN publishedAt IS NOT NULL THEN 1 ELSE 0 END) as with_published_at FROM articles;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute UPDATE articles SET publishedAt = createdAt WHERE publishedAt IS NULL; SELECT COUNT(*) as total, SUM(CASE WHEN publishedAt IS NOT NULL THEN 1 ELSE 0 END) as with_published_at FROM articles;",
+  "rows": [
+    {
+      "total": "36",
+      "with_published_at": "36"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\twith_published_at\n36\t36\n",
+  "stderr": "",
+  "execution_time_ms": 444
+}

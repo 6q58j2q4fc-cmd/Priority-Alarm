@@ -1,0 +1,100 @@
+{
+  "query": "SELECT id, title, status, DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i') as created FROM articles ORDER BY createdAt DESC LIMIT 15;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, status, DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i') as created FROM articles ORDER BY createdAt DESC LIMIT 15;",
+  "rows": [
+    {
+      "id": "570011",
+      "title": "The Rea Co Homes Custom Building Process in Central Oregon",
+      "status": "published",
+      "created": "2026-01-19 09:34"
+    },
+    {
+      "id": "570010",
+      "title": "The Rea Co Guide to Custom Home Building in Central Oregon",
+      "status": "published",
+      "created": "2026-01-19 09:34"
+    },
+    {
+      "id": "570009",
+      "title": "The Ultimate Guide to Luxury Living in Central Oregon",
+      "status": "published",
+      "created": "2026-01-19 09:33"
+    },
+    {
+      "id": "570008",
+      "title": "Choosing Your Central Oregon Oasis: A Custom Home Neighborhood Guide",
+      "status": "published",
+      "created": "2026-01-19 09:33"
+    },
+    {
+      "id": "570007",
+      "title": "Building Green: Sustainable Luxury in Central Oregon Homes",
+      "status": "published",
+      "created": "2026-01-19 09:33"
+    },
+    {
+      "id": "570006",
+      "title": "Mastering Outdoor Living Design in Bend and Central Oregon: Custom Spaces for the High Desert",
+      "status": "published",
+      "created": "2026-01-19 09:12"
+    },
+    {
+      "id": "570005",
+      "title": "Mastering Interior Design in Bend, Oregon: The Rea Co Homes Aesthetic",
+      "status": "published",
+      "created": "2026-01-19 09:11"
+    },
+    {
+      "id": "570004",
+      "title": "Building Your Dream Energy Efficient Home in Oregon: A Central Oregon Guide",
+      "status": "published",
+      "created": "2026-01-19 09:11"
+    },
+    {
+      "id": "570003",
+      "title": "The Art of Custom Home Design in Bend Oregon: Crafting Your High Desert Dream",
+      "status": "published",
+      "created": "2026-01-19 09:11"
+    },
+    {
+      "id": "570002",
+      "title": "Mastering the Custom Home Building Timeline: A Central Oregon Guide",
+      "status": "published",
+      "created": "2026-01-19 09:11"
+    },
+    {
+      "id": "570001",
+      "title": "Unveiling the Future: 2026 Custom Home Trends Shaping Modern Mountain Design in Central Oregon",
+      "status": "published",
+      "created": "2026-01-19 09:10"
+    },
+    {
+      "id": "540002",
+      "title": "The Definitive Guide to the Custom Home Construction Process in Oregon: A Builder's Perspective",
+      "status": "published",
+      "created": "2026-01-18 16:17"
+    },
+    {
+      "id": "540001",
+      "title": "Building Your Dream: Exploring Luxury Neighborhoods & Custom Homes in Central Oregon",
+      "status": "published",
+      "created": "2026-01-18 16:17"
+    },
+    {
+      "id": "510001",
+      "title": "Unveiling the Future: 2026 Custom Home Trends in Central Oregon Luxury Design",
+      "status": "published",
+      "created": "2026-01-17 23:12"
+    },
+    {
+      "id": "480001",
+      "title": "The Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon",
+      "status": "published",
+      "created": "2026-01-17 13:58"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tstatus\tcreated\n570011\tThe Rea Co Homes Custom Building Process in Central Oregon\tpublished\t2026-01-19 09:34\n570010\tThe Rea Co Guide to Custom Home Building in Central Oregon\tpublished\t2026-01-19 09:34\n570009\tThe Ultimate Guide to Luxury Living in Central Oregon\tpublished\t2026-01-19 09:33\n570008\tChoosing Your Central Oregon Oasis: A Custom Home Neighborhood Guide\tpublished\t2026-01-19 09:33\n570007\tBuilding Green: Sustainable Luxury in Central Oregon Homes\tpublished\t2026-01-19 09:33\n570006\tMastering Outdoor Living Design in Bend and Central Oregon: Custom Spaces for the High Desert\tpublished\t2026-01-19 09:12\n570005\tMastering Interior Design in Bend, Oregon: The Rea Co Homes Aesthetic\tpublished\t2026-01-19 09:11\n570004\tBuilding Your Dream Energy Efficient Home in Oregon: A Central Oregon Guide\tpublished\t2026-01-19 09:11\n570003\tThe Art of Custom Home Design in Bend Oregon: Crafting Your High Desert Dream\tpublished\t2026-01-19 09:11\n570002\tMastering the Custom Home Building Timeline: A Central Oregon Guide\tpublished\t2026-01-19 09:11\n570001\tUnveiling the Future: 2026 Custom Home Trends Shaping Modern Mountain Design in Central Oregon\tpublished\t2026-01-19 09:10\n540002\tThe Definitive Guide to the Custom Home Construction Process in Oregon: A Builder's Perspective\tpublished\t2026-01-18 16:17\n540001\tBuilding Your Dream: Exploring Luxury Neighborhoods & Custom Homes in Central Oregon\tpublished\t2026-01-18 16:17\n510001\tUnveiling the Future: 2026 Custom Home Trends in Central Oregon Luxury Design\tpublished\t2026-01-17 23:12\n480001\tThe Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon\tpublished\t2026-01-17 13:58\n",
+  "stderr": "",
+  "execution_time_ms": 410
+}
