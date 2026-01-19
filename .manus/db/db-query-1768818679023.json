@@ -1,0 +1,9 @@
+{
+  "query": "SELECT id, title, publishedAt, YEAR(publishedAt) as year FROM articles WHERE YEAR(publishedAt) != 2026 OR publishedAt IS NULL LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, publishedAt, YEAR(publishedAt) as year FROM articles WHERE YEAR(publishedAt) != 2026 OR publishedAt IS NULL LIMIT 20;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 364
+}

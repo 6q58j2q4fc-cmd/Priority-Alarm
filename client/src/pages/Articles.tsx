@@ -90,7 +90,7 @@ export default function Articles() {
                           <div className="flex items-center gap-4 text-sm text-muted-foreground">
                             <span className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
-                              {article.publishedAt ? new Date(article.publishedAt).toLocaleDateString() : "Draft"}
+                              {article.publishedAt ? new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }) : "Draft"}
                             </span>
                             <span className="flex items-center gap-1">
                               <Eye className="w-4 h-4" />

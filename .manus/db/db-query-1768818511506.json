@@ -1,0 +1,45 @@
+{
+  "query": "SELECT DATE(createdAt) as date, status, COUNT(*) as count FROM articles GROUP BY DATE(createdAt), status ORDER BY date DESC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT DATE(createdAt) as date, status, COUNT(*) as count FROM articles GROUP BY DATE(createdAt), status ORDER BY date DESC LIMIT 20;",
+  "rows": [
+    {
+      "date": "2026-01-19",
+      "status": "published",
+      "count": "17"
+    },
+    {
+      "date": "2026-01-18",
+      "status": "published",
+      "count": "2"
+    },
+    {
+      "date": "2026-01-17",
+      "status": "published",
+      "count": "2"
+    },
+    {
+      "date": "2026-01-16",
+      "status": "published",
+      "count": "8"
+    },
+    {
+      "date": "2026-01-14",
+      "status": "published",
+      "count": "5"
+    },
+    {
+      "date": "2026-01-13",
+      "status": "published",
+      "count": "2"
+    },
+    {
+      "date": "2026-01-12",
+      "status": "published",
+      "count": "6"
+    }
+  ],
+  "messages": [],
+  "stdout": "date\tstatus\tcount\n2026-01-19\tpublished\t17\n2026-01-18\tpublished\t2\n2026-01-17\tpublished\t2\n2026-01-16\tpublished\t8\n2026-01-14\tpublished\t5\n2026-01-13\tpublished\t2\n2026-01-12\tpublished\t6\n",
+  "stderr": "",
+  "execution_time_ms": 414
+}

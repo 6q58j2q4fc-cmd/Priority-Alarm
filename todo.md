@@ -434,3 +434,12 @@
 - [x] Fixed scheduler to check every 30 minutes instead of hourly
 - [x] Added logic to force generation if no articles created today
 - [x] Scheduler now runs on server startup
+
+
+## CRITICAL DEBUG - Blog Auto-Posting (Jan 19, 2026)
+- [x] Trace complete data flow from scheduler to published site (WORKING - articles show on published site)
+- [x] Check if published site uses different database or caching (same database, live data)
+- [x] Verify scheduler cron job is actually running (runs every 30 min, creates articles)
+- [x] Check if articles are being created with correct status/dates (all correct)
+- [x] Fix all identified issues (date display format fixed)
+- [x] Generate test articles and verify they appear on published site (42 articles, today's at top)
