@@ -206,13 +206,27 @@ async function runScheduledGeneration(): Promise<void> {
     const now = new Date();
     const lastRun = config.lastRunAt ? new Date(config.lastRunAt) : null;
     
-    // Check if we should run (at least 12 hours since last run for 2 articles/day)
+    // Calculate time between runs based on articles per day
+    // For 5 articles/day = every 4.8 hours = 17,280,000 ms
     const hoursPerArticle = 24 / config.articlesPerDay;
     const minTimeBetweenRuns = hoursPerArticle * 60 * 60 * 1000; // Convert to milliseconds
     
-    if (lastRun && (now.getTime() - lastRun.getTime()) < minTimeBetweenRuns) {
-      console.log("[Scheduler] Not enough time since last run, skipping");
+    // FORCE RUN: If no articles created today, always generate one
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const lastRunDate = lastRun ? new Date(lastRun) : null;
+    const lastRunWasToday = lastRunDate && lastRunDate >= today;
+    
+    // Only skip if we ran recently AND we ran today
+    if (lastRun && lastRunWasToday && (now.getTime() - lastRun.getTime()) < minTimeBetweenRuns) {
+      console.log(`[Scheduler] Not enough time since last run (${Math.round((now.getTime() - lastRun.getTime()) / 60000)} min ago), skipping`);
       return;
+    }
+    
+    // If last run was NOT today, force generate regardless of time
+    if (!lastRunWasToday) {
+      console.log("[Scheduler] No articles generated today - forcing generation");
     }
 
     console.log("[Scheduler] Running scheduled content generation...");
@@ -262,8 +276,9 @@ export async function initializeScheduler(): Promise<void> {
       clearInterval(schedulerInterval);
     }
     
-    schedulerInterval = setInterval(runScheduledGeneration, 60 * 60 * 1000); // Every hour
-    console.log("[Scheduler] Scheduler initialized, checking every hour");
+    // Check every 30 minutes for more responsive article generation
+    schedulerInterval = setInterval(runScheduledGeneration, 30 * 60 * 1000); // Every 30 minutes
+    console.log("[Scheduler] Scheduler initialized, checking every 30 minutes");
 
     // Initialize email drip campaign
     try {

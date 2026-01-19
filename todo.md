@@ -428,3 +428,9 @@
 - [x] Verify admin dashboard has performance monitoring features (views, clicks, bot activity tracked)
 - [x] Review LLM-generated article quality and brand voice (professional, accurate, Kevin Rea brand)
 - [x] Ensure no placeholder text in articles (verified - all content is complete)
+
+## Scheduler Fix (Jan 19, 2026)
+- [x] Force generated 5 new articles immediately (total now 36)
+- [x] Fixed scheduler to check every 30 minutes instead of hourly
+- [x] Added logic to force generation if no articles created today
+- [x] Scheduler now runs on server startup

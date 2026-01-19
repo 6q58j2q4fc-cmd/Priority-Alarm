@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, title, DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i:%s') as created, DATE_FORMAT(updatedAt, '%Y-%m-%d %H:%i:%s') as updated FROM articles ORDER BY createdAt DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i:%s') as created, DATE_FORMAT(updatedAt, '%Y-%m-%d %H:%i:%s') as updated FROM articles ORDER BY createdAt DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "570006",
+      "title": "Mastering Outdoor Living Design in Bend and Central Oregon: Custom Spaces for the High Desert",
+      "created": "2026-01-19 09:12:08",
+      "updated": "2026-01-19 09:25:24"
+    },
+    {
+      "id": "570005",
+      "title": "Mastering Interior Design in Bend, Oregon: The Rea Co Homes Aesthetic",
+      "created": "2026-01-19 09:11:52",
+      "updated": "2026-01-19 09:11:52"
+    },
+    {
+      "id": "570004",
+      "title": "Building Your Dream Energy Efficient Home in Oregon: A Central Oregon Guide",
+      "created": "2026-01-19 09:11:34",
+      "updated": "2026-01-19 09:11:34"
+    },
+    {
+      "id": "570003",
+      "title": "The Art of Custom Home Design in Bend Oregon: Crafting Your High Desert Dream",
+      "created": "2026-01-19 09:11:19",
+      "updated": "2026-01-19 09:11:19"
+    },
+    {
+      "id": "570002",
+      "title": "Mastering the Custom Home Building Timeline: A Central Oregon Guide",
+      "created": "2026-01-19 09:11:03",
+      "updated": "2026-01-19 09:11:03"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcreated\tupdated\n570006\tMastering Outdoor Living Design in Bend and Central Oregon: Custom Spaces for the High Desert\t2026-01-19 09:12:08\t2026-01-19 09:25:24\n570005\tMastering Interior Design in Bend, Oregon: The Rea Co Homes Aesthetic\t2026-01-19 09:11:52\t2026-01-19 09:11:52\n570004\tBuilding Your Dream Energy Efficient Home in Oregon: A Central Oregon Guide\t2026-01-19 09:11:34\t2026-01-19 09:11:34\n570003\tThe Art of Custom Home Design in Bend Oregon: Crafting Your High Desert Dream\t2026-01-19 09:11:19\t2026-01-19 09:11:19\n570002\tMastering the Custom Home Building Timeline: A Central Oregon Guide\t2026-01-19 09:11:03\t2026-01-19 09:11:03\n",
+  "stderr": "",
+  "execution_time_ms": 406
+}
