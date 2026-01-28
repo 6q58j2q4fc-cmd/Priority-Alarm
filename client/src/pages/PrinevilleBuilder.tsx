@@ -22,6 +22,7 @@ import {
   Building2,
   DollarSign,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const prinevilleFeatures = [
   {
@@ -272,6 +273,9 @@ export default function PrinevilleBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="prineville" />
 
       <Footer />
     </div>

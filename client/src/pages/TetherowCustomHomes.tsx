@@ -23,6 +23,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const tetherowFeatures = [
   {
@@ -351,6 +352,9 @@ export default function TetherowCustomHomes() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="tetherow" />
 
       <Footer />
     </div>

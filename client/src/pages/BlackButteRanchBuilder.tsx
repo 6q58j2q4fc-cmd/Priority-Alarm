@@ -22,6 +22,7 @@ import {
   Bike,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const blackButteFeatures = [
   {
@@ -244,6 +245,9 @@ export default function BlackButteRanchBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="black-butte-ranch" />
 
       <Footer />
     </div>

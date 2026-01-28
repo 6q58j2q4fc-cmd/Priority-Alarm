@@ -22,6 +22,7 @@ import {
   Building,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const oldMillFeatures = [
   {
@@ -244,6 +245,9 @@ export default function OldMillBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="old-mill" />
 
       <Footer />
     </div>

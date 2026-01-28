@@ -22,6 +22,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const calderaFeatures = [
   {
@@ -303,6 +304,9 @@ export default function CalderaSpringsBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="caldera-springs" />
 
       <Footer />
     </div>

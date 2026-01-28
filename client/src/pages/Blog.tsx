@@ -24,6 +24,7 @@ import {
   Eye,
   Loader2,
 } from "lucide-react";
+import { calculateReadingTime, formatReadingTime } from "@/components/ReadingTime";
 
 const popularTags = [
   "Brasada Ranch",
@@ -223,6 +224,10 @@ export default function Blog() {
                                     <span className="flex items-center gap-1">
                                       <Eye className="w-3 h-3" />
                                       {article.views} views
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                      <Clock className="w-3 h-3" />
+                                      {formatReadingTime(calculateReadingTime(article.content || article.excerpt || ''))}
                                     </span>
                                   </div>
                                   <h3 className="font-display text-xl font-semibold text-timber mb-3 group-hover:text-amber transition-colors">

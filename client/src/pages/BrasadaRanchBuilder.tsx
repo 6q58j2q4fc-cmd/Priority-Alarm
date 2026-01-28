@@ -23,6 +23,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const brasadaFeatures = [
   {
@@ -356,6 +357,9 @@ export default function BrasadaRanchBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="brasada-ranch" />
 
       <Footer />
     </div>

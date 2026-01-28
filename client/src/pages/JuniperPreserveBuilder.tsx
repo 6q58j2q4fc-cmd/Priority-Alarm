@@ -22,6 +22,7 @@ import {
   Sparkles,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const juniperFeatures = [
   {
@@ -246,6 +247,9 @@ export default function JuniperPreserveBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="juniper-preserve" />
 
       <Footer />
     </div>

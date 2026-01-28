@@ -22,6 +22,7 @@ import {
   Store,
   Tent,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const sistersFeatures = [
   {
@@ -273,6 +274,9 @@ export default function SistersBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="sisters" />
 
       <Footer />
     </div>

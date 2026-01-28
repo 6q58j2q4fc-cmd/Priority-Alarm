@@ -13,7 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
 import { Link, useParams } from "wouter";
-import { ArrowLeft, Phone, Mail, Globe, Calendar, Eye, Tag, User } from "lucide-react";
+import { ArrowLeft, Phone, Mail, Globe, Calendar, Eye, Tag, User, Clock } from "lucide-react";
+import { calculateReadingTime, formatReadingTime } from "@/components/ReadingTime";
 import { Streamdown } from "streamdown";
 
 export default function GeneratedArticle() {
@@ -127,6 +128,10 @@ export default function GeneratedArticle() {
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
                 <span>{article.publishedAt ? new Date(article.publishedAt).toLocaleDateString() : "Draft"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                <span>{formatReadingTime(calculateReadingTime(article.content || ''))}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="w-4 h-4" />

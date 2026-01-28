@@ -545,3 +545,8 @@
 
 ### Blog Enhancements
 - [x] Add reading progress indicator to blog posts (ReadingProgressBar component)
+
+## Internal Linking & Compare Tool (Jan 28, 2026)
+- [x] Add internal linking between related location pages (cross-link communities) - RelatedCommunities component added to 16 location pages
+- [x] Create Compare Communities tool page (/compare-communities)
+- [x] Add estimated reading time to blog posts (ReadingTime component added to Blog and GeneratedArticle pages)

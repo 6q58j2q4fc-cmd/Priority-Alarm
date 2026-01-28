@@ -22,6 +22,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const highlandsFeatures = [
   {
@@ -235,6 +236,9 @@ export default function HighlandsBrokenTopBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="highlands-broken-top" />
 
       <Footer />
     </div>

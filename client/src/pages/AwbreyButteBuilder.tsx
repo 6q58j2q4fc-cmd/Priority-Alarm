@@ -22,6 +22,7 @@ import {
   TreePine,
   Building,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const awbreyFeatures = [
   {
@@ -294,6 +295,9 @@ export default function AwbreyButteBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="awbrey-butte" />
 
       <Footer />
     </div>

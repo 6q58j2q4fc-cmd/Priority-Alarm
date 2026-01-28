@@ -23,6 +23,7 @@ import {
   Mountain,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const sunriverFeatures = [
   {
@@ -305,6 +306,9 @@ export default function SunriverBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="sunriver" />
 
       <Footer />
     </div>

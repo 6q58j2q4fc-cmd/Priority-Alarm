@@ -22,6 +22,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const pronghornFeatures = [
   {
@@ -302,6 +303,9 @@ export default function PronghornBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="pronghorn" />
 
       <Footer />
     </div>

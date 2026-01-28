@@ -22,6 +22,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const nwxFeatures = [
   {
@@ -244,6 +245,9 @@ export default function NorthwestCrossingBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="northwest-crossing" />
 
       <Footer />
     </div>

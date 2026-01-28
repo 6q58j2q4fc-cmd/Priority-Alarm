@@ -22,6 +22,7 @@ import {
   TreePine,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const brokenTopFeatures = [
   {
@@ -302,6 +303,9 @@ export default function BrokenTopBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="broken-top" />
 
       <Footer />
     </div>

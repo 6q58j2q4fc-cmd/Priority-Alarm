@@ -52,6 +52,7 @@ import LaPineBuilder from "./pages/LaPineBuilder";
 import PrinevilleBuilder from "./pages/PrinevilleBuilder";
 import Resources from "./pages/Resources";
 import FAQ from "./pages/FAQ";
+import CompareCommunities from "./pages/CompareCommunities";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
 
 function Router() {
@@ -99,6 +100,7 @@ function Router() {
       <Route path="/prineville-builder" component={PrinevilleBuilder} />
       <Route path="/resources" component={Resources} />
       <Route path="/faq" component={FAQ} />
+      <Route path="/compare-communities" component={CompareCommunities} />
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />

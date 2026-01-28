@@ -23,6 +23,7 @@ import {
   Users,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const redmondFeatures = [
   {
@@ -388,6 +389,9 @@ export default function RedmondBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="redmond" />
 
       <Footer />
     </div>

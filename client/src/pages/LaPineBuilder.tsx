@@ -22,6 +22,7 @@ import {
   Mountain,
   DollarSign,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const laPineFeatures = [
   {
@@ -272,6 +273,9 @@ export default function LaPineBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="la-pine" />
 
       <Footer />
     </div>

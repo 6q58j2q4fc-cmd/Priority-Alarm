@@ -22,6 +22,7 @@ import {
   Shield,
   ExternalLink,
 } from "lucide-react";
+import RelatedCommunities from "@/components/RelatedCommunities";
 
 const awbreyGlenFeatures = [
   {
@@ -236,6 +237,9 @@ export default function AwbreyGlenBuilder() {
           </div>
         </div>
       </section>
+
+      {/* Related Communities */}
+      <RelatedCommunities currentCommunity="awbrey-glen" />
 
       <Footer />
     </div>
