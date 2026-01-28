@@ -519,3 +519,7 @@
 - [x] Generate test articles to verify system works (just created: "Unlocking Your Vision: Expert Custom Home Design in Bend Oregon")
 - [x] Add monitoring dashboard for scheduler status (Admin Dashboard has Scheduler tab)
 - [x] Add scheduler activity logging to database (bot_activity_log table with 58+ entries)
+
+
+## SEO Keyword Optimization (Jan 28, 2026)
+- [x] Reduce homepage keywords from 25 to 3-8 focused keywords (now 8 total: 5 page + 3 default)

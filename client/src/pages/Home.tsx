@@ -68,7 +68,7 @@ export default function Home() {
         description="Award-winning custom home builder in Central Oregon since 1977. Kevin Rea builds luxury homes in Bend, Brasada Ranch & Tetherow. Call 541-390-9848."
         canonicalUrl="/"
         ogImage="/images/hero-main.jpg"
-        keywords={["custom home builder Bend Oregon", "Central Oregon luxury homes", "Brasada Ranch builder", "Tetherow custom homes", "Kevin Rea", "Rea Co Homes", "luxury home construction", "custom home design"]}
+        keywords={["custom home builder Bend Oregon", "luxury homes Central Oregon", "Brasada Ranch builder", "Tetherow custom homes", "home construction Bend"]}
       />
       <Header />
 

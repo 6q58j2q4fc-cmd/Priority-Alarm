@@ -44,18 +44,11 @@ export default function PageSEO({
   const fullUrl = canonicalUrl ? `${BASE_URL}${canonicalUrl}` : BASE_URL;
   const fullImageUrl = ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`;
   
-  // Default keywords for all pages
+  // Default keywords for all pages (kept minimal, 3 core brand terms)
   const defaultKeywords = [
-    "custom home builder",
-    "Central Oregon",
-    "Bend Oregon",
-    "luxury homes",
+    "custom home builder Central Oregon",
     "Kevin Rea",
     "Rea Co Homes",
-    "custom construction",
-    "Brasada Ranch",
-    "Tetherow",
-    "Sunriver",
   ];
   
   const allKeywords = Array.from(new Set([...keywords, ...defaultKeywords]));
