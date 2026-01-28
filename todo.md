@@ -559,3 +559,7 @@
 
 ## UI Fix (Jan 28, 2026)
 - [x] Fix transparent share buttons on article pages (added solid backgrounds to Copy link and Share buttons)
+
+## Print Stylesheet (Jan 28, 2026)
+- [x] Add print-friendly stylesheet for articles (added to index.css)
+- [x] Add print button to article pages (added to GeneratedArticle.tsx)

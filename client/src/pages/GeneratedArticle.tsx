@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
 import { Link, useParams } from "wouter";
-import { ArrowLeft, Phone, Mail, Globe, Calendar, Eye, Tag, User, Clock } from "lucide-react";
+import { ArrowLeft, Phone, Mail, Globe, Calendar, Eye, Tag, User, Clock, Printer } from "lucide-react";
 import { calculateReadingTime, formatReadingTime } from "@/components/ReadingTime";
 import { Streamdown } from "streamdown";
 
@@ -140,13 +140,23 @@ export default function GeneratedArticle() {
             </div>
 
             {/* Social Share Buttons */}
-            <div className="mt-6 pt-6 border-t border-white/20">
+            <div className="mt-6 pt-6 border-t border-white/20 flex items-center justify-between flex-wrap gap-4">
               <SocialShareButtons
                 url={typeof window !== "undefined" ? window.location.href : `https://reacohomes.com/articles/${slug}`}
                 title={article.title}
                 description={article.excerpt || ""}
                 image={article.featuredImage || "/images/hero-main.jpg"}
               />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => window.print()}
+                className="bg-white/20 hover:bg-white/30 text-white border-white/30 no-print"
+                title="Print this article"
+              >
+                <Printer className="w-4 h-4 mr-2" />
+                Print Article
+              </Button>
             </div>
           </div>
         </div>
