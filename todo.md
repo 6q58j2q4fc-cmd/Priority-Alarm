@@ -531,3 +531,17 @@
 - [x] Create Sunriver custom home builder landing page (already exists at /sunriver-builder)
 - [x] Create Redmond custom home builder landing page (/redmond-builder)
 - [x] Fix blog to show newest articles first for better indexing (added client-side sort by publishedAt desc)
+
+## Landing Pages Expansion (Jan 28, 2026)
+### Golf Courses & Luxury Communities
+- [x] Audit existing location pages
+- [x] Create missing golf course landing pages (Awbrey Glen, Juniper Preserve, Black Butte Ranch)
+- [x] Create missing luxury community landing pages (Northwest Crossing, Highlands at Broken Top, Old Mill District)
+
+### City-Specific Landing Pages
+- [x] Create Sisters custom home builder landing page (/sisters-builder)
+- [x] Create La Pine custom home builder landing page (/la-pine-builder)
+- [x] Create Prineville custom home builder landing page (/prineville-builder)
+
+### Blog Enhancements
+- [x] Add reading progress indicator to blog posts (ReadingProgressBar component)

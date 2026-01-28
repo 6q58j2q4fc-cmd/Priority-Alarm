@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import SocialShareButtons from "@/components/SocialShareButtons";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getBlogPostBySlug, blogPosts } from "@/data/blogPosts";
@@ -69,6 +70,7 @@ export default function BlogPost() {
         ogType="article"
       />
       <Header />
+      <ReadingProgressBar />
 
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center">

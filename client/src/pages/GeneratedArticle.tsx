@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import ArticleSchema from "@/components/ArticleSchema";
 import SocialShareButtons from "@/components/SocialShareButtons";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { trpc } from "@/lib/trpc";
@@ -86,6 +87,7 @@ export default function GeneratedArticle() {
         category={article.category}
       />
       <Header />
+      <ReadingProgressBar />
 
       {/* Hero Section */}
       <section className="relative py-20 bg-timber">

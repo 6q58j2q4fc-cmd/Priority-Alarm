@@ -41,6 +41,15 @@ import ShevlinCommonsBuilder from "./pages/ShevlinCommonsBuilder";
 import SummitWestBuilder from "./pages/SummitWestBuilder";
 import WidgiCreekBuilder from "./pages/WidgiCreekBuilder";
 import RedmondBuilder from "./pages/RedmondBuilder";
+import AwbreyGlenBuilder from "./pages/AwbreyGlenBuilder";
+import BlackButteRanchBuilder from "./pages/BlackButteRanchBuilder";
+import JuniperPreserveBuilder from "./pages/JuniperPreserveBuilder";
+import NorthwestCrossingBuilder from "./pages/NorthwestCrossingBuilder";
+import HighlandsBrokenTopBuilder from "./pages/HighlandsBrokenTopBuilder";
+import OldMillBuilder from "./pages/OldMillBuilder";
+import SistersBuilder from "./pages/SistersBuilder";
+import LaPineBuilder from "./pages/LaPineBuilder";
+import PrinevilleBuilder from "./pages/PrinevilleBuilder";
 import Resources from "./pages/Resources";
 import FAQ from "./pages/FAQ";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
@@ -79,6 +88,15 @@ function Router() {
       <Route path="/summit-west-builder" component={SummitWestBuilder} />
       <Route path="/widgi-creek-builder" component={WidgiCreekBuilder} />
       <Route path="/redmond-builder" component={RedmondBuilder} />
+      <Route path="/awbrey-glen-builder" component={AwbreyGlenBuilder} />
+      <Route path="/black-butte-ranch-builder" component={BlackButteRanchBuilder} />
+      <Route path="/juniper-preserve-builder" component={JuniperPreserveBuilder} />
+      <Route path="/northwest-crossing-builder" component={NorthwestCrossingBuilder} />
+      <Route path="/highlands-broken-top-builder" component={HighlandsBrokenTopBuilder} />
+      <Route path="/old-mill-builder" component={OldMillBuilder} />
+      <Route path="/sisters-builder" component={SistersBuilder} />
+      <Route path="/la-pine-builder" component={LaPineBuilder} />
+      <Route path="/prineville-builder" component={PrinevilleBuilder} />
       <Route path="/resources" component={Resources} />
       <Route path="/faq" component={FAQ} />
       <Route path="/admin" component={AdminDashboard} />
