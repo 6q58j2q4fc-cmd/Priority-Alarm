@@ -1,0 +1,80 @@
+{
+  "query": "SELECT id, title, DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i:%s') as created, DATE_FORMAT(publishedAt, '%Y-%m-%d %H:%i:%s') as published, status FROM articles ORDER BY createdAt DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, title, DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i:%s') as created, DATE_FORMAT(publishedAt, '%Y-%m-%d %H:%i:%s') as published, status FROM articles ORDER BY createdAt DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "930001",
+      "title": "Securing Your Dream: A Guide to Construction Loan Oregon Options for Custom Home Builds",
+      "created": "2026-01-28 20:09:00",
+      "published": "2026-01-28 20:09:00",
+      "status": "published"
+    },
+    {
+      "id": "900001",
+      "title": "The Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon",
+      "created": "2026-01-27 12:43:30",
+      "published": "2026-01-27 12:43:30",
+      "status": "published"
+    },
+    {
+      "id": "870001",
+      "title": "Custom Home Lot Selection Tips: Finding the Best Lots in Tetherow and Central Oregon",
+      "created": "2026-01-26 19:41:05",
+      "published": "2026-01-26 19:41:05",
+      "status": "published"
+    },
+    {
+      "id": "840001",
+      "title": "Unlocking Premier Custom Home Design in Bend, Oregon: The Rea Co Homes Advantage",
+      "created": "2026-01-25 10:58:43",
+      "published": "2026-01-25 10:58:43",
+      "status": "published"
+    },
+    {
+      "id": "810001",
+      "title": "The Art of Custom Home Design in Bend Oregon: Crafting Your High Desert Sanctuary",
+      "created": "2026-01-23 18:34:19",
+      "published": "2026-01-23 18:34:19",
+      "status": "published"
+    },
+    {
+      "id": "780001",
+      "title": "Building Your Dream Energy Efficient Home in Oregon: A Central Oregon Guide",
+      "created": "2026-01-22 23:51:29",
+      "published": "2026-01-22 23:51:29",
+      "status": "published"
+    },
+    {
+      "id": "750001",
+      "title": "The Definitive Guide to the Custom Home Construction Process in Bend, Oregon",
+      "created": "2026-01-22 03:33:29",
+      "published": "2026-01-22 03:33:29",
+      "status": "published"
+    },
+    {
+      "id": "720002",
+      "title": "Mastering Your Custom Home Building Timeline: A Central Oregon Guide",
+      "created": "2026-01-21 21:54:27",
+      "published": "2026-01-21 21:54:27",
+      "status": "published"
+    },
+    {
+      "id": "720001",
+      "title": "The Future of Living: Sustainable Building in Oregon with Rea Co Homes",
+      "created": "2026-01-21 21:53:23",
+      "published": "2026-01-21 21:53:23",
+      "status": "published"
+    },
+    {
+      "id": "690001",
+      "title": "Mastering Your Custom Home Building Timeline in Central Oregon: A Rea Co Homes Guide",
+      "created": "2026-01-21 09:49:16",
+      "published": "2026-01-21 09:49:17",
+      "status": "published"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcreated\tpublished\tstatus\n930001\tSecuring Your Dream: A Guide to Construction Loan Oregon Options for Custom Home Builds\t2026-01-28 20:09:00\t2026-01-28 20:09:00\tpublished\n900001\tThe Definitive Custom Home Building Timeline: Planning Your Luxury Home in Central Oregon\t2026-01-27 12:43:30\t2026-01-27 12:43:30\tpublished\n870001\tCustom Home Lot Selection Tips: Finding the Best Lots in Tetherow and Central Oregon\t2026-01-26 19:41:05\t2026-01-26 19:41:05\tpublished\n840001\tUnlocking Premier Custom Home Design in Bend, Oregon: The Rea Co Homes Advantage\t2026-01-25 10:58:43\t2026-01-25 10:58:43\tpublished\n810001\tThe Art of Custom Home Design in Bend Oregon: Crafting Your High Desert Sanctuary\t2026-01-23 18:34:19\t2026-01-23 18:34:19\tpublished\n780001\tBuilding Your Dream Energy Efficient Home in Oregon: A Central Oregon Guide\t2026-01-22 23:51:29\t2026-01-22 23:51:29\tpublished\n750001\tThe Definitive Guide to the Custom Home Construction Process in Bend, Oregon\t2026-01-22 03:33:29\t2026-01-22 03:33:29\tpublished\n720002\tMastering Your Custom Home Building Timeline: A Central Oregon Guide\t2026-01-21 21:54:27\t2026-01-21 21:54:27\tpublished\n720001\tThe Future of Living: Sustainable Building in Oregon with Rea Co Homes\t2026-01-21 21:53:23\t2026-01-21 21:53:23\tpublished\n690001\tMastering Your Custom Home Building Timeline in Central Oregon: A Rea Co Homes Guide\t2026-01-21 09:49:16\t2026-01-21 09:49:17\tpublished\n",
+  "stderr": "",
+  "execution_time_ms": 114
+}

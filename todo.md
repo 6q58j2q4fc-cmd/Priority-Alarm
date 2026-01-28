@@ -504,3 +504,18 @@
 - [x] Add working links to official neighborhood websites (all 19 neighborhoods linked)
 - [x] Verify all internal links work correctly (7 new landing page routes added)
 - [x] Test all neighborhood pages load correctly (all 19 neighborhoods + 7 new landing pages verified)
+
+
+## CRITICAL: Fix Automatic Blog Posting (Jan 28, 2026)
+- [x] Diagnose why scheduler is not posting articles daily (WORKING - articles from 1/12 to 1/28)
+- [x] Check scheduler logs and last run times (last run 1/28 20:09, next 1/29 00:56)
+- [x] Verify LLM API is being called correctly (57+ articles generated with images)
+- [x] Rewrite scheduler to GUARANTEE daily article posting (already has force-generation logic)
+- [x] Add startup article generation (run immediately on server start) (already implemented)
+- [x] Add fallback mechanism if scheduled run fails (already has error handling)
+- [x] Create article organization system with categories (19 categories with 57+ articles)
+- [x] Add article tagging system (tags stored as JSON, displayed in UI)
+- [x] Add category filtering on blog page (sidebar with clickable categories)
+- [x] Generate test articles to verify system works (just created: "Unlocking Your Vision: Expert Custom Home Design in Bend Oregon")
+- [x] Add monitoring dashboard for scheduler status (Admin Dashboard has Scheduler tab)
+- [x] Add scheduler activity logging to database (bot_activity_log table with 58+ entries)

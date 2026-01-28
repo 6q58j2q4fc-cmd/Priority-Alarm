@@ -1,0 +1,90 @@
+{
+  "query": "SELECT id, activityType, status, articlesGenerated, createdAt, completedAt FROM bot_activity_log ORDER BY createdAt DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT id, activityType, status, articlesGenerated, createdAt, completedAt FROM bot_activity_log ORDER BY createdAt DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "960002",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-28 20:11:59",
+      "completedAt": "2026-01-28 20:12:19"
+    },
+    {
+      "id": "960001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-28 20:08:41",
+      "completedAt": "2026-01-28 20:09:00"
+    },
+    {
+      "id": "930001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-27 12:41:50",
+      "completedAt": "2026-01-27 12:43:31"
+    },
+    {
+      "id": "900001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-26 19:39:50",
+      "completedAt": "2026-01-26 19:41:06"
+    },
+    {
+      "id": "870001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-25 10:57:06",
+      "completedAt": "2026-01-25 10:58:46"
+    },
+    {
+      "id": "840001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-23 18:32:31",
+      "completedAt": "2026-01-23 18:34:19"
+    },
+    {
+      "id": "810001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-22 23:49:59",
+      "completedAt": "2026-01-22 23:51:30"
+    },
+    {
+      "id": "780001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-22 03:31:30",
+      "completedAt": "2026-01-22 03:33:29"
+    },
+    {
+      "id": "750001",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-21 21:52:43",
+      "completedAt": "2026-01-21 21:53:24"
+    },
+    {
+      "id": "750002",
+      "activityType": "content_generation",
+      "status": "completed",
+      "articlesGenerated": "1",
+      "createdAt": "2026-01-21 21:52:43",
+      "completedAt": "2026-01-21 21:54:28"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tactivityType\tstatus\tarticlesGenerated\tcreatedAt\tcompletedAt\n960002\tcontent_generation\tcompleted\t1\t2026-01-28 20:11:59\t2026-01-28 20:12:19\n960001\tcontent_generation\tcompleted\t1\t2026-01-28 20:08:41\t2026-01-28 20:09:00\n930001\tcontent_generation\tcompleted\t1\t2026-01-27 12:41:50\t2026-01-27 12:43:31\n900001\tcontent_generation\tcompleted\t1\t2026-01-26 19:39:50\t2026-01-26 19:41:06\n870001\tcontent_generation\tcompleted\t1\t2026-01-25 10:57:06\t2026-01-25 10:58:46\n840001\tcontent_generation\tcompleted\t1\t2026-01-23 18:32:31\t2026-01-23 18:34:19\n810001\tcontent_generation\tcompleted\t1\t2026-01-22 23:49:59\t2026-01-22 23:51:30\n780001\tcontent_generation\tcompleted\t1\t2026-01-22 03:31:30\t2026-01-22 03:33:29\n750001\tcontent_generation\tcompleted\t1\t2026-01-21 21:52:43\t2026-01-21 21:53:24\n750002\tcontent_generation\tcompleted\t1\t2026-01-21 21:52:43\t2026-01-21 21:54:28\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

@@ -1,0 +1,86 @@
+{
+  "query": "SELECT category, COUNT(*) as article_count FROM articles GROUP BY category ORDER BY article_count DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user mexMZK3NDs3KsAz.c76371ba20f6 --database jH6DLQ8FrZGu3jgVut4Sqk --execute SELECT category, COUNT(*) as article_count FROM articles GROUP BY category ORDER BY article_count DESC;",
+  "rows": [
+    {
+      "category": "Timeline Planning",
+      "article_count": "7"
+    },
+    {
+      "category": "Custom Home Design",
+      "article_count": "6"
+    },
+    {
+      "category": "Building Process",
+      "article_count": "4"
+    },
+    {
+      "category": "Custom Home Building",
+      "article_count": "4"
+    },
+    {
+      "category": "Energy Efficiency",
+      "article_count": "3"
+    },
+    {
+      "category": "Design Trends",
+      "article_count": "3"
+    },
+    {
+      "category": "Cost Guide",
+      "article_count": "3"
+    },
+    {
+      "category": "Luxury Features",
+      "article_count": "3"
+    },
+    {
+      "category": "Builder Selection",
+      "article_count": "3"
+    },
+    {
+      "category": "Outdoor Living",
+      "article_count": "3"
+    },
+    {
+      "category": "Neighborhoods",
+      "article_count": "2"
+    },
+    {
+      "category": "Interior Design",
+      "article_count": "2"
+    },
+    {
+      "category": "Sustainability",
+      "article_count": "2"
+    },
+    {
+      "category": "Market Trends",
+      "article_count": "2"
+    },
+    {
+      "category": "Mountain Modern Design",
+      "article_count": "2"
+    },
+    {
+      "category": "Smart Home Technology",
+      "article_count": "2"
+    },
+    {
+      "category": "Lot Selection",
+      "article_count": "2"
+    },
+    {
+      "category": "Financing",
+      "article_count": "1"
+    },
+    {
+      "category": "Luxury Real Estate",
+      "article_count": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "category\tarticle_count\nTimeline Planning\t7\nCustom Home Design\t6\nBuilding Process\t4\nCustom Home Building\t4\nEnergy Efficiency\t3\nDesign Trends\t3\nCost Guide\t3\nLuxury Features\t3\nBuilder Selection\t3\nOutdoor Living\t3\nNeighborhoods\t2\nInterior Design\t2\nSustainability\t2\nMarket Trends\t2\nMountain Modern Design\t2\nSmart Home Technology\t2\nLot Selection\t2\nFinancing\t1\nLuxury Real Estate\t1\n",
+  "stderr": "",
+  "execution_time_ms": 62
+}
