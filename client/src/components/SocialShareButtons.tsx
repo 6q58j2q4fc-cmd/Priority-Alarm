@@ -78,7 +78,7 @@ export default function SocialShareButtons({
 
   return (
     <div className="flex items-center gap-2">
-      <span className="font-body text-sm text-muted-foreground mr-2">Share:</span>
+      <span className="font-body text-sm text-white/80 mr-2">Share:</span>
       
       <Button
         variant="outline"
@@ -137,7 +137,7 @@ export default function SocialShareButtons({
         variant="outline"
         size="sm"
         onClick={copyToClipboard}
-        className="h-8 w-8 p-0"
+        className="bg-stone hover:bg-stone/80 text-timber border-0 h-8 w-8 p-0"
         title="Copy link"
       >
         {copied ? (
@@ -152,7 +152,7 @@ export default function SocialShareButtons({
           variant="outline"
           size="sm"
           onClick={handleNativeShare}
-          className="h-8 w-8 p-0"
+          className="bg-amber hover:bg-amber/80 text-timber border-0 h-8 w-8 p-0"
           title="Share"
         >
           <Share2 className="w-4 h-4" />

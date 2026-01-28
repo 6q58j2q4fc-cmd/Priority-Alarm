@@ -556,3 +556,6 @@
 
 ## SEO Keyword Fix (Jan 28, 2026)
 - [x] Fix homepage keywords - reduced from 25 to 5 focused keywords in index.html
+
+## UI Fix (Jan 28, 2026)
+- [x] Fix transparent share buttons on article pages (added solid backgrounds to Copy link and Share buttons)
