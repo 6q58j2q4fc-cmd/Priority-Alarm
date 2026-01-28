@@ -86,7 +86,7 @@ export default function About() {
       <PageSEO
         title="About Kevin Rea - Master Custom Home Builder"
         description="Meet Kevin Rea, Central Oregon's premier custom home builder since 1977. 45+ years experience, 100+ homes built, award-winning craftsmanship."
-        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
+        keywords={["Kevin Rea builder", "custom home builder Bend Oregon", "master builder Central Oregon", "luxury home construction", "award-winning builder"]}
         ogImage="/images/kevin-rea.webp"
       />
       <Header />

@@ -40,6 +40,7 @@ import RiverRimBuilder from "./pages/RiverRimBuilder";
 import ShevlinCommonsBuilder from "./pages/ShevlinCommonsBuilder";
 import SummitWestBuilder from "./pages/SummitWestBuilder";
 import WidgiCreekBuilder from "./pages/WidgiCreekBuilder";
+import RedmondBuilder from "./pages/RedmondBuilder";
 import Resources from "./pages/Resources";
 import FAQ from "./pages/FAQ";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
@@ -77,6 +78,7 @@ function Router() {
       <Route path="/shevlin-commons-builder" component={ShevlinCommonsBuilder} />
       <Route path="/summit-west-builder" component={SummitWestBuilder} />
       <Route path="/widgi-creek-builder" component={WidgiCreekBuilder} />
+      <Route path="/redmond-builder" component={RedmondBuilder} />
       <Route path="/resources" component={Resources} />
       <Route path="/faq" component={FAQ} />
       <Route path="/admin" component={AdminDashboard} />

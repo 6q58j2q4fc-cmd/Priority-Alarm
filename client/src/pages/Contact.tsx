@@ -17,7 +17,7 @@ export default function Contact() {
       <PageSEO
         title="Contact Kevin Rea - Free Consultation"
         description="Contact Kevin Rea for a free custom home consultation. Call 541-390-9848 or email kevin@reacohomes.com. Building in Central Oregon since 1977."
-        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
+        keywords={["contact custom home builder", "free home consultation Bend", "custom home quote Central Oregon", "home builder contact", "schedule consultation"]}
         ogImage="/images/kevin-rea.webp"
       />
       <Header />

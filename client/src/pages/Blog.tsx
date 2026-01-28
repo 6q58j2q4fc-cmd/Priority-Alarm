@@ -44,10 +44,18 @@ export default function Blog() {
   // Fetch articles from database
   const { data: articles, isLoading } = trpc.articles.list.useQuery({});
 
-  // Filter articles by category if selected
+  // Sort articles by publishedAt descending (newest first) and filter by category if selected
+  const sortedArticles = articles
+    ?.slice()
+    .sort((a, b) => {
+      const dateA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+      const dateB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+      return dateB - dateA; // Newest first
+    });
+  
   const filteredArticles = selectedCategory
-    ? articles?.filter((article) => article.category === selectedCategory)
-    : articles;
+    ? sortedArticles?.filter((article) => article.category === selectedCategory)
+    : sortedArticles;
 
   // Get featured articles (first 2 with most views)
   const featuredArticles = articles
@@ -65,7 +73,7 @@ export default function Blog() {
       <PageSEO
         title="Rea Co Homes Blog - Custom Home Building Insights"
         description="Expert insights on custom home building in Central Oregon. Tips, trends, and community guides from master builder Kevin Rea."
-        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
+        keywords={["custom home building blog", "Central Oregon home tips", "luxury home design ideas", "Bend Oregon builder insights", "home construction guide"]}
         ogImage="/images/hero-main.jpg"
       />
       <Header />

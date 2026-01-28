@@ -523,3 +523,11 @@
 
 ## SEO Keyword Optimization (Jan 28, 2026)
 - [x] Reduce homepage keywords from 25 to 3-8 focused keywords (now 8 total: 5 page + 3 default)
+
+## SEO Audit & Landing Pages (Jan 28, 2026)
+- [x] Audit and fix keywords on Portfolio page (now 8: 5 page + 3 default)
+- [x] Audit and fix keywords on About page (now 8: 5 page + 3 default)
+- [x] Audit and fix keywords on Contact page (now 8: 5 page + 3 default)
+- [x] Create Sunriver custom home builder landing page (already exists at /sunriver-builder)
+- [x] Create Redmond custom home builder landing page (/redmond-builder)
+- [x] Fix blog to show newest articles first for better indexing (added client-side sort by publishedAt desc)

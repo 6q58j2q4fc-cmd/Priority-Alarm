@@ -210,7 +210,7 @@ export default function Portfolio() {
       <PageSEO
         title="Custom Home Portfolio"
         description="Explore our portfolio of award-winning luxury custom homes in Central Oregon. From Brasada Ranch to Tetherow, see Kevin Rea's finest work."
-        keywords={["custom homes Central Oregon", "luxury home builder Bend"]}
+        keywords={["custom home portfolio Bend Oregon", "luxury homes gallery Central Oregon", "Brasada Ranch homes", "Tetherow custom homes", "award-winning home builder"]}
         ogImage="/images/chiaramonte-hero-exterior.webp"
       />
       <Header />
