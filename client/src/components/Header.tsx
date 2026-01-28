@@ -23,6 +23,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/neighborhoods", label: "Neighborhoods", hasDropdown: true },
+  { href: "/compare-communities", label: "Compare" },
   { href: "/about", label: "About" },
   { href: "/resources", label: "Free Guides" },
   { href: "/faq", label: "FAQ" },

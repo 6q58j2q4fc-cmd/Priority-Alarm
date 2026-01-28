@@ -550,3 +550,6 @@
 - [x] Add internal linking between related location pages (cross-link communities) - RelatedCommunities component added to 16 location pages
 - [x] Create Compare Communities tool page (/compare-communities)
 - [x] Add estimated reading time to blog posts (ReadingTime component added to Blog and GeneratedArticle pages)
+
+## Navigation Update (Jan 28, 2026)
+- [x] Add Compare Communities link to main header navigation (added as "Compare" in nav)
